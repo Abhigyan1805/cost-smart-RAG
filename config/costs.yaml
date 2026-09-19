@@ -32,5 +32,3 @@ local_amortized:
     seconds_per_query_assumption: 2.47  # PRELIMINARY: stub mean (L0 2.479s, L1 2.454s over 40 pilot attempts); replace after Colab attach
   local-medium:
     seconds_per_query_assumption: 2.09  # PRELIMINARY: stub mean (C0 2.088s over 20 pilot attempts); replace after Colab attach
-  local-medium:
-    seconds_per_query_assumption: 0.0  # TODO: fill from telemetry

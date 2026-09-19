@@ -11,6 +11,13 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   `src/costsmart/eval/graders.py` and `docs/judge_labelling_guide.md`.
 - `judge_stub` in `src/costsmart/eval/graders.py` is a frozen telemetry-slice
   contract (signature + return keys); extend, never silently break.
+- Sweep telemetry provenance: `generator_mode`/`retrieval_mode` per attempt
+  row (`measured` vs `stub`, legacy rows read `unflagged-legacy`) — see
+  `src/costsmart/telemetry/schema.py` and `results/costsweep-08/CALIBRATION.md`.
+  Live local-tier sweep: `oracle_sweep --live-local` (temp 0, fixed seed);
+  cloud routes are stub-only by construction (no live cloud path, $0 spent).
+- Worker env is stdlib-only (no pip/httpx): keep `registry.py` imports lazy
+  and HTTP calls urllib-capable — see `ColabClient._post_json`.
 
 ## Maintaining this file
 

@@ -95,14 +95,33 @@ def cmd_serve(model: str, port: int) -> int:
                 self._send({"error": "bad JSON"}, 400)
                 return
             prompt = str(req.get("prompt", ""))
+            options = req.get("options", {}) or {}
+            # Sampling contract (costsweep-08): temperature 0 + fixed seed.
+            # temperature <= 0 means greedy (deterministic); seed pins sampling.
+            seed = options.get("seed", 0)
+            try:
+                torch.manual_seed(int(seed))
+                if torch.cuda.is_available():
+                    torch.cuda.manual_seed_all(int(seed))
+            except (TypeError, ValueError):
+                pass
+            try:
+                temperature = float(options.get("temperature", req.get("temperature", 0)))
+            except (TypeError, ValueError):
+                temperature = 0.0
             inputs = tok(prompt, return_tensors="pt").to(lm.device)
+            prompt_tokens = int(inputs["input_ids"].shape[1])
             t0 = time.monotonic()
+            gen_kwargs: dict = {"max_new_tokens": 256}
+            if temperature > 0:
+                gen_kwargs.update({"do_sample": True, "temperature": temperature})
             with torch.no_grad():
-                out = lm.generate(**inputs, max_new_tokens=256)
+                out = lm.generate(**inputs, **gen_kwargs)
             gen = tok.decode(out[0][inputs["input_ids"].shape[1]:],
                              skip_special_tokens=True)
             self._send({"response": gen,
                         "eval_count": len(tok.encode(gen)),
+                        "prompt_eval_count": prompt_tokens,
                         "latency_s": time.monotonic() - t0,
                         "model": req.get("model", model)})
 

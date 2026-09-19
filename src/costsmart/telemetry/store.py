@@ -12,7 +12,40 @@ import json
 import sqlite3
 from pathlib import Path
 
-from .schema import ATTEMPT_COLUMNS, ATTEMPTS_DDL
+from .schema import ATTEMPT_COLUMNS, ATTEMPTS_DDL, MIGRATED_COLUMNS
+
+
+# DEFAULT clauses for migrated columns (mirror schema.py DDL).
+_MIGRATION_DEFAULTS = {
+    "generator_mode": "'unflagged-legacy'",
+    "retrieval_mode": "'unflagged-legacy'",
+    "temperature": "0.0",
+    "seed": "0",
+}
+
+
+def _migrate_legacy_db(conn: sqlite3.Connection) -> None:
+    """ALTER TABLE in columns missing from pre-flag DBs (frozen pilot.db).
+
+    CREATE TABLE IF NOT EXISTS never adds columns to an existing table, so
+    without this, opening a legacy DB and inserting a new-column row raises
+    OperationalError. Missing columns get schema defaults; resident legacy
+    rows read back as 'unflagged-legacy' (provenance documented per artifact).
+    """
+    existing = {row[1] for row in conn.execute("PRAGMA table_info(attempts)")}
+    for col in MIGRATED_COLUMNS:
+        if col not in existing and col in ATTEMPT_COLUMNS:
+            default = _MIGRATION_DEFAULTS[col]
+            try:
+                conn.execute(
+                    f"ALTER TABLE attempts ADD COLUMN {col} "
+                    f"{'REAL' if col == 'temperature' else ('INTEGER' if col == 'seed' else 'TEXT')}"
+                    f" NOT NULL DEFAULT {default}"
+                )
+            except sqlite3.OperationalError:
+                # Column appeared concurrently; safe to ignore.
+                pass
+    conn.commit()
 
 
 class TelemetryStore:
@@ -22,6 +55,7 @@ class TelemetryStore:
         self.conn = sqlite3.connect(str(self.db_path))
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(ATTEMPTS_DDL)
+        _migrate_legacy_db(self.conn)
 
     def close(self):
         self.conn.commit()

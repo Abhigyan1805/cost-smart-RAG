@@ -12,6 +12,12 @@ Reproducibility columns: ``git_sha`` + ``config_hash``.
 Cost accounting columns (both modes, always populated): ``cloud_spend_usd``
 actual metered cloud spend, ``amortized_usd`` Colab GPU-seconds share.
 Latency breakdown columns: ``latency_ms_*`` per pipeline stage.
+Provenance columns (costsweep-08): ``generator_mode`` / ``retrieval_mode``
+are each ``measured`` (ran for real here) or ``stub`` (deterministic
+estimate, $0 spent); ``temperature`` + ``seed`` pin the generator sampling
+contract (local tiers run at temperature 0, fixed seed). Legacy rows written
+before these columns existed migrate to ``unflagged-legacy`` (documented
+per-artifact: pilot.db = stub generator + measured retrieval).
 """
 
 ATTEMPTS_DDL = """
@@ -41,7 +47,11 @@ CREATE TABLE IF NOT EXISTS attempts (
     latency_ms_verify   REAL NOT NULL DEFAULT 0.0,
     git_sha             TEXT NOT NULL DEFAULT '',
     config_hash         TEXT NOT NULL DEFAULT '',
-    created_at          TEXT NOT NULL DEFAULT ''
+    created_at          TEXT NOT NULL DEFAULT '',
+    generator_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
+    retrieval_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
+    temperature         REAL NOT NULL DEFAULT 0.0,
+    seed                INTEGER NOT NULL DEFAULT 0
 );
 CREATE INDEX IF NOT EXISTS idx_attempts_query ON attempts(query_id);
 CREATE INDEX IF NOT EXISTS idx_attempts_route ON attempts(route_id);
@@ -75,4 +85,18 @@ ATTEMPT_COLUMNS = (
     "git_sha",
     "config_hash",
     "created_at",
+    "generator_mode",
+    "retrieval_mode",
+    "temperature",
+    "seed",
+)
+
+#: Columns added after the pilot (costsweep-08). Legacy DBs (e.g. the frozen
+#: pilot.db) predate them; TelemetryStore migrates them via ALTER TABLE so old
+#: rows read back as 'unflagged-legacy' instead of failing inserts.
+MIGRATED_COLUMNS = (
+    "generator_mode",
+    "retrieval_mode",
+    "temperature",
+    "seed",
 )

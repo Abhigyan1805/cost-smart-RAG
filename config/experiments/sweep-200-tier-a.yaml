@@ -1,0 +1,21 @@
+# costsweep-08: full Tier-A oracle sweep (zero cloud spend).
+# 200 Tier-A queries (stratified 80 NQ + 70 TriviaQA + 50 HotpotQA, offline
+# synthetic source, SYNTHETIC_SEED=20260919) x the 7-route Week-1 sweep set
+# = 1400 attempts.
+#
+# Execution contract:
+# * local-tier routes (L0/L1/C0) run FOR REAL through the Colab session
+#   (--live-local, temperature 0, seed below); generator_mode='measured'.
+# * cloud-tier routes (C1..C4) are STUB-ESTIMATED from the pilot-20
+#   calibration (see results/costsweep-08/CALIBRATION.md);
+#   generator_mode='stub'. No live cloud code path exists ($0 spent).
+# Rows are idempotent on sha256(query_id | route_id | prompt_version |
+# model_version): live local rows carry the served model id, so they never
+# collide with stub rows for the same query+route.
+name: sweep-200-tier-a
+routes: [L0, L1, C0, C1, C2, C3, C4]
+prompt_version: v1
+seed: 0
+query_source: tier-a
+tier_a_counts: {nq: 80, triviaqa: 70, hotpotqa: 50}
+corpus_source: synthetic

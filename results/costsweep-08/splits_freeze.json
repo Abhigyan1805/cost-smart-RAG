@@ -1,0 +1,1012 @@
+{
+  "corpus_source": "synthetic",
+  "counts": {
+    "hotpotqa": 50,
+    "nq": 80,
+    "triviaqa": 70
+  },
+  "prompt_version": "v1",
+  "queries": [
+    {
+      "query_id": "nq:0000",
+      "question": "where is mitochondria located",
+      "reference": "mitochondria"
+    },
+    {
+      "query_id": "nq:0001",
+      "question": "who discovered quantum mechanics",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "nq:0002",
+      "question": "when did Eiffel Tower happen",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "nq:0003",
+      "question": "when did Roman Empire happen",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "nq:0004",
+      "question": "who discovered Mount Everest",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0005",
+      "question": "what is Industrial Revolution known for",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "nq:0006",
+      "question": "when did photosynthesis happen",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "nq:0007",
+      "question": "who discovered Shakespeare",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "nq:0008",
+      "question": "when did Marie Curie happen",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "nq:0009",
+      "question": "where is Renaissance located",
+      "reference": "Renaissance"
+    },
+    {
+      "query_id": "nq:0010",
+      "question": "what is Mount Everest known for",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0011",
+      "question": "who discovered gravity",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0012",
+      "question": "what is Shakespeare known for",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "nq:0013",
+      "question": "who discovered Mount Everest",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0014",
+      "question": "where is neural networks located",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "nq:0015",
+      "question": "where is Roman Empire located",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "nq:0016",
+      "question": "when did Mount Everest happen",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0017",
+      "question": "where is Mona Lisa located",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "nq:0018",
+      "question": "what is Pacific Ocean known for",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "nq:0019",
+      "question": "what is World War II known for",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "nq:0020",
+      "question": "where is mitochondria located",
+      "reference": "mitochondria"
+    },
+    {
+      "query_id": "nq:0021",
+      "question": "who discovered quantum mechanics",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "nq:0022",
+      "question": "when did neural networks happen",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "nq:0023",
+      "question": "when did Pacific Ocean happen",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "nq:0024",
+      "question": "who discovered Roman Empire",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "nq:0025",
+      "question": "what is Eiffel Tower known for",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "nq:0026",
+      "question": "what is Sahara Desert known for",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "nq:0027",
+      "question": "when did gravity happen",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0028",
+      "question": "what is Marie Curie known for",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "nq:0029",
+      "question": "when did Amazon River happen",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "nq:0030",
+      "question": "when did Pacific Ocean happen",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "nq:0031",
+      "question": "what is DNA known for",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "nq:0032",
+      "question": "what is black holes known for",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "nq:0033",
+      "question": "where is Eiffel Tower located",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "nq:0034",
+      "question": "where is gravity located",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0035",
+      "question": "who discovered gravity",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0036",
+      "question": "what is quantum mechanics known for",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "nq:0037",
+      "question": "when did neural networks happen",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "nq:0038",
+      "question": "what is World War II known for",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "nq:0039",
+      "question": "when did Industrial Revolution happen",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "nq:0040",
+      "question": "who discovered Mount Everest",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0041",
+      "question": "who discovered photosynthesis",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "nq:0042",
+      "question": "when did black holes happen",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "nq:0043",
+      "question": "who discovered Pacific Ocean",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "nq:0044",
+      "question": "where is Great Wall of China located",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "nq:0045",
+      "question": "what is gravity known for",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0046",
+      "question": "where is Shakespeare located",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "nq:0047",
+      "question": "what is Amazon River known for",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "nq:0048",
+      "question": "what is Industrial Revolution known for",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "nq:0049",
+      "question": "where is Pacific Ocean located",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "nq:0050",
+      "question": "who discovered DNA",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "nq:0051",
+      "question": "where is Renaissance located",
+      "reference": "Renaissance"
+    },
+    {
+      "query_id": "nq:0052",
+      "question": "what is gravity known for",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0053",
+      "question": "who discovered Sahara Desert",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "nq:0054",
+      "question": "when did neural networks happen",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "nq:0055",
+      "question": "where is black holes located",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "nq:0056",
+      "question": "what is World War II known for",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "nq:0057",
+      "question": "when did Industrial Revolution happen",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "nq:0058",
+      "question": "where is black holes located",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "nq:0059",
+      "question": "who discovered World War II",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "nq:0060",
+      "question": "when did Renaissance happen",
+      "reference": "Renaissance"
+    },
+    {
+      "query_id": "nq:0061",
+      "question": "what is Industrial Revolution known for",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "nq:0062",
+      "question": "when did Sahara Desert happen",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "nq:0063",
+      "question": "what is Mount Everest known for",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0064",
+      "question": "what is World War II known for",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "nq:0065",
+      "question": "when did Great Wall of China happen",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "nq:0066",
+      "question": "where is Sahara Desert located",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "nq:0067",
+      "question": "who discovered Roman Empire",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "nq:0068",
+      "question": "who discovered DNA",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "nq:0069",
+      "question": "when did Mona Lisa happen",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "nq:0070",
+      "question": "what is neural networks known for",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "nq:0071",
+      "question": "who discovered Renaissance",
+      "reference": "Renaissance"
+    },
+    {
+      "query_id": "nq:0072",
+      "question": "who discovered Eiffel Tower",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "nq:0073",
+      "question": "what is Mona Lisa known for",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "nq:0074",
+      "question": "who discovered photosynthesis",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "nq:0075",
+      "question": "when did gravity happen",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "nq:0076",
+      "question": "where is Mona Lisa located",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "nq:0077",
+      "question": "who discovered Mount Everest",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "nq:0078",
+      "question": "where is Amazon River located",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "nq:0079",
+      "question": "where is Shakespeare located",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "triviaqa:0000",
+      "question": "Which Mona Lisa fact is described as: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "triviaqa:0001",
+      "question": "Name the photosynthesis associated with this description: Photosynthesis converts light energy into chemical energy in plant chloroplasts.",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "triviaqa:0002",
+      "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0003",
+      "question": "Name the Mona Lisa associated with this description: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "triviaqa:0004",
+      "question": "Which Mona Lisa fact is described as: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "triviaqa:0005",
+      "question": "Which gravity fact is described as: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0006",
+      "question": "Which Eiffel Tower fact is described as: The Eiffel Tower in Paris was completed in 1889 for the World's Fair.",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "triviaqa:0007",
+      "question": "Name the Great Wall of China associated with this description: The Great Wall of China stretches over 21,000 km across northern China.",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "triviaqa:0008",
+      "question": "Name the neural networks associated with this description: Neural networks learn representations through layered weighted connections.",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "triviaqa:0009",
+      "question": "Name the Marie Curie associated with this description: Marie Curie won Nobel Prizes in Physics (1903) and Chemistry (1911).",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "triviaqa:0010",
+      "question": "Which Roman Empire fact is described as: The Roman Empire at its height spanned three continents around the Mediterranean.",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "triviaqa:0011",
+      "question": "Which Amazon River fact is described as: The Amazon River carries more water than any other river in the world.",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "triviaqa:0012",
+      "question": "Name the Mount Everest associated with this description: Mount Everest rises 8,849 metres on the Nepal-China border.",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "triviaqa:0013",
+      "question": "Name the Marie Curie associated with this description: Marie Curie won Nobel Prizes in Physics (1903) and Chemistry (1911).",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "triviaqa:0014",
+      "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0015",
+      "question": "Which Shakespeare fact is described as: William Shakespeare wrote 37 plays including Hamlet and Macbeth.",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "triviaqa:0016",
+      "question": "Name the quantum mechanics associated with this description: Quantum mechanics describes matter and energy at atomic and subatomic scales.",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "triviaqa:0017",
+      "question": "Which gravity fact is described as: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0018",
+      "question": "Name the Shakespeare associated with this description: William Shakespeare wrote 37 plays including Hamlet and Macbeth.",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "triviaqa:0019",
+      "question": "Which Pacific Ocean fact is described as: The Pacific Ocean is the largest and deepest ocean basin on Earth.",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "triviaqa:0020",
+      "question": "Which Renaissance fact is described as: The Renaissance was a period of cultural rebirth in Europe from the 14th to 17th century.",
+      "reference": "Renaissance"
+    },
+    {
+      "query_id": "triviaqa:0021",
+      "question": "Name the World War II associated with this description: World War II ended in 1945 with the surrender of Germany and Japan.",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "triviaqa:0022",
+      "question": "Name the gravity associated with this description: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0023",
+      "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0024",
+      "question": "Which Shakespeare fact is described as: William Shakespeare wrote 37 plays including Hamlet and Macbeth.",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "triviaqa:0025",
+      "question": "Name the Pacific Ocean associated with this description: The Pacific Ocean is the largest and deepest ocean basin on Earth.",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "triviaqa:0026",
+      "question": "Name the black holes associated with this description: Black holes are regions of spacetime where gravity prevents anything from escaping.",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "triviaqa:0027",
+      "question": "Which gravity fact is described as: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0028",
+      "question": "Which Mount Everest fact is described as: Mount Everest rises 8,849 metres on the Nepal-China border.",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "triviaqa:0029",
+      "question": "Name the Mona Lisa associated with this description: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "triviaqa:0030",
+      "question": "Name the black holes associated with this description: Black holes are regions of spacetime where gravity prevents anything from escaping.",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "triviaqa:0031",
+      "question": "Name the Roman Empire associated with this description: The Roman Empire at its height spanned three continents around the Mediterranean.",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "triviaqa:0032",
+      "question": "Which Sahara Desert fact is described as: The Sahara is the largest hot desert, covering much of North Africa.",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "triviaqa:0033",
+      "question": "Name the photosynthesis associated with this description: Photosynthesis converts light energy into chemical energy in plant chloroplasts.",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "triviaqa:0034",
+      "question": "Name the DNA associated with this description: DNA carries genetic instructions in a double-helix structure discovered in 1953.",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "triviaqa:0035",
+      "question": "Which Pacific Ocean fact is described as: The Pacific Ocean is the largest and deepest ocean basin on Earth.",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "triviaqa:0036",
+      "question": "Which neural networks fact is described as: Neural networks learn representations through layered weighted connections.",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "triviaqa:0037",
+      "question": "Name the Sahara Desert associated with this description: The Sahara is the largest hot desert, covering much of North Africa.",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "triviaqa:0038",
+      "question": "Which Amazon River fact is described as: The Amazon River carries more water than any other river in the world.",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "triviaqa:0039",
+      "question": "Name the Sahara Desert associated with this description: The Sahara is the largest hot desert, covering much of North Africa.",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "triviaqa:0040",
+      "question": "Name the quantum mechanics associated with this description: Quantum mechanics describes matter and energy at atomic and subatomic scales.",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "triviaqa:0041",
+      "question": "Which photosynthesis fact is described as: Photosynthesis converts light energy into chemical energy in plant chloroplasts.",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "triviaqa:0042",
+      "question": "Name the Amazon River associated with this description: The Amazon River carries more water than any other river in the world.",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "triviaqa:0043",
+      "question": "Name the photosynthesis associated with this description: Photosynthesis converts light energy into chemical energy in plant chloroplasts.",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "triviaqa:0044",
+      "question": "Name the DNA associated with this description: DNA carries genetic instructions in a double-helix structure discovered in 1953.",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "triviaqa:0045",
+      "question": "Which Amazon River fact is described as: The Amazon River carries more water than any other river in the world.",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "triviaqa:0046",
+      "question": "Name the mitochondria associated with this description: Mitochondria generate ATP through oxidative phosphorylation in eukaryotic cells.",
+      "reference": "mitochondria"
+    },
+    {
+      "query_id": "triviaqa:0047",
+      "question": "Name the Great Wall of China associated with this description: The Great Wall of China stretches over 21,000 km across northern China.",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "triviaqa:0048",
+      "question": "Name the gravity associated with this description: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0049",
+      "question": "Name the gravity associated with this description: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0050",
+      "question": "Name the mitochondria associated with this description: Mitochondria generate ATP through oxidative phosphorylation in eukaryotic cells.",
+      "reference": "mitochondria"
+    },
+    {
+      "query_id": "triviaqa:0051",
+      "question": "Which gravity fact is described as: Newton's law of universal gravitation describes attraction between masses.",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "triviaqa:0052",
+      "question": "Name the Industrial Revolution associated with this description: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0053",
+      "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0054",
+      "question": "Name the photosynthesis associated with this description: Photosynthesis converts light energy into chemical energy in plant chloroplasts.",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "triviaqa:0055",
+      "question": "Which Roman Empire fact is described as: The Roman Empire at its height spanned three continents around the Mediterranean.",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "triviaqa:0056",
+      "question": "Name the Industrial Revolution associated with this description: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0057",
+      "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "triviaqa:0058",
+      "question": "Which DNA fact is described as: DNA carries genetic instructions in a double-helix structure discovered in 1953.",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "triviaqa:0059",
+      "question": "Which Eiffel Tower fact is described as: The Eiffel Tower in Paris was completed in 1889 for the World's Fair.",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "triviaqa:0060",
+      "question": "Which Marie Curie fact is described as: Marie Curie won Nobel Prizes in Physics (1903) and Chemistry (1911).",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "triviaqa:0061",
+      "question": "Which Renaissance fact is described as: The Renaissance was a period of cultural rebirth in Europe from the 14th to 17th century.",
+      "reference": "Renaissance"
+    },
+    {
+      "query_id": "triviaqa:0062",
+      "question": "Which neural networks fact is described as: Neural networks learn representations through layered weighted connections.",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "triviaqa:0063",
+      "question": "Which Eiffel Tower fact is described as: The Eiffel Tower in Paris was completed in 1889 for the World's Fair.",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "triviaqa:0064",
+      "question": "Name the Great Wall of China associated with this description: The Great Wall of China stretches over 21,000 km across northern China.",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "triviaqa:0065",
+      "question": "Which Pacific Ocean fact is described as: The Pacific Ocean is the largest and deepest ocean basin on Earth.",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "triviaqa:0066",
+      "question": "Name the Great Wall of China associated with this description: The Great Wall of China stretches over 21,000 km across northern China.",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "triviaqa:0067",
+      "question": "Name the neural networks associated with this description: Neural networks learn representations through layered weighted connections.",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "triviaqa:0068",
+      "question": "Name the Roman Empire associated with this description: The Roman Empire at its height spanned three continents around the Mediterranean.",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "triviaqa:0069",
+      "question": "Name the Eiffel Tower associated with this description: The Eiffel Tower in Paris was completed in 1889 for the World's Fair.",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "hotpotqa:0000",
+      "question": "What connects Industrial Revolution and Renaissance historically",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "hotpotqa:0001",
+      "question": "Compare DNA with Great Wall of China: which came first and why",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "hotpotqa:0002",
+      "question": "What connects neural networks and Mount Everest historically",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "hotpotqa:0003",
+      "question": "Compare World War II with DNA: which came first and why",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "hotpotqa:0004",
+      "question": "Compare Great Wall of China with World War II: which came first and why",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "hotpotqa:0005",
+      "question": "What connects Industrial Revolution and quantum mechanics historically",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "hotpotqa:0006",
+      "question": "What connects Mona Lisa and Great Wall of China historically",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "hotpotqa:0007",
+      "question": "What connects Eiffel Tower and Mount Everest historically",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "hotpotqa:0008",
+      "question": "Compare Mona Lisa with black holes: which came first and why",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "hotpotqa:0009",
+      "question": "What connects Marie Curie and Industrial Revolution historically",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "hotpotqa:0010",
+      "question": "Compare quantum mechanics with Great Wall of China: which came first and why",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "hotpotqa:0011",
+      "question": "Compare Mona Lisa with Renaissance: which came first and why",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "hotpotqa:0012",
+      "question": "Compare Roman Empire with Pacific Ocean: which came first and why",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "hotpotqa:0013",
+      "question": "What connects Roman Empire and mitochondria historically",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "hotpotqa:0014",
+      "question": "Compare neural networks with Amazon River: which came first and why",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "hotpotqa:0015",
+      "question": "What connects Industrial Revolution and Mona Lisa historically",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "hotpotqa:0016",
+      "question": "Compare neural networks with Shakespeare: which came first and why",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "hotpotqa:0017",
+      "question": "What connects World War II and mitochondria historically",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "hotpotqa:0018",
+      "question": "Compare Sahara Desert with Mount Everest: which came first and why",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "hotpotqa:0019",
+      "question": "Compare Industrial Revolution with Pacific Ocean: which came first and why",
+      "reference": "Industrial Revolution"
+    },
+    {
+      "query_id": "hotpotqa:0020",
+      "question": "What connects quantum mechanics and Sahara Desert historically",
+      "reference": "quantum mechanics"
+    },
+    {
+      "query_id": "hotpotqa:0021",
+      "question": "What connects mitochondria and Eiffel Tower historically",
+      "reference": "mitochondria"
+    },
+    {
+      "query_id": "hotpotqa:0022",
+      "question": "What connects black holes and neural networks historically",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "hotpotqa:0023",
+      "question": "What connects Eiffel Tower and Marie Curie historically",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "hotpotqa:0024",
+      "question": "Compare World War II with Mount Everest: which came first and why",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "hotpotqa:0025",
+      "question": "What connects DNA and neural networks historically",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "hotpotqa:0026",
+      "question": "Compare Mona Lisa with World War II: which came first and why",
+      "reference": "Mona Lisa"
+    },
+    {
+      "query_id": "hotpotqa:0027",
+      "question": "What connects Marie Curie and quantum mechanics historically",
+      "reference": "Marie Curie"
+    },
+    {
+      "query_id": "hotpotqa:0028",
+      "question": "Compare Amazon River with Sahara Desert: which came first and why",
+      "reference": "Amazon River"
+    },
+    {
+      "query_id": "hotpotqa:0029",
+      "question": "What connects photosynthesis and Amazon River historically",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "hotpotqa:0030",
+      "question": "What connects World War II and Eiffel Tower historically",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "hotpotqa:0031",
+      "question": "Compare Sahara Desert with Mona Lisa: which came first and why",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "hotpotqa:0032",
+      "question": "Compare Pacific Ocean with Marie Curie: which came first and why",
+      "reference": "Pacific Ocean"
+    },
+    {
+      "query_id": "hotpotqa:0033",
+      "question": "Compare black holes with Pacific Ocean: which came first and why",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "hotpotqa:0034",
+      "question": "Compare black holes with photosynthesis: which came first and why",
+      "reference": "black holes"
+    },
+    {
+      "query_id": "hotpotqa:0035",
+      "question": "Compare Roman Empire with Pacific Ocean: which came first and why",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "hotpotqa:0036",
+      "question": "What connects Mount Everest and quantum mechanics historically",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "hotpotqa:0037",
+      "question": "What connects mitochondria and quantum mechanics historically",
+      "reference": "mitochondria"
+    },
+    {
+      "query_id": "hotpotqa:0038",
+      "question": "Compare Sahara Desert with Great Wall of China: which came first and why",
+      "reference": "Sahara Desert"
+    },
+    {
+      "query_id": "hotpotqa:0039",
+      "question": "What connects photosynthesis and World War II historically",
+      "reference": "photosynthesis"
+    },
+    {
+      "query_id": "hotpotqa:0040",
+      "question": "Compare Roman Empire with photosynthesis: which came first and why",
+      "reference": "Roman Empire"
+    },
+    {
+      "query_id": "hotpotqa:0041",
+      "question": "What connects Mount Everest and Renaissance historically",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "hotpotqa:0042",
+      "question": "What connects Great Wall of China and mitochondria historically",
+      "reference": "Great Wall of China"
+    },
+    {
+      "query_id": "hotpotqa:0043",
+      "question": "Compare Shakespeare with neural networks: which came first and why",
+      "reference": "Shakespeare"
+    },
+    {
+      "query_id": "hotpotqa:0044",
+      "question": "What connects neural networks and Marie Curie historically",
+      "reference": "neural networks"
+    },
+    {
+      "query_id": "hotpotqa:0045",
+      "question": "Compare Mount Everest with Great Wall of China: which came first and why",
+      "reference": "Mount Everest"
+    },
+    {
+      "query_id": "hotpotqa:0046",
+      "question": "Compare gravity with mitochondria: which came first and why",
+      "reference": "gravity"
+    },
+    {
+      "query_id": "hotpotqa:0047",
+      "question": "Compare Eiffel Tower with Shakespeare: which came first and why",
+      "reference": "Eiffel Tower"
+    },
+    {
+      "query_id": "hotpotqa:0048",
+      "question": "What connects DNA and Mount Everest historically",
+      "reference": "DNA"
+    },
+    {
+      "query_id": "hotpotqa:0049",
+      "question": "Compare Eiffel Tower with gravity: which came first and why",
+      "reference": "Eiffel Tower"
+    }
+  ],
+  "set_sha256": "fe00c48866520a3ea7acfdbd2c6ee63b647744261de5650ea6d966e331ff348c"
+}

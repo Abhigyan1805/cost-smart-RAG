@@ -34,6 +34,7 @@ def cmd_sweep(
     export_parquet: Optional[str] = None,
     index: str = "data/index/pilot_index.json",
     no_retrieval: bool = False,
+    live_local: bool = False,
 ) -> int:
     """Run the route sweep (exhaustive oracle) into the telemetry table."""
     from costsmart.eval.oracle_sweep import main as sweep_main
@@ -49,6 +50,8 @@ def cmd_sweep(
         argv += ["--export-parquet", export_parquet]
     if no_retrieval:
         argv.append("--no-retrieval")
+    if live_local:
+        argv.append("--live-local")
     return sweep_main(argv)
 
 
@@ -100,6 +103,7 @@ def _argparse_main(argv: list[str] | None = None) -> int:
     p.add_argument("--export-parquet", default=None)
     p.add_argument("--index", default="data/index/pilot_index.json")
     p.add_argument("--no-retrieval", action="store_true")
+    p.add_argument("--live-local", action="store_true")
 
     p = sub.add_parser("train-router")
     p.add_argument("--db", default="telemetry.db")
@@ -121,6 +125,7 @@ def _argparse_main(argv: list[str] | None = None) -> int:
         return cmd_sweep(
             args.limit, args.no_limit, args.db, args.config,
             args.export_csv, args.export_parquet, args.index, args.no_retrieval,
+            args.live_local,
         )
     if args.cmd == "train-router":
         return cmd_train_router(args.db, args.out, args.mode)
@@ -153,11 +158,12 @@ if _HAS_TYPER:
         export_parquet: Optional[str] = typer.Option(None),
         index: str = typer.Option("data/index/pilot_index.json"),
         no_retrieval: bool = typer.Option(False),
+        live_local: bool = typer.Option(False),
     ) -> None:
         """Run the route sweep (exhaustive oracle) into the telemetry table."""
         raise SystemExit(
             cmd_sweep(limit, no_limit, db, config, export_csv, export_parquet,
-                      index, no_retrieval)
+                      index, no_retrieval, live_local)
         )
 
     @app.command("train-router")
