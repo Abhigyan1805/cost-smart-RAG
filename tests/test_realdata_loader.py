@@ -6,6 +6,7 @@ the offline slice of the committed corpus JSON. No network / ``datasets``
 dependency: these run in the stdlib-only worker env.
 """
 
+import hashlib
 import json
 import tempfile
 import unittest
@@ -115,6 +116,53 @@ class CommittedCorpusLoaderTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises(RuntimeError):
                 loaders.load_real_corpus(path=str(Path(tmp) / "nope.json"))
+
+
+ROOT = Path(__file__).resolve().parents[1]
+FREEZE = ROOT / "results/realdata-15/splits_freeze.json"
+CONFIG = ROOT / "config/experiments/sweep-200-realdata15.yaml"
+
+
+class RealCorpusFreezeTest(unittest.TestCase):
+    """The committed corpus + config still hash from the loader (no drift)."""
+
+    def _corpus(self):
+        corpus_path = ROOT / loaders.REAL_CORPUS_PATH
+        self.assertTrue(corpus_path.is_file(),
+                        "committed real corpus missing; run scripts/fetch_tier_a.py")
+        return json.loads(corpus_path.read_text())
+
+    def test_freeze_matches_committed_corpus(self):
+        frozen = json.loads(FREEZE.read_text())
+        corpus = self._corpus()
+        qs, ps = loaders.load_real_subset(path=str(ROOT / loaders.REAL_CORPUS_PATH))
+        records = [{"query_id": q["query_id"], "question": q["question"],
+                    "reference": (q.get("answers") or [""])[0]} for q in qs]
+        set_sha = hashlib.sha256(
+            json.dumps(records, sort_keys=True).encode()).hexdigest()
+        self.assertEqual(set_sha, frozen["set_sha256"])
+        self.assertEqual(records, frozen["queries"])
+        self.assertEqual(len(qs), frozen["n_queries"])
+        self.assertEqual(len(ps), frozen["n_passages"])
+        self.assertEqual(frozen["counts"], loaders.REAL_SIZES)
+
+    def test_corpus_body_checksum_and_dataset_manifest(self):
+        corpus = self._corpus()
+        body = {"queries": corpus["queries"], "passages": corpus["passages"]}
+        body_sha = hashlib.sha256(
+            json.dumps(body, sort_keys=True).encode()).hexdigest()
+        self.assertEqual(body_sha, corpus["manifest"]["corpus_sha256"])
+        datasets = corpus["manifest"]["datasets"]
+        self.assertEqual(set(datasets), {"nq", "hotpotqa", "musique"})
+        for name, meta in datasets.items():
+            self.assertEqual(meta["n_queries"], loaders.REAL_SIZES[name])
+            self.assertTrue(meta["questions_sha256"])
+
+    def test_config_hash_pinned(self):
+        frozen = json.loads(FREEZE.read_text())
+        self.assertEqual(
+            hashlib.sha256(CONFIG.read_text().encode()).hexdigest(),
+            frozen["config_hash"])
 
 
 if __name__ == "__main__":

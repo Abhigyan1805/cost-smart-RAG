@@ -69,8 +69,10 @@ def build_index(source: str = "synthetic", mix: str = "pilot") -> dict:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build the Week-1 pilot index.")
     parser.add_argument("--out", default=DEFAULT_INDEX_PATH, help="Output JSON index path.")
-    parser.add_argument("--source", default="synthetic", choices=["synthetic", "hf"],
-                        help="Corpus source: offline synthetic pilot or HuggingFace datasets.")
+    parser.add_argument("--source", default="synthetic",
+                        choices=["synthetic", "hf", "real"],
+                        help="Corpus source: offline synthetic, HuggingFace "
+                             "fetch, or the committed real Tier-A corpus.")
     parser.add_argument("--mix", default="pilot",
                         choices=["pilot", "multihop", "real"],
                         help="Query mix: legacy pilot, multihop-reweighted "
