@@ -99,14 +99,38 @@ def ensure_deps() -> None:
 
 
 def fetch_corpus() -> dict:
-    env = os.environ.copy()
-    env["PYTHONPATH"] = "src"
-    run(
-        [sys.executable, "scripts/fetch_tier_a.py", "--out", CORPUS],
-        cwd=CLONE, env=env, desc="fetch + normalize real Tier-A corpus",
-    )
-    with open(os.path.join(CLONE, CORPUS)) as fh:
-        return json.load(fh)["manifest"]
+    """Use the committed corpus; refetch only if it is missing.
+
+    The corpus + frozen checksums are committed, so the decisive run must use
+    exactly those rows (a refetch would depend on mutable upstream revisions).
+    """
+    path = os.path.join(CLONE, CORPUS)
+    if os.path.exists(path):
+        print(f"using committed real corpus {CORPUS}", flush=True)
+    else:
+        env = os.environ.copy()
+        env["PYTHONPATH"] = "src"
+        run(
+            [sys.executable, "scripts/fetch_tier_a.py", "--out", CORPUS],
+            cwd=CLONE, env=env, desc="fetch + normalize real Tier-A corpus",
+        )
+    with open(path) as fh:
+        corpus = json.load(fh)
+    expected = _frozen_corpus_sha()
+    if expected and corpus["manifest"]["corpus_sha256"] != expected:
+        raise RuntimeError(
+            "committed corpus body sha256 does not match "
+            f"splits_freeze.json ({corpus['manifest']['corpus_sha256']} != "
+            f"{expected}); refusing to run on an unverified corpus")
+    return corpus["manifest"]
+
+
+def _frozen_corpus_sha() -> str | None:
+    freeze = os.path.join(CLONE, RESULTS, "splits_freeze.json")
+    if not os.path.exists(freeze):
+        return None
+    with open(freeze) as fh:
+        return json.load(fh).get("corpus_sha256")
 
 
 def build_index() -> None:
