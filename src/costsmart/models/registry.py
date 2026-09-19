@@ -8,8 +8,6 @@ from typing import Any
 import yaml
 
 from costsmart.models.base import LLMClient
-from costsmart.models.colab_client import ColabClient
-from costsmart.models.ollama_client import OllamaClient
 
 DEFAULT_MODELS_PATH = Path(__file__).resolve().parents[3] / "config" / "models.yaml"
 
@@ -26,7 +24,13 @@ def create_client(entry: dict[str, Any]) -> LLMClient:
     name = entry["name"]
     model_id = entry["model_id"]
     if provider == "colab":
+        from costsmart.models.colab_client import ColabClient
+
         return ColabClient(name=name, model_id=model_id)
+    # Lazy imports: keep registry importable in stdlib-only envs (httpx may
+    # be absent until a live call actually needs it).
+    from costsmart.models.ollama_client import OllamaClient
+
     if provider == "ollama":
         return OllamaClient(name=name, model_id=model_id)
     # Cloud tiers: concrete cloud client lands in a later slice; reuse the

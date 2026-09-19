@@ -72,6 +72,18 @@ PROMPT_VERSION = "v1"
 DEFAULT_ROUTES = ("L0", "L1", "C0", "C1", "C2", "C3", "C4")
 DEFAULT_DB = "telemetry.db"
 
+#: Generator sampling contract for every live local-tier call (costsweep-08):
+#: temperature 0, fixed seed. The stub path ignores sampling (hash-seeded
+#: determinism) but records the same values so rows stay comparable.
+GENERATOR_TEMPERATURE = 0
+GENERATOR_SEED = 0
+
+#: Telemetry provenance flags recorded per attempt row.
+GENERATOR_STUB = "stub"
+GENERATOR_MEASURED = "measured"
+RETRIEVAL_STUB = "stub"
+RETRIEVAL_MEASURED = "measured"
+
 
 def cache_key(query_id: str, route_id: str, prompt_version: str, model_version: str) -> str:
     """Stable idempotency key: sha256 of the 4-tuple, pipe-joined."""
@@ -267,6 +279,92 @@ def stub_execute(query: dict, route_id: str, seed: int = 0) -> dict:
     }
 
 
+def build_local_prompt(question: str, passages: list[str], reasoning: str) -> str:
+    """Render the generator prompt for one live local-tier call.
+
+    Retrieval passages (when k > 0) are inlined numbered; the reasoning
+    strategy selects the instruction block. CoT / rerank prompts require the
+    model to put its final answer on a ``Final answer:`` line so
+    :func:`extract_final_answer` can grade it deterministically.
+    """
+    context = ""
+    if passages:
+        numbered = "\n".join(f"[{i + 1}] {p}" for i, p in enumerate(passages))
+        context = f"Context passages:\n{numbered}\n\n"
+    if reasoning == "chain-of-thought":
+        instruction = (
+            "Think step by step, then write your final answer on one line "
+            "starting with 'Final answer:'."
+        )
+    elif reasoning == "rerank-then-answer":
+        instruction = (
+            "First name the number of the most relevant passage, then write "
+            "your final answer on one line starting with 'Final answer:'."
+        )
+    else:
+        instruction = "Answer concisely with just the answer."
+    return f"{context}Question: {question}\n{instruction}\nAnswer:"
+
+
+def extract_final_answer(text: str) -> str:
+    """Pull the ``Final answer:`` line when present, else the full text."""
+    for line in text.splitlines():
+        if line.strip().lower().startswith("final answer:"):
+            return line.split(":", 1)[1].strip()
+    return text.strip()
+
+
+def execute_live_local(
+    query: dict,
+    route_id: str,
+    passages: list[str],
+    client,
+    model_version: str,
+    temperature: int = GENERATOR_TEMPERATURE,
+    seed: int = GENERATOR_SEED,
+) -> dict:
+    """Run one local-tier route for real through the Colab session.
+
+    Hard rule: cloud routes NEVER execute live (zero cloud spend by
+    construction — there is no cloud client code path in this module).
+    Raises RuntimeError for cloud routes and when the client is missing.
+    """
+    if route_id in CLOUD_ROUTES:
+        raise RuntimeError(
+            f"refusing live execution for cloud route {route_id}: "
+            "cloud-tier routes are stub-estimated only ($0 spent)"
+        )
+    if client is None:
+        raise RuntimeError(
+            f"no live client for local route {route_id}: set "
+            "COSTSMART_COLAB_ENDPOINT per docs/colab-handoff.md"
+        )
+    _, k, reasoning = ROUTE_SPECS[route_id]
+    prompt = build_local_prompt(query["question"], passages[:k], reasoning)
+    result = client.generate(
+        prompt,
+        temperature=temperature,
+        options={"seed": seed, "temperature": temperature},
+    )
+    raw = result.raw or {}
+    server_latency_s = raw.get("latency_s", result.latency_s)
+    tokens_out = int(raw.get("eval_count", result.tokens) or 0)
+    # Server-tokenized prompt count when the Colab server reports it
+    # (scripts/colab_local_tier.py serve); else a whitespace estimate.
+    tokens_in = int(raw.get("prompt_eval_count", 0) or len(prompt.split()))
+    return {
+        "prediction": extract_final_answer(result.text),
+        "tokens_in": tokens_in,
+        "tokens_out": tokens_out,
+        "gpu_seconds": max(0.0, float(server_latency_s)),
+        "latency_ms_retrieval": 0.0,  # filled by the caller (measured index time)
+        "latency_ms_llm": max(0.0, float(server_latency_s)) * 1000.0,
+        "latency_ms_verify": 0.0,
+        "latency_ms_total": max(0.0, float(server_latency_s)) * 1000.0,
+        "model_version": model_version,
+    }
+
+
 def build_attempt(
     query: dict,
     route_id: str,
@@ -275,9 +373,24 @@ def build_attempt(
     cfg_hash: str,
     seed: int = 0,
     retrieval_ms: float | None = None,
+    retrieval_passages: list[str] | None = None,
+    live_client=None,
+    live_model_version: str | None = None,
+    temperature: int = GENERATOR_TEMPERATURE,
 ) -> dict:
     model_version = ROUTE_MODELS.get(route_id, ROUTE_MODELS["L0"])
-    run = stub_execute(query, route_id, seed)
+    if live_client is not None:
+        # Live path is local-tiers only; cloud routes raise inside.
+        run = execute_live_local(
+            query, route_id, retrieval_passages or [], live_client,
+            live_model_version or model_version,
+            temperature=temperature, seed=seed,
+        )
+        model_version = run.pop("model_version")
+        generator_mode = GENERATOR_MEASURED
+    else:
+        run = stub_execute(query, route_id, seed)
+        generator_mode = GENERATOR_STUB
     if retrieval_ms is not None:
         # Measured hybrid-retrieval latency replaces the stub estimate; the
         # generator itself stays a stub (cloud spend estimated, not spent).
@@ -285,6 +398,9 @@ def build_attempt(
         run["latency_ms_total"] = (
             run["latency_ms_retrieval"] + run["latency_ms_llm"] + run["latency_ms_verify"]
         )
+        retrieval_mode = RETRIEVAL_MEASURED
+    else:
+        retrieval_mode = RETRIEVAL_STUB
     graded = graders.grade(run["prediction"], query["reference"])
     costs = cost_mod.cost_record(
         run["tokens_in"],
@@ -314,6 +430,10 @@ def build_attempt(
         "git_sha": sha,
         "config_hash": cfg_hash,
         "created_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+        "generator_mode": generator_mode,
+        "retrieval_mode": retrieval_mode,
+        "temperature": temperature,
+        "seed": seed,
     }
 
 
@@ -328,8 +448,13 @@ def _load_retrieval_index(index_path: str | Path | None) -> dict | None:
     return json.loads(path.read_text())
 
 
-def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
-    """Time one hybrid_search over the pilot index; also contract-check features."""
+def _measured_retrieval(question: str, index: dict, top_k: int = 5) -> tuple[float, list[str]]:
+    """Time one hybrid_search over the pilot index; also contract-check features.
+
+    Returns ``(latency_ms, passage_texts)``: the texts back the live
+    local-tier prompts (k passages per ROUTE_SPECS), so generation and
+    retrieval timing share one index lookup per attempt.
+    """
     import time as _time
 
     from ..retrieval.features import FEATURE_NAMES, extract_routing_features
@@ -348,7 +473,40 @@ def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
     missing = [k for k in FEATURE_NAMES if k not in feats]
     if missing:
         raise RuntimeError(f"retrieval feature contract broken, missing: {missing}")
+    by_id = {c["chunk_id"]: c["text"] for c in index["chunks"]}
+    passages = [by_id[h["chunk_id"]] for h in hits if h["chunk_id"] in by_id]
+    return dt_ms, passages
+
+
+def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
+    """Back-compat shim: latency only (pilot call sites)."""
+    dt_ms, _ = _measured_retrieval(question, index, top_k)
     return dt_ms
+
+
+def _build_live_clients(route_ids: list[str]) -> dict[str, object]:
+    """Attach Colab clients for the local tiers in this sweep.
+
+    Fails fast when the session is not attached (never a silent stub
+    fallback). Cloud routes are excluded by construction — see
+    :func:`execute_live_local`.
+    """
+    from ..models.colab_client import COLAB_ENDPOINT_ENV, get_colab_endpoint
+    from ..models.registry import get_client
+
+    tiers = {ROUTE_SPECS[r][0] for r in route_ids if r in LOCAL_ROUTES}
+    if not tiers:
+        return {}
+    if not get_colab_endpoint():
+        raise RuntimeError(
+            "live local-tier sweep requested but no Colab session is attached: "
+            f"set {COLAB_ENDPOINT_ENV} per docs/colab-handoff.md "
+            "(the captain connects the Colab session on request)"
+        )
+    clients: dict[str, object] = {}
+    for tier in sorted(tiers):
+        clients[tier] = get_client(tier)
+    return clients
 
 
 def run_sweep(
@@ -358,6 +516,9 @@ def run_sweep(
     store: TelemetryStore | None = None,
     index_path: str | Path | None = DEFAULT_INDEX_PATH,
     use_retrieval: bool = True,
+    live_local: bool = False,
+    live_clients: dict[str, object] | None = None,
+    live_routes: tuple[str, ...] = LOCAL_ROUTES,
 ) -> dict:
     """Run the query x route matrix; resumable via cache_key skips.
 
@@ -365,6 +526,15 @@ def run_sweep(
     = 140 attempts). Retrieval latency is measured against the pilot index
     when available; the generator stays a stub (spend estimated, not spent)
     and local tiers stay stubbed (marked preliminary in reports).
+
+    With ``live_local=True``, the ``live_routes`` subset of the local-tier
+    routes (default all of L0/L1/C0) executes for real through the Colab
+    session at temperature 0 + config seed (``generator_mode='measured'``);
+    every other route — all cloud-tier routes ALWAYS — stays stub-estimated
+    (``generator_mode='stub'``): zero cloud spend by construction, since no
+    live cloud code path exists. Restrict ``live_routes`` to the tiers the
+    attached session actually serves (a single-model endpoint must not back
+    rows labeled with another model id).
     """
     cfg, cfg_hash = load_config(config_path)
     sha = git_sha()
@@ -380,18 +550,38 @@ def run_sweep(
     index = _load_retrieval_index(index_path) if use_retrieval else None
     retrieval_measured = 0
 
+    clients: dict[str, object] = {}
+    live_set = tuple(r for r in live_routes if r in LOCAL_ROUTES)
+    if live_local:
+        clients = dict(live_clients or _build_live_clients(list(live_set)))
+
     own_store = store is None
     store = store or TelemetryStore(db_path)
     inserted = skipped = 0
+    n_live = n_stub = 0
     try:
         for query, route_id in matrix:
             retrieval_ms = None
+            passages: list[str] = []
             if index is not None and query.get("question"):
-                retrieval_ms = _measured_retrieval_ms(query["question"], index)
+                retrieval_ms, passages = _measured_retrieval(query["question"], index)
                 retrieval_measured += 1
+            live_client = None
+            live_model_version: str | None = None
+            if live_local and route_id in live_set:
+                tier = ROUTE_SPECS[route_id][0]
+                live_client = clients[tier]
+                live_model_version = getattr(live_client, "model_id", tier)
+                n_live += 1
+            else:
+                n_stub += 1
             attempt = build_attempt(
                 query, route_id, prompt_version, sha, cfg_hash, seed,
                 retrieval_ms=retrieval_ms,
+                retrieval_passages=passages,
+                live_client=live_client,
+                live_model_version=live_model_version,
+                temperature=GENERATOR_TEMPERATURE,
             )
             if store.insert_attempt(attempt):
                 inserted += 1
@@ -411,6 +601,12 @@ def run_sweep(
         "query_source": cfg.get("query_source") or "toy",
         "retrieval_latency": "measured" if index is not None else "stubbed",
         "retrieval_measured_attempts": retrieval_measured,
+        "live_local": live_local,
+        "live_routes": list(live_set) if live_local else [],
+        "generator_measured_attempts": n_live,
+        "generator_stubbed_attempts": n_stub,
+        "temperature": GENERATOR_TEMPERATURE,
+        "seed": seed,
     }
 
 
@@ -426,25 +622,39 @@ def main(argv: list[str] | None = None) -> int:
                         help="pilot index for measured retrieval latency")
     parser.add_argument("--no-retrieval", action="store_true",
                         help="skip the index; stub all retrieval latency")
+    parser.add_argument("--live-local", action="store_true",
+                        help="execute local-tier routes (L0/L1/C0) for real via "
+                             "the Colab session (temperature 0, config seed); "
+                             "cloud routes stay stub-estimated ($0 spent)")
+    parser.add_argument("--live-routes", default=",".join(LOCAL_ROUTES),
+                        help="comma-separated subset of local routes to run live "
+                             "(default all); restrict to the tiers the attached "
+                             "session actually serves, e.g. 'L0,L1'")
     args = parser.parse_args(argv)
 
     limit = None if args.no_limit else args.limit
-    store = TelemetryStore(args.db)
-    try:
-        summary = run_sweep(
-            args.db, args.config, limit, store=store,
-            index_path=None if args.no_retrieval else args.index,
-            use_retrieval=not args.no_retrieval,
-        )
-        if args.export_csv:
-            store.export_csv(args.export_csv)
-        if args.export_parquet:
-            try:
-                store.export_parquet(args.export_parquet)
-            except RuntimeError as exc:
-                print(f"warning: {exc}", file=sys.stderr)
-    finally:
-        store.close()
+    live_routes = tuple(r.strip() for r in args.live_routes.split(",") if r.strip())
+    # Store opens inside run_sweep (after the live-attach check), so a
+    # refused --live-local run leaves no empty DB artifact behind.
+    summary = run_sweep(
+        args.db, args.config, limit, store=None,
+        index_path=None if args.no_retrieval else args.index,
+        use_retrieval=not args.no_retrieval,
+        live_local=args.live_local,
+        live_routes=live_routes,
+    )
+    if args.export_csv or args.export_parquet:
+        store = TelemetryStore(args.db)
+        try:
+            if args.export_csv:
+                store.export_csv(args.export_csv)
+            if args.export_parquet:
+                try:
+                    store.export_parquet(args.export_parquet)
+                except RuntimeError as exc:
+                    print(f"warning: {exc}", file=sys.stderr)
+        finally:
+            store.close()
     print(json.dumps(summary, indent=2))
     return 0
 
