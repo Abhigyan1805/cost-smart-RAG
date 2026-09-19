@@ -3,15 +3,24 @@
 Retrieval feature-dict contract
 -------------------------------
 v1 accepts the retrieval feature dict **by name** from the retrieval slice and
-must NOT import retrieval internals. The retrieval slice owns populating it;
-this module only reads the keys below (all optional; missing keys fall back
-to neutral defaults):
+must NOT import retrieval internals. The retrieval slice owns populating it
+via ``costsmart.retrieval.features.extract_routing_features``; this module
+only reads these keys (all optional; missing keys fall back to neutral
+defaults):
 
-- ``top1_score``: float -- top retrieval hit score (higher = better match).
-- ``score_margin``: float -- ``top1_score - top2_score`` (>= 0; large = clear winner).
-- ``mean_topk_score``: float -- mean score over the top-k hits.
-- ``num_hits``: int -- hits above the retrieval relevance threshold.
-- ``topk``: int -- k that was requested (for normalising ``num_hits``).
+- ``top1_score``: float -- top hit score.
+- ``mean_topk``: float -- mean of the top-k scores.
+- ``score_std``: float -- population std of the top-k scores.
+- ``score_gap``: float -- top1 score minus top5 score (0.0 when k < 5).
+- ``n_distinct_docs``: float -- distinct ``doc_id`` values in the top-k.
+- ``score_entropy``: float -- entropy of the softmax-normalised top-k scores.
+- ``rerank_agreement``: float -- Spearman rho between base and reranked rank
+  (1.0 when no rerank ran).
+- ``max_passage_overlap``: float -- max query/chunk token overlap in top-k.
+
+A few legacy aliases (``score_margin`` -> ``score_gap``,
+``mean_topk_score`` -> ``mean_topk``, ``num_hits`` -> ``n_distinct_docs``)
+are honoured when the canonical key is absent.
 
 Ablation switch (``mode``)
 --------------------------
@@ -35,13 +44,29 @@ from .heuristic import CLOUD, COST, LOCAL, RouteDecision
 MODES = ("pre", "post", "both")
 
 #: Fixed feature order (also the column order for sklearn/lightgbm matrices).
+#: Post-retrieval names mirror
+#: ``costsmart.retrieval.features.FEATURE_NAMES`` by name (no import).
 PRE_FEATURES = (
     "qlen_tokens", "qlen_chars", "num_clauses", "qmark_count",
     "has_complex_cue", "has_simple_cue",
 )
 POST_FEATURES = (
-    "top1_score", "score_margin", "mean_topk_score", "hit_rate",
+    "top1_score", "mean_topk", "score_std", "score_gap",
+    "n_distinct_docs", "score_entropy", "rerank_agreement",
+    "max_passage_overlap",
 )
+#: Fallback aliases: canonical key -> legacy names honoured when absent.
+_POST_ALIASES = {
+    "score_gap": ("score_margin",),
+    "mean_topk": ("mean_topk_score",),
+    "n_distinct_docs": ("num_hits",),
+}
+#: Neutral defaults when neither canonical nor alias keys are present.
+_POST_DEFAULTS = {
+    "top1_score": 0.0, "mean_topk": 0.0, "score_std": 0.0, "score_gap": 0.0,
+    "n_distinct_docs": 0.0, "score_entropy": 0.0, "rerank_agreement": 1.0,
+    "max_passage_overlap": 0.0,
+}
 FEATURE_ORDER: dict[str, tuple[str, ...]] = {
     "pre": PRE_FEATURES,
     "post": POST_FEATURES,
@@ -80,14 +105,16 @@ def extract_features(
         }
     if mode in ("post", "both"):
         r = retrieval or {}
-        topk = max(int(r.get("topk", 5) or 5), 1)
-        num_hits = max(int(r.get("num_hits", 0) or 0), 0)
-        feats.update({
-            "top1_score": float(r.get("top1_score", 0.0) or 0.0),
-            "score_margin": max(float(r.get("score_margin", 0.0) or 0.0), 0.0),
-            "mean_topk_score": float(r.get("mean_topk_score", 0.0) or 0.0),
-            "hit_rate": min(num_hits / topk, 1.0),
-        })
+
+        def _get(key: str) -> float:
+            if key in r and r[key] is not None:
+                return float(r[key])
+            for alias in _POST_ALIASES.get(key, ()):
+                if alias in r and r[alias] is not None:
+                    return float(r[alias])
+            return _POST_DEFAULTS[key]
+
+        feats.update({k: _get(k) for k in POST_FEATURES})
     order = FEATURE_ORDER[mode]
     return {k: feats[k] for k in order}
 
