@@ -1,7 +1,7 @@
 """Single index-build command for the Week-1 pilot.
 
 Usage:
-    python -m costsmart.corpus.build_index [--out data/index/pilot_index.json] [--source synthetic|hf]
+    python -m costsmart.corpus.build_index [--out data/index/pilot_index.json] [--source synthetic|hf] [--mix pilot|multihop]
 
 Builds the pilot corpus (200 queries + passages), applies the pinned
 chunking strategy, and writes one JSON index containing chunks plus the
@@ -16,16 +16,22 @@ import json
 from pathlib import Path
 
 from costsmart.corpus.chunking import CHUNK_OVERLAP_WORDS, CHUNK_STRATEGY, CHUNK_WORDS, chunk_passages
-from costsmart.corpus.loaders import PILOT_TOTAL, load_pilot_subset
+from costsmart.corpus.loaders import load_multihop_subset, load_pilot_subset
 from costsmart.retrieval.bm25 import build_bm25_stats
 from costsmart.retrieval.dense import EMBEDDING_MODEL, embed_texts
 
 DEFAULT_INDEX_PATH = "data/index/pilot_index.json"
+MULTIHOP_INDEX_PATH = "data/index/multihop_index.json"
 
 
-def build_index(source: str = "synthetic") -> dict:
+def build_index(source: str = "synthetic", mix: str = "pilot") -> dict:
     """Build the in-memory pilot index and return it as a JSON-able dict."""
-    queries, passages = load_pilot_subset(source=source)
+    if mix == "multihop":
+        queries, passages = load_multihop_subset(source=source)
+    elif mix == "pilot":
+        queries, passages = load_pilot_subset(source=source)
+    else:
+        raise ValueError(f"unknown mix {mix!r}; expected 'pilot' or 'multihop'")
     chunks = chunk_passages(passages)
     texts = [c["text"] for c in chunks]
     bm25_stats = build_bm25_stats(texts)
@@ -36,6 +42,7 @@ def build_index(source: str = "synthetic") -> dict:
         "chunk_words": CHUNK_WORDS,
         "chunk_overlap_words": CHUNK_OVERLAP_WORDS,
         "corpus_source": source,
+        "mix": mix,
         "num_queries": len(queries),
         "num_passages": len(passages),
         "num_chunks": len(chunks),
@@ -51,13 +58,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", default=DEFAULT_INDEX_PATH, help="Output JSON index path.")
     parser.add_argument("--source", default="synthetic", choices=["synthetic", "hf"],
                         help="Corpus source: offline synthetic pilot or HuggingFace datasets.")
+    parser.add_argument("--mix", default="pilot", choices=["pilot", "multihop"],
+                        help="Query mix: legacy pilot or multihop-reweighted (costmultihop-12).")
     args = parser.parse_args(argv)
-    index = build_index(source=args.source)
+    index = build_index(source=args.source, mix=args.mix)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(index))
     print(
-        f"built pilot index: {index['num_queries']}/{PILOT_TOTAL} queries, "
+        f"built {index.get('mix', args.mix)} index: {index['num_queries']} queries, "
         f"{index['num_passages']} passages, {index['num_chunks']} chunks "
         f"-> {out}"
     )

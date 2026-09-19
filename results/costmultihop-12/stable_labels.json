@@ -1,0 +1,4002 @@
+[
+  {
+    "query_id": "2wiki:0000",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0000",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0001",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0001",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0002",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0002",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0003",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0003",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0004",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0004",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0005",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0005",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0006",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0006",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0007",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0007",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0008",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0008",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0009",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0009",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0010",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0010",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0011",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0011",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0012",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0012",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0013",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0013",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0014",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0014",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0015",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0015",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0016",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0016",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0017",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0017",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0018",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0018",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0019",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0019",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0020",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0020",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0021",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0021",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0022",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0022",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0023",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0023",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0024",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 2,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0024",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0025",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0025",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0026",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0026",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0027",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0027",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0028",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0028",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0029",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0029",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0030",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0030",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0031",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0031",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0032",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0032",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0033",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0033",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0034",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0034",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0035",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0035",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0036",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0036",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0037",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 1,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0037",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0038",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0038",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0039",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0039",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0040",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0040",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0041",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0041",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0042",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0042",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0043",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0043",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0044",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0044",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0045",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0045",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0046",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0046",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0047",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0047",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0048",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0048",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0049",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "2wiki:0049",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0000",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0000",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0001",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0001",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0002",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0002",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0003",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0003",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0004",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0004",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0005",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0005",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0006",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0006",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0007",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0007",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0008",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0008",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0009",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0009",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0010",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0010",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0011",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0011",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0012",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0012",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0013",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0013",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0014",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0014",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0015",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0015",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0016",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0016",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0017",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0017",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0018",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0018",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0019",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0019",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0020",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0020",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0021",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0021",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0022",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0022",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0023",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0023",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0024",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0024",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0025",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0025",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0026",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0026",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0027",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0027",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0028",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0028",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0029",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0029",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0030",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0030",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0031",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0031",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0032",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0032",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0033",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0033",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0034",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0034",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0035",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0035",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0036",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0036",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0037",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0037",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0038",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0038",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0039",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0039",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0040",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0040",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0041",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0041",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0042",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0042",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0043",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0043",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0044",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0044",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0045",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0045",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0046",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0046",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0047",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0047",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0048",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0048",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0049",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0049",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0050",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0050",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0051",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0051",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0052",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0052",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0053",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0053",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0054",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0054",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0055",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0055",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0056",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0056",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0057",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0057",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0058",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0058",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0059",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "hotpotqa:0059",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0000",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0000",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0001",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0001",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0002",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0002",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0003",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0003",
+    "route_id": "L1",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0004",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0004",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0005",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0005",
+    "route_id": "L1",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0006",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0006",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0007",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0007",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0008",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0008",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0009",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0009",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0010",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0010",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0011",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0011",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0012",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0012",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0013",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0013",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0014",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0014",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0015",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0015",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0016",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0016",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0017",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0017",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0018",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0018",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0019",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0019",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0020",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0020",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0021",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0021",
+    "route_id": "L1",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0022",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0022",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0023",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0023",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0024",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0024",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0025",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0025",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0026",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0026",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0027",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0027",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0028",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0028",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0029",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0029",
+    "route_id": "L1",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0030",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0030",
+    "route_id": "L1",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0031",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0031",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0032",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0032",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0033",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0033",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0034",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0034",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0035",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0035",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0036",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0036",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0037",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0037",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0038",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0038",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0039",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "musique:0039",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0000",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0000",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0001",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0001",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0002",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0002",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0003",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0003",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0004",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0004",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0005",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0005",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0006",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0006",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0007",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0007",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0008",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0008",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0009",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0009",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0010",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0010",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0011",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0011",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0012",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0012",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0013",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0013",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0014",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0014",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0015",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0015",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0016",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0016",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0017",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0017",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0018",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0018",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0019",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0019",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0020",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0020",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0021",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0021",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0022",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0022",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0023",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0023",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0024",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0024",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0025",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0025",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0026",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0026",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0027",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0027",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0028",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0028",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0029",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "nq:0029",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0000",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0000",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0001",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0001",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0002",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0002",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0003",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0003",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0004",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0004",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0005",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0005",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0006",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0006",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0007",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0007",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0008",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0008",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0009",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0009",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0010",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0010",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0011",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0011",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0012",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0012",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0013",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0013",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0014",
+    "route_id": "L0",
+    "single_correct": true,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0014",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0015",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0015",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0016",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0016",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0017",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0017",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0018",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0018",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": true,
+    "n_correct": 3,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0019",
+    "route_id": "L0",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  },
+  {
+    "query_id": "triviaqa:0019",
+    "route_id": "L1",
+    "single_correct": false,
+    "stable_correct": false,
+    "n_correct": 0,
+    "n_total": 3,
+    "complete": true,
+    "tie": false
+  }
+]

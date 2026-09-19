@@ -580,17 +580,27 @@ def run_sweep(
     n_live = n_stub = 0
     try:
         for query, route_id in matrix:
-            retrieval_ms = None
-            passages: list[str] = []
-            if index is not None and query.get("question"):
-                retrieval_ms, passages = _measured_retrieval(query["question"], index)
-                retrieval_measured += 1
             live_client = None
             live_model_version: str | None = None
             if live_local and route_id in live_set:
                 tier = ROUTE_SPECS[route_id][0]
                 live_client = clients[tier]
                 live_model_version = getattr(live_client, "model_id", tier)
+            # Pre-skip rows already recorded: the cache key is computable
+            # before execution, so a resumed sweep never re-spends a live
+            # local generation (or retrieval lookup) on a completed attempt.
+            model_version = live_model_version or ROUTE_MODELS.get(
+                route_id, ROUTE_MODELS["L0"])
+            if store.has(cache_key(query["query_id"], route_id,
+                                   prompt_version, model_version)):
+                skipped += 1
+                continue
+            retrieval_ms = None
+            passages: list[str] = []
+            if index is not None and query.get("question"):
+                retrieval_ms, passages = _measured_retrieval(query["question"], index)
+                retrieval_measured += 1
+            if live_client is not None:
                 n_live += 1
             else:
                 n_stub += 1

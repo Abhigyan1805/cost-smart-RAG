@@ -18,11 +18,18 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   cloud routes are stub-only by construction (no live cloud path, $0 spent).
 - Worker env is stdlib-only (no pip/httpx): keep `registry.py` imports lazy
   and HTTP calls urllib-capable — see `ColabClient._post_json`.
-- Noisy small-model labels: single live draws flip (L0 string flip ~0.87 at
-  temp 0); stabilize with 3x repeats + majority vote (ties = incorrect) —
+- Noisy small-model labels: single live draws paraphrase-flip at temp 0
+  (from ~0.87 L0 string flip on the legacy mix down to ~0.22 on the multihop
+  mix); stabilize with 3x repeats + majority vote (ties = incorrect) —
   see `src/costsmart/eval/stability.py`, `scripts/run_repeats.py`
   (repeat rows live in a separate DB/table, never in `attempts`), and
   `scripts/stable_oracle.py` for the stable-oracle recount.
+- Kaggle GPU route when the Colab free tier is exhausted:
+  `kernels/costsweep-13-local-sweep/` clones the public repo, serves
+  Qwen2.5-1.5B via `scripts/colab_local_tier.py`, and resumes the committed
+  telemetry DBs by cache key; `kernels push` does NOT upload sibling files,
+  so the kernel fetches the repo itself. Exact push/status/output + ingest
+  commands: `docs/kaggle-handoff.md`.
 
 ## Maintaining this file
 

@@ -1,0 +1,17 @@
+{
+  "mode": "live",
+  "sweep_db": "results/costmultihop-12/sweep.db",
+  "repeats_db": "results/costmultihop-12/repeats.db",
+  "routes": [
+    "L0",
+    "L1"
+  ],
+  "n_pairs": 400,
+  "repeats": 3,
+  "draws_expected": 1200,
+  "inserted": 931,
+  "skipped_existing": 269,
+  "total_repeat_rows": 1200,
+  "temperature": 0,
+  "seed": 0
+}

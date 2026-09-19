@@ -1,0 +1,22 @@
+# costmultihop-12: Tier-A oracle sweep on the multihop-reweighted mix
+# (zero cloud spend).
+# 200 Tier-A queries (30 NQ + 20 TriviaQA + 60 HotpotQA + 50 2WikiMultihopQA
+# + 40 MuSiQue = 75% multi-hop, offline synthetic source,
+# SYNTHETIC_SEED=20260919) x the 7-route Week-1 sweep set = 1400 attempts.
+#
+# Execution contract (same as costsweep-08):
+# * local-tier routes (L0/L1/C0) run FOR REAL through the Colab session
+#   (--live-local, temperature 0, seed below); generator_mode='measured'.
+# * cloud-tier routes (C1..C4) are STUB-ESTIMATED from the pilot-20
+#   calibration (see results/costmultihop-12/CALIBRATION.md);
+#   generator_mode='stub'. No live cloud code path exists ($0 spent).
+# Rows are idempotent on sha256(query_id | route_id | prompt_version |
+# model_version): live local rows carry the served model id, so they never
+# collide with stub rows for the same query+route.
+name: sweep-200-multihop
+routes: [L0, L1, C0, C1, C2, C3, C4]
+prompt_version: v1
+seed: 0
+query_source: tier-a
+tier_a_counts: {nq: 30, triviaqa: 20, hotpotqa: 60, 2wiki: 50, musique: 40}
+corpus_source: synthetic

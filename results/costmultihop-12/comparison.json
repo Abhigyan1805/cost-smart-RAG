@@ -1,0 +1,213 @@
+{
+  "cheap_route": "L0",
+  "strong_route": "C4",
+  "n_repeated_pairs": 400,
+  "repeated_routes": [
+    "L0",
+    "L1"
+  ],
+  "n_label_changes_single_vs_stable": 30,
+  "label_changes": [
+    {
+      "query_id": "2wiki:0002",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "2wiki:0011",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "2wiki:0012",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "2wiki:0024",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "2wiki:0046",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "2wiki:0047",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "2wiki:0049",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "hotpotqa:0000",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "hotpotqa:0024",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0001",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "musique:0003",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0005",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0019",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0021",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0029",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0030",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0032",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0034",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "musique:0034",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "musique:0038",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "musique:0039",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "nq:0008",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "nq:0022",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0000",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0004",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0007",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0009",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0013",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0013",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0018",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    }
+  ],
+  "single": {
+    "routable_fraction": 0.095,
+    "routable_ci": [
+      0.055,
+      0.14
+    ],
+    "saving_fraction": 0.946929943149123,
+    "verdict": "NO-GO",
+    "mcnemar_p": 7.990203477180627e-41
+  },
+  "stable": {
+    "routable_fraction": 0.045,
+    "routable_ci": [
+      0.02,
+      0.075
+    ],
+    "saving_fraction": 0.9466531838626657,
+    "verdict": "NO-GO",
+    "mcnemar_p": 5.241668430643675e-43
+  },
+  "verdict_changed": false
+}
