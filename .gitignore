@@ -1,4 +1,5 @@
 # Local build / data artifacts (never committed)
+# (index artifacts under data/index/ are reproducible via the single index build command)
 data/
 telemetry/
 *.parquet
