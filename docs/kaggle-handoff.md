@@ -100,3 +100,42 @@ recount cannot silently fall back to the legacy pilot mix.
   seconds). The kernel self-terminates the server when done.
 - `enable_internet: true` is required for the model weight download; the
   repo clone is public, so no token is embedded anywhere.
+
+## realdata-15: decisive run on REAL Tier-A data
+
+`kernels/realdata-15-local-sweep/` is the real-data counterpart of the
+synthetic `costsweep-13` route. It clones branch `fm/costsmart-realdata-15`
+and, before serving the model, fetches + normalizes the real corpus through
+the repo's HuggingFace loader path (`scripts/fetch_tier_a.py`), then builds
+the index from that committed corpus (`build_index --mix real`). The driver,
+resumability, and zero-cloud-spend guarantees are identical to costsweep-13.
+
+```sh
+kaggle kernels push   -p kernels/realdata-15-local-sweep
+kaggle kernels status abhigyan1818/realdata15-local-sweep
+kaggle kernels output abhigyan1818/realdata15-local-sweep -p /tmp/kout
+```
+
+Artifacts to ingest (files land flat in `/tmp/kout`):
+
+```sh
+cp /tmp/kout/tier_a_real.json      data/real/tier_a_real.json
+cp /tmp/kout/real_index.json       data/index/real_index.json
+cp /tmp/kout/sweep.db              results/realdata-15/sweep.db
+cp /tmp/kout/repeats.db            results/realdata-15/repeats.db
+cp /tmp/kout/sweep.csv             results/realdata-15/sweep.csv
+cp /tmp/kout/repeats_summary.json  results/realdata-15/repeats_summary.json
+
+PYTHONPATH=src python scripts/stable_oracle.py \
+  --sweep-db results/realdata-15/sweep.db \
+  --repeats-db results/realdata-15/repeats.db \
+  --out-dir results/realdata-15
+```
+
+The real mix is 50 NQ + 80 HotpotQA + 70 MuSiQue (75% multi-hop), mirroring
+the synthetic `costmultihop-12` composition. `nq_open` ships question+answer
+only, so NQ has no gold passage / passage pool and its L1 retrieval draws
+from the shared multi-hop pool; the headroom gate reads L0 (closed-book) vs
+the C4 stub, not L1. Licences + revisions + checksums are recorded per
+dataset in `data/real/tier_a_real.json`'s manifest and in
+`data/real/MANIFEST.md` (never inferred from memory).

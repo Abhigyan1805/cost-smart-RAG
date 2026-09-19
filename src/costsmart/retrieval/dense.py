@@ -44,12 +44,26 @@ def _st_embed(texts: list[str]) -> list[list[float]] | None:
         return None
 
 
+#: Which backend the last ``embed_texts`` call actually used. Index metadata
+#: must record this: the pinned name ``EMBEDDING_MODEL`` is the intent, not
+#: the truth (the hash fallback fires whenever sentence-transformers is
+#: absent or its model fails to load).
+_LAST_BACKEND: dict[str, str] = {"name": "unset"}
+
+
 def embed_texts(texts: list[str]) -> list[list[float]]:
     """Embed ``texts`` with the pinned model (or offline fallback)."""
     vectors = _st_embed(texts)
     if vectors is not None:
+        _LAST_BACKEND["name"] = "sentence-transformers"
         return vectors
+    _LAST_BACKEND["name"] = "hash-fallback"
     return [_hash_embed(t) for t in texts]
+
+
+def embedding_backend() -> str:
+    """Name of the backend used by the last :func:`embed_texts` call."""
+    return _LAST_BACKEND["name"]
 
 
 def cosine_similarity(a: list[float], b: list[float]) -> float:

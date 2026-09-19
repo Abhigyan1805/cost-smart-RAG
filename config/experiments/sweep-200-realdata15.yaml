@@ -1,0 +1,25 @@
+# realdata-15: decisive Tier-A oracle sweep on REAL labelled data
+# (zero cloud spend).
+# 200 real Tier-A queries (50 NQ + 80 HotpotQA + 70 MuSiQue = 75% multi-hop,
+# fetched from HuggingFace and committed at data/real/tier_a_real.json) x the
+# 7-route Week-1 sweep set = 1400 attempts. The real mix mirrors the synthetic
+# costmultihop-12 25/75 single-hop/multi-hop composition so the real-vs-synthetic
+# recount is like-for-like.
+#
+# Execution contract (same as costsweep-08 / costmultihop-12):
+# * local-tier routes (L0/L1) run FOR REAL through the served local model
+#   (--live-local, temperature 0, seed below); generator_mode='measured'.
+# * C0 (7B) stays stub (no 7B server) and cloud-tier routes (C1..C4) are
+#   STUB-ESTIMATED; generator_mode='stub'. No live cloud code path exists
+#   ($0 spent). C4 is therefore exactly correct by the frozen stub contract,
+#   so the headroom gate's routable fraction equals measured L0 accuracy.
+# Rows are idempotent on sha256(query_id | route_id | prompt_version |
+# model_version): live local rows carry the served model id, so they never
+# collide with stub rows for the same query+route.
+name: sweep-200-realdata15
+routes: [L0, L1, C0, C1, C2, C3, C4]
+prompt_version: v1
+seed: 0
+query_source: tier-a
+tier_a_counts: {nq: 50, hotpotqa: 80, musique: 70}
+corpus_source: real
