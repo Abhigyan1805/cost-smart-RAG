@@ -23,13 +23,17 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   mix); stabilize with 3x repeats + majority vote (ties = incorrect) —
   see `src/costsmart/eval/stability.py`, `scripts/run_repeats.py`
   (repeat rows live in a separate DB/table, never in `attempts`), and
-  `scripts/stable_oracle.py` for the stable-oracle recount.
+  `scripts/stable_oracle.py` for the stable-oracle recount. `stable_oracle`
+  now REQUIRES `--sweep-db/--repeats-db/--out-dir` and refuses a bare call or
+  a mixed-legacy/multihop pair, so run it exactly as the runbook shows.
 - Kaggle GPU route when the Colab free tier is exhausted:
   `kernels/costsweep-13-local-sweep/` clones the public repo, serves
   Qwen2.5-1.5B via `scripts/colab_local_tier.py`, and resumes the committed
   telemetry DBs by cache key; `kernels push` does NOT upload sibling files,
   so the kernel fetches the repo itself. Exact push/status/output + ingest
-  commands: `docs/kaggle-handoff.md`.
+  commands: `docs/kaggle-handoff.md`; the resume provenance (log sha256 +
+  runbook summary + artifact hashes) is committed at
+  `results/costmultihop-12/KAGGLE_PROVENANCE.{md,json}`.
 
 ## Maintaining this file
 

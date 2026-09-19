@@ -133,6 +133,17 @@ download commands are in `docs/kaggle-handoff.md`; the ingest and stable
 recount commands are in the runbook above. The recount result lands in
 `REPORT.md` ("Multi-hop mix live recount").
 
+**Resume provenance (auditable).** The Kaggle kernel log is ~9.3 MB, so the
+committed record is its SHA256 plus the runbook summary and the artifact
+hashes: see `KAGGLE_PROVENANCE.md` / `kaggle_provenance.json` in this
+directory. The downloaded `sweep.db`, `repeats.db`, and `sweep.csv` were
+byte-identical to the committed artifacts, and the kernel log's
+`RUNBOOK SUMMARY:` line matches `kaggle_run_summary.json` (1400 sweep rows,
+1200 repeat rows). The repeats DB splits into a 269-draw Colab epoch
+(`3bf1cf6`) and a 931-draw Kaggle epoch (`777aa01`); the two epochs share
+only one pair, so the handoff's cross-host agreement check is not
+independently testable from committed data (see the report's scope note).
+
 ## Assumptions / caveats
 
 1. Real cloud token volumes are unknown ($0 spent); only relative route

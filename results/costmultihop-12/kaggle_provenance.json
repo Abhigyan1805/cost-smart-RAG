@@ -1,0 +1,71 @@
+{
+  "description": "Provenance for the Kaggle costsweep-13 local-tier run whose outputs were ingested into results/costmultihop-12/. The kernel log is ~9.3 MB so it is not committed; re-download it with the command below and verify the sha256.",
+  "kernel": {
+    "id": "abhigyan1818/costsweep13-local-sweep",
+    "metadata": "kernels/costsweep-13-local-sweep/kernel-metadata.json",
+    "code": "kernels/costsweep-13-local-sweep/kernel.py",
+    "branch": "fm/costsweep-13",
+    "model": "Qwen/Qwen2.5-1.5B-Instruct"
+  },
+  "download": {
+    "command": "kaggle kernels output abhigyan1818/costsweep13-local-sweep -p /tmp/kout",
+    "downloaded_at": "2026-09-19",
+    "status": "available",
+    "note": "Output was available and downloaded; the DBs were byte-compared against the committed artifacts (see verification)."
+  },
+  "logs": {
+    "costsweep13-local-sweep.log": {
+      "sha256": "2ee7ccac6842d5610ba80b189b9bdee272267653b1284dcc627fe403b890e64d",
+      "bytes": 9307206,
+      "note": "Kaggle kernel stdout/stderr (one JSON object per line). Not committed; re-download and verify the sha256."
+    },
+    "local_tier_server.log": {
+      "sha256": "f9af9cea222509d224f8e673b8b4947defcf9ae1a0ad02c6b488255b0bf20b9e",
+      "bytes": 95312
+    }
+  },
+  "runbook_summary": {
+    "sweep_rows": 1400,
+    "sweep_by_route_mode": [
+      {"route_id": "C0", "generator_mode": "stub", "n": 200},
+      {"route_id": "C1", "generator_mode": "stub", "n": 200},
+      {"route_id": "C2", "generator_mode": "stub", "n": 200},
+      {"route_id": "C3", "generator_mode": "stub", "n": 200},
+      {"route_id": "C4", "generator_mode": "stub", "n": 200},
+      {"route_id": "L0", "generator_mode": "measured", "n": 200},
+      {"route_id": "L1", "generator_mode": "measured", "n": 200}
+    ],
+    "repeat_rows": 1200,
+    "repeat_pairs": 400,
+    "repeat_by_route_mode": [
+      {"route_id": "L0", "generator_mode": "measured", "n": 600},
+      {"route_id": "L1", "generator_mode": "measured", "n": 600}
+    ]
+  },
+  "repeat_epochs": {
+    "colab": {"git_sha": "3bf1cf61761dfd411baf30f47cb95cf54e8769f4", "draws": 269, "pairs": 90},
+    "kaggle": {"git_sha": "777aa01affbecb660587c1de83aac5a81588928a", "draws": 931, "pairs": 311}
+  },
+  "artifacts": {
+    "sweep.db": {
+      "sha256": "faebfeeb484e4ef52bbc3439c5e96c3fa4c4334fc8502d038f8ab30e2a80f9d8",
+      "bytes": 1028096,
+      "matches_committed": true
+    },
+    "repeats.db": {
+      "sha256": "59896910af48b50f82fa9393ed6452c36d0c04943fc41d8704d93b8da8ff2b8d",
+      "bytes": 1196032,
+      "matches_committed": true
+    },
+    "sweep.csv": {
+      "sha256": "0a84601eeb2fde06326fb02f9482f1cd241c904219eb71d6a7be5050b59a2ee3",
+      "bytes": 738159,
+      "matches_committed": true
+    }
+  },
+  "verification": {
+    "downloaded_outputs_byte_identical_to_committed": true,
+    "command": "cmp /tmp/kout/sweep.db results/costmultihop-12/sweep.db && cmp /tmp/kout/repeats.db results/costmultihop-12/repeats.db && cmp /tmp/kout/sweep.csv results/costmultihop-12/sweep.csv",
+    "log_runbook_summary_present": true
+  }
+}
