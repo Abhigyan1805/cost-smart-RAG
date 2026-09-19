@@ -1,0 +1,1015 @@
+{
+ "counts": {
+  "nq": 30,
+  "triviaqa": 20,
+  "hotpotqa": 60,
+  "2wiki": 50,
+  "musique": 40
+ },
+ "corpus_source": "synthetic",
+ "prompt_version": "v1",
+ "queries": [
+  {
+   "query_id": "nq:0000",
+   "question": "where is mitochondria located",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "nq:0001",
+   "question": "who discovered quantum mechanics",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "nq:0002",
+   "question": "when did Eiffel Tower happen",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "nq:0003",
+   "question": "when did Roman Empire happen",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "nq:0004",
+   "question": "who discovered Mount Everest",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "nq:0005",
+   "question": "what is Industrial Revolution known for",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "nq:0006",
+   "question": "when did photosynthesis happen",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "nq:0007",
+   "question": "who discovered Shakespeare",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "nq:0008",
+   "question": "when did Marie Curie happen",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "nq:0009",
+   "question": "where is Renaissance located",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "nq:0010",
+   "question": "what is Mount Everest known for",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "nq:0011",
+   "question": "who discovered gravity",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "nq:0012",
+   "question": "what is Shakespeare known for",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "nq:0013",
+   "question": "who discovered Mount Everest",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "nq:0014",
+   "question": "where is neural networks located",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "nq:0015",
+   "question": "where is Roman Empire located",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "nq:0016",
+   "question": "when did Mount Everest happen",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "nq:0017",
+   "question": "where is Mona Lisa located",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "nq:0018",
+   "question": "what is Pacific Ocean known for",
+   "reference": "Pacific Ocean"
+  },
+  {
+   "query_id": "nq:0019",
+   "question": "what is World War II known for",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "nq:0020",
+   "question": "where is mitochondria located",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "nq:0021",
+   "question": "who discovered quantum mechanics",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "nq:0022",
+   "question": "when did neural networks happen",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "nq:0023",
+   "question": "when did Pacific Ocean happen",
+   "reference": "Pacific Ocean"
+  },
+  {
+   "query_id": "nq:0024",
+   "question": "who discovered Roman Empire",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "nq:0025",
+   "question": "what is Eiffel Tower known for",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "nq:0026",
+   "question": "what is Sahara Desert known for",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "nq:0027",
+   "question": "when did gravity happen",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "nq:0028",
+   "question": "what is Marie Curie known for",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "nq:0029",
+   "question": "when did Amazon River happen",
+   "reference": "Amazon River"
+  },
+  {
+   "query_id": "triviaqa:0000",
+   "question": "Which Mona Lisa fact is described as: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "triviaqa:0001",
+   "question": "Name the photosynthesis associated with this description: Photosynthesis converts light energy into chemical energy in plant chloroplasts.",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "triviaqa:0002",
+   "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "triviaqa:0003",
+   "question": "Name the Mona Lisa associated with this description: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "triviaqa:0004",
+   "question": "Which Mona Lisa fact is described as: The Mona Lisa by Leonardo da Vinci hangs in the Louvre in Paris.",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "triviaqa:0005",
+   "question": "Which gravity fact is described as: Newton's law of universal gravitation describes attraction between masses.",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "triviaqa:0006",
+   "question": "Which Eiffel Tower fact is described as: The Eiffel Tower in Paris was completed in 1889 for the World's Fair.",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "triviaqa:0007",
+   "question": "Name the Great Wall of China associated with this description: The Great Wall of China stretches over 21,000 km across northern China.",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "triviaqa:0008",
+   "question": "Name the neural networks associated with this description: Neural networks learn representations through layered weighted connections.",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "triviaqa:0009",
+   "question": "Name the Marie Curie associated with this description: Marie Curie won Nobel Prizes in Physics (1903) and Chemistry (1911).",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "triviaqa:0010",
+   "question": "Which Roman Empire fact is described as: The Roman Empire at its height spanned three continents around the Mediterranean.",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "triviaqa:0011",
+   "question": "Which Amazon River fact is described as: The Amazon River carries more water than any other river in the world.",
+   "reference": "Amazon River"
+  },
+  {
+   "query_id": "triviaqa:0012",
+   "question": "Name the Mount Everest associated with this description: Mount Everest rises 8,849 metres on the Nepal-China border.",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "triviaqa:0013",
+   "question": "Name the Marie Curie associated with this description: Marie Curie won Nobel Prizes in Physics (1903) and Chemistry (1911).",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "triviaqa:0014",
+   "question": "Which Industrial Revolution fact is described as: The Industrial Revolution began in Britain in the late 18th century.",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "triviaqa:0015",
+   "question": "Which Shakespeare fact is described as: William Shakespeare wrote 37 plays including Hamlet and Macbeth.",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "triviaqa:0016",
+   "question": "Name the quantum mechanics associated with this description: Quantum mechanics describes matter and energy at atomic and subatomic scales.",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "triviaqa:0017",
+   "question": "Which gravity fact is described as: Newton's law of universal gravitation describes attraction between masses.",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "triviaqa:0018",
+   "question": "Name the Shakespeare associated with this description: William Shakespeare wrote 37 plays including Hamlet and Macbeth.",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "triviaqa:0019",
+   "question": "Which Pacific Ocean fact is described as: The Pacific Ocean is the largest and deepest ocean basin on Earth.",
+   "reference": "Pacific Ocean"
+  },
+  {
+   "query_id": "hotpotqa:0000",
+   "question": "What connects Industrial Revolution and Renaissance historically",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "hotpotqa:0001",
+   "question": "Compare DNA with Great Wall of China: which came first and why",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "hotpotqa:0002",
+   "question": "What connects neural networks and Mount Everest historically",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0003",
+   "question": "Compare World War II with DNA: which came first and why",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "hotpotqa:0004",
+   "question": "Compare Great Wall of China with World War II: which came first and why",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "hotpotqa:0005",
+   "question": "What connects Industrial Revolution and quantum mechanics historically",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "hotpotqa:0006",
+   "question": "What connects Mona Lisa and Great Wall of China historically",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "hotpotqa:0007",
+   "question": "What connects Eiffel Tower and Mount Everest historically",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "hotpotqa:0008",
+   "question": "Compare Mona Lisa with black holes: which came first and why",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "hotpotqa:0009",
+   "question": "What connects Marie Curie and Industrial Revolution historically",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "hotpotqa:0010",
+   "question": "Compare quantum mechanics with Great Wall of China: which came first and why",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "hotpotqa:0011",
+   "question": "Compare Mona Lisa with Renaissance: which came first and why",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "hotpotqa:0012",
+   "question": "Compare Roman Empire with Pacific Ocean: which came first and why",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "hotpotqa:0013",
+   "question": "What connects Roman Empire and mitochondria historically",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "hotpotqa:0014",
+   "question": "Compare neural networks with Amazon River: which came first and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0015",
+   "question": "What connects Industrial Revolution and Mona Lisa historically",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "hotpotqa:0016",
+   "question": "Compare neural networks with Shakespeare: which came first and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0017",
+   "question": "What connects World War II and mitochondria historically",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "hotpotqa:0018",
+   "question": "Compare Sahara Desert with Mount Everest: which came first and why",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "hotpotqa:0019",
+   "question": "Compare Industrial Revolution with Pacific Ocean: which came first and why",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "hotpotqa:0020",
+   "question": "What connects quantum mechanics and Sahara Desert historically",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "hotpotqa:0021",
+   "question": "What connects mitochondria and Eiffel Tower historically",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "hotpotqa:0022",
+   "question": "What connects black holes and neural networks historically",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "hotpotqa:0023",
+   "question": "What connects Eiffel Tower and Marie Curie historically",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "hotpotqa:0024",
+   "question": "Compare World War II with Mount Everest: which came first and why",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "hotpotqa:0025",
+   "question": "What connects DNA and neural networks historically",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "hotpotqa:0026",
+   "question": "Compare Mona Lisa with World War II: which came first and why",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "hotpotqa:0027",
+   "question": "What connects Marie Curie and quantum mechanics historically",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "hotpotqa:0028",
+   "question": "Compare Amazon River with Sahara Desert: which came first and why",
+   "reference": "Amazon River"
+  },
+  {
+   "query_id": "hotpotqa:0029",
+   "question": "What connects photosynthesis and Amazon River historically",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "hotpotqa:0030",
+   "question": "What connects World War II and Eiffel Tower historically",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "hotpotqa:0031",
+   "question": "Compare Sahara Desert with Mona Lisa: which came first and why",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "hotpotqa:0032",
+   "question": "Compare Pacific Ocean with Marie Curie: which came first and why",
+   "reference": "Pacific Ocean"
+  },
+  {
+   "query_id": "hotpotqa:0033",
+   "question": "Compare black holes with Pacific Ocean: which came first and why",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "hotpotqa:0034",
+   "question": "Compare black holes with photosynthesis: which came first and why",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "hotpotqa:0035",
+   "question": "Compare Roman Empire with Pacific Ocean: which came first and why",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "hotpotqa:0036",
+   "question": "What connects Mount Everest and quantum mechanics historically",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "hotpotqa:0037",
+   "question": "What connects mitochondria and quantum mechanics historically",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "hotpotqa:0038",
+   "question": "Compare Sahara Desert with Great Wall of China: which came first and why",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "hotpotqa:0039",
+   "question": "What connects photosynthesis and World War II historically",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "hotpotqa:0040",
+   "question": "Compare Roman Empire with photosynthesis: which came first and why",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "hotpotqa:0041",
+   "question": "What connects Mount Everest and Renaissance historically",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "hotpotqa:0042",
+   "question": "What connects Great Wall of China and mitochondria historically",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "hotpotqa:0043",
+   "question": "Compare Shakespeare with neural networks: which came first and why",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "hotpotqa:0044",
+   "question": "What connects neural networks and Marie Curie historically",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0045",
+   "question": "Compare Mount Everest with Great Wall of China: which came first and why",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "hotpotqa:0046",
+   "question": "Compare gravity with mitochondria: which came first and why",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "hotpotqa:0047",
+   "question": "Compare Eiffel Tower with Shakespeare: which came first and why",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "hotpotqa:0048",
+   "question": "What connects DNA and Mount Everest historically",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "hotpotqa:0049",
+   "question": "Compare Eiffel Tower with gravity: which came first and why",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "hotpotqa:0050",
+   "question": "What connects neural networks and Eiffel Tower historically",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0051",
+   "question": "Compare gravity with Mona Lisa: which came first and why",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "hotpotqa:0052",
+   "question": "Compare Industrial Revolution with Roman Empire: which came first and why",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "hotpotqa:0053",
+   "question": "Compare neural networks with Mount Everest: which came first and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0054",
+   "question": "What connects gravity and World War II historically",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "hotpotqa:0055",
+   "question": "What connects gravity and Industrial Revolution historically",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "hotpotqa:0056",
+   "question": "Compare neural networks with Renaissance: which came first and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "hotpotqa:0057",
+   "question": "What connects World War II and gravity historically",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "hotpotqa:0058",
+   "question": "Compare Mount Everest with Marie Curie: which came first and why",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "hotpotqa:0059",
+   "question": "Compare Mona Lisa with Amazon River: which came first and why",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "2wiki:0000",
+   "question": "Which DNA is linked to Renaissance through gravity",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0001",
+   "question": "The Eiffel Tower connects Roman Empire to which photosynthesis, and why",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "2wiki:0002",
+   "question": "Which DNA is linked to Mona Lisa through mitochondria",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0003",
+   "question": "The World War II connects Amazon River to which Roman Empire, and why",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "2wiki:0004",
+   "question": "Which Eiffel Tower is linked to World War II through Mona Lisa",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "2wiki:0005",
+   "question": "The Eiffel Tower connects black holes to which Sahara Desert, and why",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "2wiki:0006",
+   "question": "The gravity connects Marie Curie to which neural networks, and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "2wiki:0007",
+   "question": "Which Mount Everest is linked to mitochondria through black holes",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "2wiki:0008",
+   "question": "Which gravity is linked to Great Wall of China through neural networks",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "2wiki:0009",
+   "question": "Which Shakespeare is linked to Mona Lisa through DNA",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "2wiki:0010",
+   "question": "Which Mona Lisa is linked to black holes through Great Wall of China",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "2wiki:0011",
+   "question": "Which Eiffel Tower is linked to Mount Everest through gravity",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "2wiki:0012",
+   "question": "Which Sahara Desert is linked to Marie Curie through Pacific Ocean",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "2wiki:0013",
+   "question": "Which Sahara Desert is linked to Mona Lisa through Mount Everest",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "2wiki:0014",
+   "question": "The Eiffel Tower connects mitochondria to which Marie Curie, and why",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "2wiki:0015",
+   "question": "Which photosynthesis is linked to black holes through Marie Curie",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "2wiki:0016",
+   "question": "The quantum mechanics connects photosynthesis to which Renaissance, and why",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "2wiki:0017",
+   "question": "The Eiffel Tower connects photosynthesis to which quantum mechanics, and why",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "2wiki:0018",
+   "question": "The gravity connects Sahara Desert to which World War II, and why",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "2wiki:0019",
+   "question": "Which Marie Curie is linked to Amazon River through Industrial Revolution",
+   "reference": "Marie Curie"
+  },
+  {
+   "query_id": "2wiki:0020",
+   "question": "Which Shakespeare is linked to Pacific Ocean through Roman Empire",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "2wiki:0021",
+   "question": "The Shakespeare connects Pacific Ocean to which DNA, and why",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0022",
+   "question": "The Shakespeare connects DNA to which Mona Lisa, and why",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "2wiki:0023",
+   "question": "Which gravity is linked to Amazon River through Sahara Desert",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "2wiki:0024",
+   "question": "Which Pacific Ocean is linked to Mona Lisa through Marie Curie",
+   "reference": "Pacific Ocean"
+  },
+  {
+   "query_id": "2wiki:0025",
+   "question": "Which Eiffel Tower is linked to Industrial Revolution through neural networks",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "2wiki:0026",
+   "question": "The gravity connects Marie Curie to which black holes, and why",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "2wiki:0027",
+   "question": "Which Eiffel Tower is linked to Industrial Revolution through World War II",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "2wiki:0028",
+   "question": "The black holes connects Shakespeare to which DNA, and why",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0029",
+   "question": "Which quantum mechanics is linked to World War II through Industrial Revolution",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "2wiki:0030",
+   "question": "Which Sahara Desert is linked to Mount Everest through neural networks",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "2wiki:0031",
+   "question": "Which Eiffel Tower is linked to photosynthesis through Mount Everest",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "2wiki:0032",
+   "question": "The Amazon River connects Shakespeare to which Mona Lisa, and why",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "2wiki:0033",
+   "question": "The Renaissance connects World War II to which neural networks, and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "2wiki:0034",
+   "question": "The Mount Everest connects Shakespeare to which Renaissance, and why",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "2wiki:0035",
+   "question": "Which Great Wall of China is linked to World War II through photosynthesis",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "2wiki:0036",
+   "question": "The Amazon River connects mitochondria to which neural networks, and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "2wiki:0037",
+   "question": "Which mitochondria is linked to neural networks through Pacific Ocean",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "2wiki:0038",
+   "question": "The Sahara Desert connects black holes to which neural networks, and why",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "2wiki:0039",
+   "question": "Which Sahara Desert is linked to Amazon River through Industrial Revolution",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "2wiki:0040",
+   "question": "The Eiffel Tower connects Roman Empire to which photosynthesis, and why",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "2wiki:0041",
+   "question": "The neural networks connects Eiffel Tower to which mitochondria, and why",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "2wiki:0042",
+   "question": "The Pacific Ocean connects Amazon River to which DNA, and why",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0043",
+   "question": "The Marie Curie connects Amazon River to which quantum mechanics, and why",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "2wiki:0044",
+   "question": "Which mitochondria is linked to Mount Everest through black holes",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "2wiki:0045",
+   "question": "Which DNA is linked to Marie Curie through Amazon River",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0046",
+   "question": "Which Amazon River is linked to Marie Curie through Renaissance",
+   "reference": "Amazon River"
+  },
+  {
+   "query_id": "2wiki:0047",
+   "question": "Which World War II is linked to quantum mechanics through gravity",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "2wiki:0048",
+   "question": "The Mona Lisa connects photosynthesis to which DNA, and why",
+   "reference": "DNA"
+  },
+  {
+   "query_id": "2wiki:0049",
+   "question": "Which Amazon River is linked to World War II through black holes",
+   "reference": "Amazon River"
+  },
+  {
+   "query_id": "musique:0000",
+   "question": "Which Renaissance connects Mount Everest and Amazon River, distinguishing it from Great Wall of China",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "musique:0001",
+   "question": "Following the link from Renaissance via gravity, which neural networks is described, excluding unrelated Eiffel Tower",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "musique:0002",
+   "question": "Which Mona Lisa connects Renaissance and Industrial Revolution, distinguishing it from DNA",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "musique:0003",
+   "question": "Following the link from Renaissance via Amazon River, which World War II is described, excluding unrelated Sahara Desert",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "musique:0004",
+   "question": "Following the link from neural networks via Shakespeare, which Sahara Desert is described, excluding unrelated DNA",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "musique:0005",
+   "question": "Following the link from Sahara Desert via black holes, which Industrial Revolution is described, excluding unrelated Great Wall of China",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "musique:0006",
+   "question": "Which Renaissance connects World War II and Marie Curie, distinguishing it from black holes",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "musique:0007",
+   "question": "Which Sahara Desert connects DNA and Great Wall of China, distinguishing it from Pacific Ocean",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "musique:0008",
+   "question": "Which neural networks connects mitochondria and Mona Lisa, distinguishing it from Mount Everest",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "musique:0009",
+   "question": "Following the link from DNA via Pacific Ocean, which Industrial Revolution is described, excluding unrelated quantum mechanics",
+   "reference": "Industrial Revolution"
+  },
+  {
+   "query_id": "musique:0010",
+   "question": "Which quantum mechanics connects Roman Empire and Amazon River, distinguishing it from Amazon River",
+   "reference": "quantum mechanics"
+  },
+  {
+   "query_id": "musique:0011",
+   "question": "Which Roman Empire connects Eiffel Tower and Sahara Desert, distinguishing it from Marie Curie",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "musique:0012",
+   "question": "Which mitochondria connects Sahara Desert and Great Wall of China, distinguishing it from gravity",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "musique:0013",
+   "question": "Following the link from gravity via Sahara Desert, which Mount Everest is described, excluding unrelated Marie Curie",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "musique:0014",
+   "question": "Which black holes connects Mount Everest and mitochondria, distinguishing it from Industrial Revolution",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "musique:0015",
+   "question": "Following the link from Great Wall of China via Roman Empire, which Shakespeare is described, excluding unrelated photosynthesis",
+   "reference": "Shakespeare"
+  },
+  {
+   "query_id": "musique:0016",
+   "question": "Following the link from Great Wall of China via photosynthesis, which Pacific Ocean is described, excluding unrelated Sahara Desert",
+   "reference": "Pacific Ocean"
+  },
+  {
+   "query_id": "musique:0017",
+   "question": "Which Amazon River connects Roman Empire and Mona Lisa, distinguishing it from black holes",
+   "reference": "Amazon River"
+  },
+  {
+   "query_id": "musique:0018",
+   "question": "Which Sahara Desert connects black holes and mitochondria, distinguishing it from quantum mechanics",
+   "reference": "Sahara Desert"
+  },
+  {
+   "query_id": "musique:0019",
+   "question": "Following the link from DNA via photosynthesis, which Eiffel Tower is described, excluding unrelated Great Wall of China",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "musique:0020",
+   "question": "Following the link from Roman Empire via Renaissance, which Eiffel Tower is described, excluding unrelated Mount Everest",
+   "reference": "Eiffel Tower"
+  },
+  {
+   "query_id": "musique:0021",
+   "question": "Following the link from gravity via neural networks, which Renaissance is described, excluding unrelated Pacific Ocean",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "musique:0022",
+   "question": "Which Roman Empire connects Mount Everest and Great Wall of China, distinguishing it from quantum mechanics",
+   "reference": "Roman Empire"
+  },
+  {
+   "query_id": "musique:0023",
+   "question": "Following the link from Great Wall of China via black holes, which mitochondria is described, excluding unrelated Pacific Ocean",
+   "reference": "mitochondria"
+  },
+  {
+   "query_id": "musique:0024",
+   "question": "Following the link from Renaissance via Amazon River, which Great Wall of China is described, excluding unrelated Industrial Revolution",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "musique:0025",
+   "question": "Following the link from Sahara Desert via Marie Curie, which Great Wall of China is described, excluding unrelated Sahara Desert",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "musique:0026",
+   "question": "Which Great Wall of China connects mitochondria and DNA, distinguishing it from Amazon River",
+   "reference": "Great Wall of China"
+  },
+  {
+   "query_id": "musique:0027",
+   "question": "Which black holes connects quantum mechanics and Mona Lisa, distinguishing it from neural networks",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "musique:0028",
+   "question": "Which Renaissance connects Marie Curie and Roman Empire, distinguishing it from Marie Curie",
+   "reference": "Renaissance"
+  },
+  {
+   "query_id": "musique:0029",
+   "question": "Following the link from neural networks via Pacific Ocean, which Mount Everest is described, excluding unrelated mitochondria",
+   "reference": "Mount Everest"
+  },
+  {
+   "query_id": "musique:0030",
+   "question": "Following the link from photosynthesis via Roman Empire, which Mona Lisa is described, excluding unrelated Pacific Ocean",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "musique:0031",
+   "question": "Following the link from Marie Curie via Shakespeare, which black holes is described, excluding unrelated mitochondria",
+   "reference": "black holes"
+  },
+  {
+   "query_id": "musique:0032",
+   "question": "Following the link from Mount Everest via photosynthesis, which Mona Lisa is described, excluding unrelated gravity",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "musique:0033",
+   "question": "Following the link from Pacific Ocean via mitochondria, which World War II is described, excluding unrelated neural networks",
+   "reference": "World War II"
+  },
+  {
+   "query_id": "musique:0034",
+   "question": "Following the link from Roman Empire via Pacific Ocean, which photosynthesis is described, excluding unrelated neural networks",
+   "reference": "photosynthesis"
+  },
+  {
+   "query_id": "musique:0035",
+   "question": "Following the link from quantum mechanics via Roman Empire, which neural networks is described, excluding unrelated Shakespeare",
+   "reference": "neural networks"
+  },
+  {
+   "query_id": "musique:0036",
+   "question": "Which gravity connects Mona Lisa and Amazon River, distinguishing it from Amazon River",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "musique:0037",
+   "question": "Which gravity connects Industrial Revolution and black holes, distinguishing it from Renaissance",
+   "reference": "gravity"
+  },
+  {
+   "query_id": "musique:0038",
+   "question": "Following the link from World War II via Renaissance, which Mona Lisa is described, excluding unrelated Amazon River",
+   "reference": "Mona Lisa"
+  },
+  {
+   "query_id": "musique:0039",
+   "question": "Which Great Wall of China connects Industrial Revolution and Shakespeare, distinguishing it from gravity",
+   "reference": "Great Wall of China"
+  }
+ ],
+ "set_sha256": "71d0c4ce623e2d203ba437aa4bff08b0896d5d4dec259a2b6dff4f2d2f1142f0",
+ "config_hash": "013fc66b10e00347e8ba70ceb2321301bd449df62c64f0effa29b2a239a6eb5b"
+}
