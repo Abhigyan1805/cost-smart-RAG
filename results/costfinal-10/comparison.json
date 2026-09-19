@@ -1,0 +1,159 @@
+{
+  "cheap_route": "L0",
+  "strong_route": "C4",
+  "n_repeated_pairs": 400,
+  "repeated_routes": [
+    "L0",
+    "L1"
+  ],
+  "n_label_changes_single_vs_stable": 21,
+  "label_changes": [
+    {
+      "query_id": "nq:0044",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0001",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0003",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0007",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0018",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0018",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0021",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0025",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0029",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0031",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0031",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0037",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0039",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0044",
+      "route_id": "L1",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0048",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0049",
+      "route_id": "L0",
+      "single_correct": false,
+      "stable_correct": true
+    },
+    {
+      "query_id": "triviaqa:0049",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0050",
+      "route_id": "L1",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0052",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0054",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    },
+    {
+      "query_id": "triviaqa:0068",
+      "route_id": "L0",
+      "single_correct": true,
+      "stable_correct": false
+    }
+  ],
+  "single": {
+    "routable_fraction": 0.08,
+    "routable_ci": [
+      0.045,
+      0.12
+    ],
+    "saving_fraction": 0.9511215616277423,
+    "verdict": "NO-GO",
+    "mcnemar_p": 1.7683394700902857e-41
+  },
+  "stable": {
+    "routable_fraction": 0.06,
+    "routable_ci": [
+      0.03,
+      0.095
+    ],
+    "saving_fraction": 0.9504463677635141,
+    "verdict": "NO-GO",
+    "mcnemar_p": 2.3677249684589986e-42
+  },
+  "verdict_changed": false
+}

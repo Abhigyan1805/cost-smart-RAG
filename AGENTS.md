@@ -18,6 +18,11 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   cloud routes are stub-only by construction (no live cloud path, $0 spent).
 - Worker env is stdlib-only (no pip/httpx): keep `registry.py` imports lazy
   and HTTP calls urllib-capable — see `ColabClient._post_json`.
+- Noisy small-model labels: single live draws flip (L0 string flip ~0.87 at
+  temp 0); stabilize with 3x repeats + majority vote (ties = incorrect) —
+  see `src/costsmart/eval/stability.py`, `scripts/run_repeats.py`
+  (repeat rows live in a separate DB/table, never in `attempts`), and
+  `scripts/stable_oracle.py` for the stable-oracle recount.
 
 ## Maintaining this file
 

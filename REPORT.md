@@ -39,6 +39,54 @@ McNemar test confirms real tier separation (p = 0.0039).
 **Small-n caveat:** n=20 pilot queries, so CIs are wide (routable CI spans
 0.35-0.75); do not over-claim. Re-run on the full sweep matrix when the
 sibling sweep slice merges and update this section + the PR.
+(Done: see "Full-matrix recount on stable labels (costfinal-10)" below.)
+
+## Full-matrix recount on stable labels (costfinal-10): noisy-label fix
+
+The sweep exposed small-model label noise (L0 string flip rate 0.88 across
+3 live repeats at requested temperature 0). Every live local-tier pair
+(L0/L1 x 200 queries = 400 pairs; C0 excluded - still stub, no 7B endpoint)
+was re-run 3x live through the Colab 1.5B endpoint (temperature 0, seed 0;
+1200 draws, all `generator_mode='measured'`, stored in
+`results/costfinal-10/repeats.db` + `repeats.csv`, separate from the frozen
+sweep matrix) and graded by majority (ties count as incorrect -
+`src/costsmart/eval/stability.py`). The oracle matrix was rebuilt on stable
+labels (`stable_attempts.json`: representative repeat draw per pair) and
+the L0-vs-C4 gate recounted with fresh 10k-resample bootstrap CIs
+(`headroom_single.json` = single-run baseline, `headroom_stable.json` =
+recount; both reproducible via `python scripts/make_plots.py headroom
+--attempts-json results/costfinal-10/stable_attempts.json --out-dir <dir>`).
+
+### Flip-rate-per-pair distribution (n=200 pairs per route, 3 draws each)
+
+| route | string flip rate | pairs by #distinct predictions (1/2/3) | label flip rate (token_f1>=0.5) | vote splits (correct-incorrect) |
+|---|---|---|---|---|
+| L0 | 0.865 | 27 / 40 / 133 | 0.125 | 3-0: 4, 2-1: 8, 1-2: 17, 0-3: 171 |
+| L1 | 0.985 | 3 / 21 / 176 | 0.085 | 3-0: 2, 2-1: 6, 1-2: 11, 0-3: 181 |
+
+String noise reproduces the sweep finding (L0 0.865 vs 0.88 on the 100-query
+slice) and is worse on L1 (longer prompts, more paraphrase room) - but it
+rarely crosses the correctness threshold: 21/400 pair-labels changed
+single-run -> stable, and unanimous-incorrect dominates (352/400 pairs).
+
+### Gate: single-run labels vs stable labels (n=200 paired, 95% CIs)
+
+| labels | contingency (both / L0-only / C4-only / neither) | routable fraction | max saving | gap (C4-L0) | McNemar | verdict |
+|---|---|---|---|---|---|---|
+| single-run | 16 / 0 / 184 / 0 | 0.08 [0.045, 0.12] | 95.1% [94.9%, 95.3%] | 0.92 [0.88, 0.955] | p = 1.8e-41 | **NO-GO** |
+| stable (majority) | 12 / 0 / 188 / 0 | 0.06 [0.03, 0.095] | 95.0% [94.8%, 95.3%] | 0.94 [0.905, 0.97] | p = 2.4e-42 | **NO-GO** |
+
+(Oracle $0.00614 vs all-C4 $0.12385; 200/200 routed off C4, 0 quality-loss
+queries - C4 stub is exactly correct on every query.)
+
+### Did single-run labels change any Week-2 conclusion? No.
+
+Both labelings give **NO-GO**: the stable routable CI ([0.03, 0.095]) sits
+entirely below the 0.10 gate, and the single-vs-stable delta (0.02) is far
+from the boundary. Separately, both full-matrix results overturn the
+pilot-20 preliminary GO (0.55) - but that overturn is driven by the
+measured-vs-stub quality gap (measured L0 0.06-0.08 vs stub-modelled 0.55),
+not by label noise.
 
 ## Exp 1: Closed-book baselines per model tier
 _TODO: quality/cost of k=0 direct for each model._
