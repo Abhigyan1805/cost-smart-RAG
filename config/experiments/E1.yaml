@@ -1,0 +1,11 @@
+# E1: router-vs-baselines pilot (plan: cost/quality tradeoff on the eval set).
+# Pilot executes the query x route matrix with the stub executor (estimates
+# only, no cloud spend) and compares router picks against baselines post-hoc.
+name: E1-router-vs-baselines
+routes: [L0, C0, C1, C2]
+prompt_version: v1
+n_queries: 50
+seed: 0
+baselines: [always-L0, always-C0, always-C1, always-C2, random, oracle]
+metrics: [routing_accuracy, regret, escalation_pr]
+stats: [bootstrap_ci, mcnemar]
