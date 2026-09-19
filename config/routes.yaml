@@ -1,0 +1,35 @@
+# Route space: the router's action is a (model x retrieval depth x reasoning strategy) triple.
+# Retrieval runs BEFORE routing, so post-retrieval signals (score margin, coverage,
+# agreement) are free router features. The exhaustive oracle evaluates every route
+# below per query; the router is scored by its cost-quality distance to that oracle.
+models:
+  - local-small
+  - local-medium
+  - cloud-small
+  - cloud-large
+
+retrieval_depths:
+  # k = number of passages fed to the generator; k=0 = closed-book baseline
+  - 0
+  - 2
+  - 5
+  - 10
+
+reasoning_strategies:
+  - direct
+  - chain-of-thought
+  - rerank-then-answer
+
+# Explicit route allowlist (subset of the full cross product used in Week-1 sweeps).
+# The oracle still evaluates the FULL cross product; the router picks among these.
+routes:
+  - { model: local-small,  retrieval_depth: 0,  reasoning: direct }
+  - { model: local-small,  retrieval_depth: 5,  reasoning: direct }
+  - { model: local-medium, retrieval_depth: 5,  reasoning: chain-of-thought }
+  - { model: cloud-small,  retrieval_depth: 5,  reasoning: direct }
+  - { model: cloud-small,  retrieval_depth: 10, reasoning: rerank-then-answer }
+  - { model: cloud-large,  retrieval_depth: 10, reasoning: rerank-then-answer }
+
+oracle:
+  mode: exhaustive
+  scope: full-cross-product

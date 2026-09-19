@@ -1,0 +1,30 @@
+# Model tiers. All model IDs are pinned here (never in prose).
+# Local tiers run in Google Colab, NOT on this machine. See
+# src/costsmart/models/colab_client.py for the session handoff point.
+models:
+  - name: local-small
+    provider: colab
+    # Pinned model revision served from the Colab session:
+    model_id: "Qwen/Qwen2.5-1.5B-Instruct"
+    revision: "main"
+    tier: local
+    context_window: 32768
+
+  - name: local-medium
+    provider: colab
+    model_id: "Qwen/Qwen2.5-7B-Instruct"
+    revision: "main"
+    tier: local
+    context_window: 32768
+
+  - name: cloud-small
+    provider: cloud
+    model_id: "gpt-4o-mini-2024-07-18"
+    tier: cloud
+    context_window: 128000
+
+  - name: cloud-large
+    provider: cloud
+    model_id: "gpt-4o-2024-08-06"
+    tier: cloud
+    context_window: 128000
