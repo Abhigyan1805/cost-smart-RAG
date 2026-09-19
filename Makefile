@@ -26,16 +26,16 @@ index:
 	python -m costsmart.cli index
 
 sweep:
-	python -m costsmart.cli sweep $(SWEEP_ARGS)
+	python -m costsmart.cli sweep --limit $(LIMIT) --db $(DB) --config $(CONFIG) $(SWEEP_ARGS)
 
 train-router:
-	python -m costsmart.cli train-router
+	python -m costsmart.cli train-router --db $(DB)
 
 eval:
-	python -m costsmart.cli eval
+	python -m costsmart.cli eval --db $(DB)
 
 report:
-	python -m costsmart.cli report
+	python -m costsmart.cli report --db $(DB)
 
 test:
 	python -m pytest -q

@@ -1,0 +1,124 @@
+{
+  "pilot": {
+    "n_queries": 20,
+    "routes": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "L0",
+      "L1"
+    ],
+    "n_attempts": 140,
+    "pilot_cloud_usd": 0.025234,
+    "pilot_amortized_usd": 0.013651
+  },
+  "full_sweep": {
+    "n_queries": 200,
+    "n_routes": 7,
+    "n_attempts": 1400,
+    "scale_factor_vs_pilot": 10.0
+  },
+  "math": "full = pilot_sum x (1400/140) = pilot_sum x 10.0; per-route full = route_pilot_sum / 20 x 200",
+  "full_sweep_cloud_usd": 0.2523,
+  "full_sweep_amortized_usd_preliminary": 0.1365,
+  "per_route": [
+    {
+      "route_id": "C0",
+      "model_version": "ollama-llama3.1-8b",
+      "n": 20,
+      "mean_tokens_in": 132.25,
+      "mean_tokens_out": 26.15,
+      "mean_token_f1": 0.95,
+      "mean_latency_ms_retrieval": 6.29,
+      "pilot_cloud_usd": 0.0,
+      "pilot_amortized_usd": 0.00406,
+      "full_sweep_cloud_usd": 0.0,
+      "full_sweep_amortized_usd": 0.0406
+    },
+    {
+      "route_id": "C1",
+      "model_version": "gpt-4o-mini",
+      "n": 20,
+      "mean_tokens_in": 144.15,
+      "mean_tokens_out": 30.6,
+      "mean_token_f1": 1.0,
+      "mean_latency_ms_retrieval": 6.61,
+      "pilot_cloud_usd": 0.0008,
+      "pilot_amortized_usd": 0.0,
+      "full_sweep_cloud_usd": 0.008,
+      "full_sweep_amortized_usd": 0.0
+    },
+    {
+      "route_id": "C2",
+      "model_version": "gpt-4o-mini",
+      "n": 20,
+      "mean_tokens_in": 132.75,
+      "mean_tokens_out": 28.0,
+      "mean_token_f1": 1.0,
+      "mean_latency_ms_retrieval": 6.68,
+      "pilot_cloud_usd": 0.000734,
+      "pilot_amortized_usd": 0.0,
+      "full_sweep_cloud_usd": 0.0073,
+      "full_sweep_amortized_usd": 0.0
+    },
+    {
+      "route_id": "C3",
+      "model_version": "gpt-4o",
+      "n": 20,
+      "mean_tokens_in": 128.1,
+      "mean_tokens_out": 24.85,
+      "mean_token_f1": 1.0,
+      "mean_latency_ms_retrieval": 5.72,
+      "pilot_cloud_usd": 0.011375,
+      "pilot_amortized_usd": 0.0,
+      "full_sweep_cloud_usd": 0.1138,
+      "full_sweep_amortized_usd": 0.0
+    },
+    {
+      "route_id": "C4",
+      "model_version": "gpt-4o",
+      "n": 20,
+      "mean_tokens_in": 135.1,
+      "mean_tokens_out": 27.85,
+      "mean_token_f1": 1.0,
+      "mean_latency_ms_retrieval": 6.32,
+      "pilot_cloud_usd": 0.012325,
+      "pilot_amortized_usd": 0.0,
+      "full_sweep_cloud_usd": 0.1233,
+      "full_sweep_amortized_usd": 0.0
+    },
+    {
+      "route_id": "L0",
+      "model_version": "ollama-qwen2.5-3b",
+      "n": 20,
+      "mean_tokens_in": 123.4,
+      "mean_tokens_out": 30.4,
+      "mean_token_f1": 0.5333,
+      "mean_latency_ms_retrieval": 6.82,
+      "pilot_cloud_usd": 0.0,
+      "pilot_amortized_usd": 0.00482,
+      "full_sweep_cloud_usd": 0.0,
+      "full_sweep_amortized_usd": 0.0482
+    },
+    {
+      "route_id": "L1",
+      "model_version": "ollama-qwen2.5-3b",
+      "n": 20,
+      "mean_tokens_in": 141.25,
+      "mean_tokens_out": 24.7,
+      "mean_token_f1": 0.95,
+      "mean_latency_ms_retrieval": 6.02,
+      "pilot_cloud_usd": 0.0,
+      "pilot_amortized_usd": 0.004772,
+      "full_sweep_cloud_usd": 0.0,
+      "full_sweep_amortized_usd": 0.0477
+    }
+  ],
+  "caveats": [
+    "Generator outputs are stub estimates (no API calls, $0 spent); cloud USD = measured stub tokens x verified per-token prices.",
+    "Local-tier gpu_seconds are stubbed until the Colab session attaches; amortized figures are PRELIMINARY.",
+    "Extrapolation assumes per-route token/cost distributions from the 20-query stratified slice hold for the full 200-query Tier-A set."
+  ]
+}

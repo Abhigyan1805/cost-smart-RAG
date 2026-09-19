@@ -1,0 +1,8 @@
+route_id,model_version,n,mean_tokens_in,mean_tokens_out,mean_token_f1,mean_latency_ms_retrieval,pilot_cloud_usd,pilot_amortized_usd,full_sweep_cloud_usd,full_sweep_amortized_usd
+C0,ollama-llama3.1-8b,20,132.25,26.15,0.95,6.29,0.0,0.00406,0.0,0.0406
+C1,gpt-4o-mini,20,144.15,30.6,1.0,6.61,0.0008,0.0,0.008,0.0
+C2,gpt-4o-mini,20,132.75,28.0,1.0,6.68,0.000734,0.0,0.0073,0.0
+C3,gpt-4o,20,128.1,24.85,1.0,5.72,0.011375,0.0,0.1138,0.0
+C4,gpt-4o,20,135.1,27.85,1.0,6.32,0.012325,0.0,0.1233,0.0
+L0,ollama-qwen2.5-3b,20,123.4,30.4,0.5333,6.82,0.0,0.00482,0.0,0.0482
+L1,ollama-qwen2.5-3b,20,141.25,24.7,0.95,6.02,0.0,0.004772,0.0,0.0477

@@ -1,28 +1,36 @@
-# Cost model. Prices are fill-in placeholders - look up current provider pricing
-# on pricing_snapshot_date and replace the 0.0 values before any reported run.
-# See plan section 5 for the full cost-model definition.
-pricing_snapshot_date: "2026-09-19"  # TODO: refresh from provider pricing pages on this date
+# Cost model. Cloud per-token prices verified against provider rate cards
+# on pricing_snapshot_date; the sweep measures tokens and multiplies by these
+# pinned rates (no live price fetching, so reruns are reproducible).
+# Sources (2026-09-19): OpenAI rate card via pricepertoken.ai / SpendLint
+# (verified 2026-09-05): gpt-4o-mini $0.15 in / $0.60 out per 1M tokens,
+# gpt-4o $2.50 in / $10.00 out per 1M tokens. These match the pinned
+# MODEL_PRICES_PER_1M in src/costsmart/telemetry/cost.py.
+pricing_snapshot_date: "2026-09-19"
 
 currency: USD
 
 cloud:
   # Per 1M tokens, USD.
   cloud-small:
-    input_per_1m: 0.0   # TODO: fill from provider pricing (snapshot date above)
-    output_per_1m: 0.0  # TODO: fill from provider pricing (snapshot date above)
+    input_per_1m: 0.15
+    output_per_1m: 0.60
   cloud-large:
-    input_per_1m: 0.0   # TODO: fill from provider pricing (snapshot date above)
-    output_per_1m: 0.0  # TODO: fill from provider pricing (snapshot date above)
+    input_per_1m: 2.50
+    output_per_1m: 10.00
   # Retrieval + infra charged per 1K queries unless noted:
   retrieval_per_1k_queries: 0.0  # TODO: fill
   embedding_per_1m_tokens: 0.0   # TODO: fill
 
 local_amortized:
-  # Local tiers run in Colab (GPU rental amortized per query). Fill before reporting.
+  # Local tiers run in Colab (GPU rental amortized per query). GPU rate is the
+  # pinned T4 default from src/costsmart/telemetry/cost.py; per-query seconds
+  # are calibrated from pilot telemetry (see results/costpilot-06/).
   # Method (plan section 5): hourly GPU rate / queries-per-hour + storage share.
-  colab_gpu_per_hour: 0.0  # TODO: fill from Colab plan rate card
+  colab_gpu_per_hour: 0.35  # T4 default; override per session rate card
   queries_per_hour_assumption: 60  # TODO: calibrate from sweep telemetry
   local-small:
-    seconds_per_query_assumption: 0.0  # TODO: fill from telemetry
+    seconds_per_query_assumption: 2.47  # PRELIMINARY: stub mean (L0 2.479s, L1 2.454s over 40 pilot attempts); replace after Colab attach
+  local-medium:
+    seconds_per_query_assumption: 2.09  # PRELIMINARY: stub mean (C0 2.088s over 20 pilot attempts); replace after Colab attach
   local-medium:
     seconds_per_query_assumption: 0.0  # TODO: fill from telemetry

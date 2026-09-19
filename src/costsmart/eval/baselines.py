@@ -1,7 +1,8 @@
 """Routing baseline stubs for the oracle sweep.
 
 Baselines pick a route per query without a learned router:
-always-L0/C0/C1/C2, uniform-random (seeded), and the oracle (cheapest route
+always-<route> (one per route in the Week-1 7-route sweep set),
+uniform-random (seeded), and the oracle (cheapest route
 that answers correctly - computed post-hoc from attempt rows).
 """
 
@@ -9,7 +10,17 @@ from __future__ import annotations
 
 import random
 
-ROUTES = ("L0", "C0", "C1", "C2")
+from .oracle_sweep import DEFAULT_ROUTES
+
+ROUTES = tuple(DEFAULT_ROUTES)
+
+
+def _always(route_id: str):
+    def pick(_query_id: str) -> str:
+        return route_id
+
+    pick.__name__ = f"always_{route_id.lower()}"
+    return pick
 
 
 def always_l0(_query_id: str) -> str:
@@ -50,6 +61,7 @@ def oracle_route(query_id: str, attempts: list[dict]) -> str:
 
 
 BASELINES = {
+    **{f"always-{r}": _always(r) for r in ROUTES},
     "always-L0": always_l0,
     "always-C0": always_c0,
     "always-C1": always_c1,
