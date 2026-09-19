@@ -1,7 +1,7 @@
 # realdata-15: decisive Tier-A oracle sweep on REAL labelled data
 # (zero cloud spend).
 # 200 real Tier-A queries (50 NQ + 80 HotpotQA + 70 MuSiQue = 75% multi-hop,
-# fetched from HuggingFace and committed at data/real/tier_a_real.json) x the
+# fetched from HuggingFace and committed at results/realdata-15/corpus.json) x the
 # 7-route Week-1 sweep set = 1400 attempts. The real mix mirrors the synthetic
 # costmultihop-12 25/75 single-hop/multi-hop composition so the real-vs-synthetic
 # recount is like-for-like.

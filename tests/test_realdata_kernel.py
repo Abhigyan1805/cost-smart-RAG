@@ -37,7 +37,7 @@ class RealDataKernelTest(unittest.TestCase):
         src = (KERNEL_DIR / "kernel.py").read_text()
         self.assertIn("scripts/fetch_tier_a.py", src)
         self.assertIn('"--mix", "real"', src)
-        self.assertIn("data/real/tier_a_real.json", src)
+        self.assertIn("results/realdata-15/corpus.json", src)
 
     def test_handoff_documents_realdata_runbook(self):
         text = HANDOFF.read_text()

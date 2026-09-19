@@ -7,7 +7,7 @@
   },
   "n_queries": 200,
   "n_passages": 2192,
-  "config_hash": "e48a52bb4f5f129e8663e95d07b1825f28cf1743b470bfd1762360da8e01d400",
+  "config_hash": "098d87aeb6e6132b7bfd196be64c9db9956ecd79f82ebebefd8ea0d48ece2cb8",
   "set_sha256": "a83fd10ad74efb132206fa3d59aa3cd77c5654b95e91c688d4e957a7ce8ade3d",
   "corpus_sha256": "0cdd131bc982f7a7e3e058858203a5d2ae91c427946bb8e6e55047672a190a9f",
   "datasets": {

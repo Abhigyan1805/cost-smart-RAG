@@ -13,7 +13,7 @@ loudly rather than substituting silently.
 
 Usage (Kaggle / any host with ``datasets`` + network):
     PYTHONPATH=src python scripts/fetch_tier_a.py \
-        --out data/real/tier_a_real.json
+        --out results/realdata-15/corpus.json
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ from costsmart.corpus.loaders import (  # noqa: E402
     load_dataset_queries,
 )
 
-DEFAULT_OUT = "data/real/tier_a_real.json"
+DEFAULT_OUT = "results/realdata-15/corpus.json"
 
 
 def _sha256_text(text: str) -> str:

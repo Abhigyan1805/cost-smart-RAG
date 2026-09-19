@@ -119,7 +119,7 @@ kaggle kernels output abhigyan1818/realdata15-local-sweep -p /tmp/kout
 Artifacts to ingest (files land flat in `/tmp/kout`):
 
 ```sh
-cp /tmp/kout/tier_a_real.json      data/real/tier_a_real.json
+cp /tmp/kout/corpus.json          results/realdata-15/corpus.json
 cp /tmp/kout/real_index.json       data/index/real_index.json
 cp /tmp/kout/sweep.db              results/realdata-15/sweep.db
 cp /tmp/kout/repeats.db            results/realdata-15/repeats.db
@@ -137,5 +137,5 @@ the synthetic `costmultihop-12` composition. `nq_open` ships question+answer
 only, so NQ has no gold passage / passage pool and its L1 retrieval draws
 from the shared multi-hop pool; the headroom gate reads L0 (closed-book) vs
 the C4 stub, not L1. Licences + revisions + checksums are recorded per
-dataset in `data/real/tier_a_real.json`'s manifest and in
-`data/real/MANIFEST.md` (never inferred from memory).
+dataset in `results/realdata-15/corpus.json`'s manifest and in
+`results/realdata-15/CORPUS_MANIFEST.md` (never inferred from memory).

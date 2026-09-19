@@ -16,7 +16,7 @@ Three modes:
     pilot; :func:`normalize_hf_row` converts each dataset's raw schema into
     the repo record shape (question/answers/gold passages).
   * ``source="real"`` -- load the committed, normalized real Tier-A corpus
-    (``data/real/tier_a_real.json``) with no network and no ``datasets``
+    (``results/realdata-15/corpus.json``) with no network and no ``datasets``
     dependency, so every offline recount runs on the exact fetched rows.
   * ``source="synthetic"`` (default) -- build a deterministic, seeded offline
     pilot with the same query-id scheme and sizes, so the index build and
@@ -113,7 +113,7 @@ HF_DATASET_NAMES = {name: spec["repo"] for name, spec in HF_DATASET_SPECS.items(
 #: Committed normalized real Tier-A corpus (realdata-15). Written by
 #: ``scripts/fetch_tier_a.py`` on a network-capable host, then committed so
 #: every sweep/recount downstream is offline + deterministic.
-REAL_CORPUS_PATH = "data/real/tier_a_real.json"
+REAL_CORPUS_PATH = "results/realdata-15/corpus.json"
 
 #: Default real-data mix (realdata-15): 200 queries, 75% multi-hop, mirroring
 #: the synthetic ``costmultihop-12`` composition so the real-vs-synthetic
