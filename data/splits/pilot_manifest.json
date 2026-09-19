@@ -1,0 +1,805 @@
+{
+ "num_queries": 200,
+ "queries": [
+  {
+   "query_id": "nq:0000",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0001",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0002",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0003",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0004",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0005",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0006",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0007",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0008",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0009",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0010",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0011",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0012",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0013",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0014",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0015",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0016",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0017",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0018",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0019",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0020",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0021",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0022",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0023",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0024",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0025",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0026",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0027",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0028",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0029",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0030",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0031",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0032",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0033",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0034",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0035",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0036",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0037",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0038",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0039",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0040",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0041",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0042",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0043",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0044",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0045",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0046",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0047",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0048",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0049",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0050",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0051",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0052",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0053",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0054",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0055",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0056",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0057",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0058",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0059",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0060",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0061",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0062",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0063",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0064",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0065",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0066",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0067",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0068",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0069",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0070",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0071",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0072",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0073",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0074",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0075",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0076",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0077",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0078",
+   "source": "nq"
+  },
+  {
+   "query_id": "nq:0079",
+   "source": "nq"
+  },
+  {
+   "query_id": "triviaqa:0000",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0001",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0002",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0003",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0004",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0005",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0006",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0007",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0008",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0009",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0010",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0011",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0012",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0013",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0014",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0015",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0016",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0017",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0018",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0019",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0020",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0021",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0022",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0023",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0024",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0025",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0026",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0027",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0028",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0029",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0030",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0031",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0032",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0033",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0034",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0035",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0036",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0037",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0038",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0039",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0040",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0041",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0042",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0043",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0044",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0045",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0046",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0047",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0048",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0049",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0050",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0051",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0052",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0053",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0054",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0055",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0056",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0057",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0058",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0059",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0060",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0061",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0062",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0063",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0064",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0065",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0066",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0067",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0068",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "triviaqa:0069",
+   "source": "triviaqa"
+  },
+  {
+   "query_id": "hotpotqa:0000",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0001",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0002",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0003",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0004",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0005",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0006",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0007",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0008",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0009",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0010",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0011",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0012",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0013",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0014",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0015",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0016",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0017",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0018",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0019",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0020",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0021",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0022",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0023",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0024",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0025",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0026",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0027",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0028",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0029",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0030",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0031",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0032",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0033",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0034",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0035",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0036",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0037",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0038",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0039",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0040",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0041",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0042",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0043",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0044",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0045",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0046",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0047",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0048",
+   "source": "hotpotqa"
+  },
+  {
+   "query_id": "hotpotqa:0049",
+   "source": "hotpotqa"
+  }
+ ]
+}
