@@ -81,6 +81,38 @@ cannot validate the mix hypothesis and is excluded from the verdict. The
 verdict reads only the measured local-tier rows after the live sweep; the
 stub cloud rows remain the C4 reference by construction (zero spend).
 
+## Live sweep runbook (after Colab attach)
+
+```sh
+export COSTSMART_COLAB_ENDPOINT=<tunnel>          # docs/colab-handoff.md
+
+# 1) base matrix: L0/L1 measured, C0..C4 stub ($0 cloud)
+PYTHONPATH=src python -m costsmart.eval.oracle_sweep --no-limit \
+  --db results/costmultihop-12/sweep.db \
+  --config config/experiments/sweep-200-multihop.yaml \
+  --index data/index/multihop_index.json \
+  --live-local --live-routes L0,L1 \
+  --export-csv results/costmultihop-12/sweep.csv
+
+# 2) stability repeats: 3 draws per measured L0/L1 pair (separate DB)
+PYTHONPATH=src python scripts/run_repeats.py --mode live \
+  --sweep-db results/costmultihop-12/sweep.db \
+  --db results/costmultihop-12/repeats.db \
+  --config config/experiments/sweep-200-multihop.yaml \
+  --index data/index/multihop_index.json --routes L0,L1 \
+  --out results/costmultihop-12/repeats_summary.json
+
+# 3) stable-oracle rebuild + gate recount (majority labels, ties incorrect)
+PYTHONPATH=src python scripts/stable_oracle.py \
+  --sweep-db results/costmultihop-12/sweep.db \
+  --repeats-db results/costmultihop-12/repeats.db \
+  --out-dir results/costmultihop-12
+```
+
+Steps 1-2 are resumable (cache keys); re-run to continue after any
+interruption. The attached endpoint must serve the sweep's measured model
+id per tier (`run_repeats` aborts on mismatch rather than mislabeling).
+
 ## Assumptions / caveats
 
 1. Real cloud token volumes are unknown ($0 spent); only relative route
