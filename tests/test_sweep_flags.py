@@ -117,6 +117,45 @@ class ResumabilityTest(unittest.TestCase):
                 store.close()
 
 
+class ResumableLiveSweepTest(unittest.TestCase):
+    def test_completed_live_rows_are_not_regenerated(self):
+        from costsmart.models.base import GenerateResult
+
+        class FakeColab:
+            model_id = "fake/1.5b"
+            calls = 0
+
+            def generate(self, prompt, **kwargs):
+                type(self).calls += 1
+                return GenerateResult(
+                    text="Final answer: Paris", tokens=2, latency_s=0.01,
+                    raw={"response": "Final answer: Paris", "eval_count": 2,
+                         "prompt_eval_count": 7, "latency_s": 0.01})
+
+        with tempfile.TemporaryDirectory() as tmp:
+            store = TelemetryStore(Path(tmp) / "t.db")
+            try:
+                first = sweep.run_sweep(
+                    store=store, config_path=None, limit=2, index_path=None,
+                    live_local=True, live_clients={"local-small": FakeColab()},
+                    live_routes=("L0", "L1"))
+                self.assertEqual(first["generator_measured_attempts"], 2)
+                self.assertEqual(FakeColab.calls, 2)
+                # Re-run over the same two pairs: stored cache keys are
+                # pre-checked, so no live generation is re-spent.
+                second = sweep.run_sweep(
+                    store=store, config_path=None, limit=2, index_path=None,
+                    live_local=True, live_clients={"local-small": FakeColab()},
+                    live_routes=("L0", "L1"))
+                self.assertEqual(second["inserted"], 0)
+                self.assertEqual(second["skipped_existing"], 2)
+                self.assertEqual(second["generator_measured_attempts"], 0)
+                self.assertEqual(second["retrieval_measured_attempts"], 0)
+                self.assertEqual(FakeColab.calls, 2)
+            finally:
+                store.close()
+
+
 class LegacyMigrationTest(unittest.TestCase):
     def test_legacy_db_opens_and_flags_default(self):
         from costsmart.telemetry.schema import ATTEMPT_COLUMNS, MIGRATED_COLUMNS
