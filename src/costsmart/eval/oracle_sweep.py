@@ -518,6 +518,7 @@ def run_sweep(
     use_retrieval: bool = True,
     live_local: bool = False,
     live_clients: dict[str, object] | None = None,
+    live_routes: tuple[str, ...] = LOCAL_ROUTES,
 ) -> dict:
     """Run the query x route matrix; resumable via cache_key skips.
 
@@ -526,11 +527,14 @@ def run_sweep(
     when available; the generator stays a stub (spend estimated, not spent)
     and local tiers stay stubbed (marked preliminary in reports).
 
-    With ``live_local=True``, local-tier routes (L0/L1/C0) execute for real
-    through the Colab session at temperature 0 + config seed
-    (``generator_mode='measured'``); cloud-tier routes ALWAYS stay
-    stub-estimated (``generator_mode='stub'``) — zero cloud spend by
-    construction, since no live cloud code path exists.
+    With ``live_local=True``, the ``live_routes`` subset of the local-tier
+    routes (default all of L0/L1/C0) executes for real through the Colab
+    session at temperature 0 + config seed (``generator_mode='measured'``);
+    every other route — all cloud-tier routes ALWAYS — stays stub-estimated
+    (``generator_mode='stub'``): zero cloud spend by construction, since no
+    live cloud code path exists. Restrict ``live_routes`` to the tiers the
+    attached session actually serves (a single-model endpoint must not back
+    rows labeled with another model id).
     """
     cfg, cfg_hash = load_config(config_path)
     sha = git_sha()
@@ -547,8 +551,9 @@ def run_sweep(
     retrieval_measured = 0
 
     clients: dict[str, object] = {}
+    live_set = tuple(r for r in live_routes if r in LOCAL_ROUTES)
     if live_local:
-        clients = dict(live_clients or _build_live_clients(routes))
+        clients = dict(live_clients or _build_live_clients(list(live_set)))
 
     own_store = store is None
     store = store or TelemetryStore(db_path)
@@ -563,7 +568,7 @@ def run_sweep(
                 retrieval_measured += 1
             live_client = None
             live_model_version: str | None = None
-            if live_local and route_id in LOCAL_ROUTES:
+            if live_local and route_id in live_set:
                 tier = ROUTE_SPECS[route_id][0]
                 live_client = clients[tier]
                 live_model_version = getattr(live_client, "model_id", tier)
@@ -597,6 +602,7 @@ def run_sweep(
         "retrieval_latency": "measured" if index is not None else "stubbed",
         "retrieval_measured_attempts": retrieval_measured,
         "live_local": live_local,
+        "live_routes": list(live_set) if live_local else [],
         "generator_measured_attempts": n_live,
         "generator_stubbed_attempts": n_stub,
         "temperature": GENERATOR_TEMPERATURE,
@@ -620,9 +626,14 @@ def main(argv: list[str] | None = None) -> int:
                         help="execute local-tier routes (L0/L1/C0) for real via "
                              "the Colab session (temperature 0, config seed); "
                              "cloud routes stay stub-estimated ($0 spent)")
+    parser.add_argument("--live-routes", default=",".join(LOCAL_ROUTES),
+                        help="comma-separated subset of local routes to run live "
+                             "(default all); restrict to the tiers the attached "
+                             "session actually serves, e.g. 'L0,L1'")
     args = parser.parse_args(argv)
 
     limit = None if args.no_limit else args.limit
+    live_routes = tuple(r.strip() for r in args.live_routes.split(",") if r.strip())
     # Store opens inside run_sweep (after the live-attach check), so a
     # refused --live-local run leaves no empty DB artifact behind.
     summary = run_sweep(
@@ -630,6 +641,7 @@ def main(argv: list[str] | None = None) -> int:
         index_path=None if args.no_retrieval else args.index,
         use_retrieval=not args.no_retrieval,
         live_local=args.live_local,
+        live_routes=live_routes,
     )
     if args.export_csv or args.export_parquet:
         store = TelemetryStore(args.db)
