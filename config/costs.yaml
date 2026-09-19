@@ -1,0 +1,28 @@
+# Cost model. Prices are fill-in placeholders - look up current provider pricing
+# on pricing_snapshot_date and replace the 0.0 values before any reported run.
+# See plan section 5 for the full cost-model definition.
+pricing_snapshot_date: "2026-09-19"  # TODO: refresh from provider pricing pages on this date
+
+currency: USD
+
+cloud:
+  # Per 1M tokens, USD.
+  cloud-small:
+    input_per_1m: 0.0   # TODO: fill from provider pricing (snapshot date above)
+    output_per_1m: 0.0  # TODO: fill from provider pricing (snapshot date above)
+  cloud-large:
+    input_per_1m: 0.0   # TODO: fill from provider pricing (snapshot date above)
+    output_per_1m: 0.0  # TODO: fill from provider pricing (snapshot date above)
+  # Retrieval + infra charged per 1K queries unless noted:
+  retrieval_per_1k_queries: 0.0  # TODO: fill
+  embedding_per_1m_tokens: 0.0   # TODO: fill
+
+local_amortized:
+  # Local tiers run in Colab (GPU rental amortized per query). Fill before reporting.
+  # Method (plan section 5): hourly GPU rate / queries-per-hour + storage share.
+  colab_gpu_per_hour: 0.0  # TODO: fill from Colab plan rate card
+  queries_per_hour_assumption: 60  # TODO: calibrate from sweep telemetry
+  local-small:
+    seconds_per_query_assumption: 0.0  # TODO: fill from telemetry
+  local-medium:
+    seconds_per_query_assumption: 0.0  # TODO: fill from telemetry
