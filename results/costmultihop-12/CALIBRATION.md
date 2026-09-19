@@ -6,8 +6,10 @@ NEVER execute live - no live cloud code path exists
 deterministic stub estimates (`generator_mode='stub'`) whose token volumes
 are hash-seeded per `(seed, query_id, route_id)` and priced at the pinned
 per-token prices. Local-tier routes (L0/L1) execute for real through the
-Colab session after attach (`generator_mode='measured'`, temperature 0,
-seed 0); C0 stays stub without a 7B endpoint (see costsweep-08 SUMMARY.md).
+Colab session after attach, or the Kaggle GPU route when Colab is exhausted
+(`docs/kaggle-handoff.md`); either way `generator_mode='measured'`,
+temperature 0, seed 0. C0 stays stub without a 7B endpoint (see
+costsweep-08 SUMMARY.md).
 
 ## Query set (frozen)
 
@@ -112,6 +114,24 @@ PYTHONPATH=src python scripts/stable_oracle.py \
 Steps 1-2 are resumable (cache keys); re-run to continue after any
 interruption. The attached endpoint must serve the sweep's measured model
 id per tier (`run_repeats` aborts on mismatch rather than mislabeling).
+
+## Live sweep completion (costsweep-13, Kaggle GPU route)
+
+The Colab free tier exhausted after the base matrix + 269/1200 repeat draws.
+`kernels/costsweep-13-local-sweep/` finished the protocol on a Kaggle GPU
+(transformers, `Qwen/Qwen2.5-1.5B-Instruct`, temperature 0, seed 0),
+resuming from the preserved committed DBs by cache key:
+
+| artifact | rows | provenance |
+|---|---|---|
+| `sweep.db` attempts | 1400 | 400 measured L0/L1 (live) + 1000 cloud/C0 stub |
+| `repeats.db` repeat_attempts | 1200 | 400 pairs x 3 draws, all measured |
+
+No cloud route executed (no live cloud code path) and no stub row overwrote
+a measured row (`INSERT OR IGNORE` on the cache key). Exact push / monitor /
+download commands are in `docs/kaggle-handoff.md`; the ingest and stable
+recount commands are in the runbook above. The recount result lands in
+`REPORT.md` ("Multi-hop mix live recount").
 
 ## Assumptions / caveats
 

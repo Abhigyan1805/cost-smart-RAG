@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="520">
+<rect x="0" y="0" width="640" height="520" fill="white"/>
+<rect x="0" y="0" width="640" height="52" fill="#b42318"/>
+<text x="20" y="33" font-size="20" font-weight="bold" fill="white" font-family="sans-serif">Headroom gate: L0 vs C4 - NO-GO (pilot, n=200)</text>
+<text x="30" y="80" font-size="13" font-family="sans-serif">Correctness = token_f1 &gt;= 0.5. Whiskers = 95% bootstrap CI (10000 resamples).</text>
+<text x="30" y="96" font-size="13" font-family="sans-serif">n=200 paired queries</text><text x="30" y="148" font-size="13" font-family="sans-serif">corner</text><rect x="250" y="120" width="150" height="40" fill="#f6f8fa" stroke="#333"/><text x="325" y="146" font-size="16" text-anchor="middle" font-family="sans-serif">strong correct</text><rect x="430" y="120" width="150" height="40" fill="#f6f8fa" stroke="#333"/><text x="505" y="146" font-size="16" text-anchor="middle" font-family="sans-serif">strong wrong</text><text x="30" y="192" font-size="13" font-family="sans-serif">L0 correct</text><rect x="250" y="164" width="150" height="40" fill="#f6f8fa" stroke="#333"/><text x="325" y="190" font-size="16" text-anchor="middle" font-family="sans-serif">9</text><rect x="430" y="164" width="150" height="40" fill="#f6f8fa" stroke="#333"/><text x="505" y="190" font-size="16" text-anchor="middle" font-family="sans-serif">0</text><text x="30" y="236" font-size="13" font-family="sans-serif">L0 wrong</text><rect x="250" y="208" width="150" height="40" fill="#f6f8fa" stroke="#333"/><text x="325" y="234" font-size="16" text-anchor="middle" font-family="sans-serif">191</text><rect x="430" y="208" width="150" height="40" fill="#f6f8fa" stroke="#333"/><text x="505" y="234" font-size="16" text-anchor="middle" font-family="sans-serif">0</text>
+<rect x="30" y="280" width="560" height="18" fill="#eee"/>
+<rect x="30" y="280" width="25.2" height="18" fill="#2f6fed"/>
+<line x1="41.2" y1="277" x2="41.2" y2="301" stroke="#111" stroke-width="2"/>
+<line x1="72.0" y1="277" x2="72.0" y2="301" stroke="#111" stroke-width="2"/>
+<line x1="41.2" y1="289" x2="72.0" y2="289" stroke="#111" stroke-width="2"/>
+<text x="30" y="274" font-size="12" font-family="sans-serif">Routable fraction: 0.04 [0.02, 0.07] (gate &gt;= 0.10)</text>
+<rect x="30" y="340" width="560" height="18" fill="#eee"/>
+<rect x="30" y="340" width="530.1" height="18" fill="#8250df"/>
+<line x1="558.8" y1="337" x2="558.8" y2="361" stroke="#111" stroke-width="2"/>
+<line x1="561.4" y1="337" x2="561.4" y2="361" stroke="#111" stroke-width="2"/>
+<line x1="558.8" y1="349" x2="561.4" y2="349" stroke="#111" stroke-width="2"/>
+<text x="30" y="334" font-size="12" font-family="sans-serif">Max saving at no quality loss: 94.7% [94.4%, 94.9%]</text>
+<text x="30" y="410" font-size="12" font-family="sans-serif">Paired gap (strong − cheap): 0.95 [0.93, 0.98]; McNemar b=191 c=0 p=0.0000.</text>
+<text x="30" y="432" font-size="12" font-family="sans-serif">Oracle cost $0.006402 vs all-C4 $0.120015; 200/200 routed off C4; quality-loss queries: 0.</text>
+<text x="30" y="470" font-size="12" font-family="sans-serif">SMALL-n CAVEAT: n=200 pilot queries - CIs are wide; do not over-claim. Re-run on the full sweep matrix when it merges.</text>
+<text x="30" y="492" font-size="12" font-family="sans-serif">Stub estimates only (no API spend); local tiers preliminary until Colab attaches.</text>
+</svg>
