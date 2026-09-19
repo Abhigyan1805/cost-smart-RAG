@@ -12,7 +12,13 @@ import json
 import sqlite3
 from pathlib import Path
 
-from .schema import ATTEMPT_COLUMNS, ATTEMPTS_DDL, MIGRATED_COLUMNS
+from .schema import (
+    ATTEMPT_COLUMNS,
+    ATTEMPTS_DDL,
+    MIGRATED_COLUMNS,
+    REPEAT_COLUMNS,
+    REPEATS_DDL,
+)
 
 
 # DEFAULT clauses for migrated columns (mirror schema.py DDL).
@@ -56,6 +62,11 @@ class TelemetryStore:
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(ATTEMPTS_DDL)
         _migrate_legacy_db(self.conn)
+        # Stability repeats (costfinal-10) live in their own table so the
+        # frozen sweep matrix in ``attempts`` is never touched by repeat
+        # writes. Any DB file can host repeats (the repeat runner keeps them
+        # in results/costfinal-10/repeats.db, separate from sweep.db).
+        self.conn.executescript(REPEATS_DDL)
 
     def close(self):
         self.conn.commit()
@@ -84,6 +95,45 @@ class TelemetryStore:
             "SELECT 1 FROM attempts WHERE cache_key = ?", (cache_key,)
         )
         return cur.fetchone() is not None
+
+    # -- stability repeats (costfinal-10) ---------------------------------
+
+    def insert_repeat(self, repeat: dict) -> bool:
+        """Insert one repeat-attempt row; False when cache_key exists.
+
+        Repeat rows carry ``repeat_idx`` (0..N_REPEATS-1) and a 5-tuple
+        cache key, so re-running an interrupted repeat sweep skips recorded
+        draws and only executes the remainder (same resumability contract
+        as :meth:`insert_attempt`, in a table the sweep matrix never reads).
+        """
+        row = {k: repeat.get(k) for k in REPEAT_COLUMNS}
+        cols = ", ".join(REPEAT_COLUMNS)
+        placeholders = ", ".join("?" for _ in REPEAT_COLUMNS)
+        cur = self.conn.execute(
+            f"INSERT OR IGNORE INTO repeat_attempts ({cols}) VALUES ({placeholders})",
+            [row[k] for k in REPEAT_COLUMNS],
+        )
+        self.conn.commit()
+        return cur.rowcount == 1
+
+    def has_repeat(self, cache_key: str) -> bool:
+        cur = self.conn.execute(
+            "SELECT 1 FROM repeat_attempts WHERE cache_key = ?", (cache_key,)
+        )
+        return cur.fetchone() is not None
+
+    def count_repeats(self) -> int:
+        return self.conn.execute("SELECT COUNT(*) FROM repeat_attempts").fetchone()[0]
+
+    def fetch_repeats(self, route_id: str | None = None) -> list[dict]:
+        if route_id is None:
+            cur = self.conn.execute("SELECT * FROM repeat_attempts ORDER BY id")
+        else:
+            cur = self.conn.execute(
+                "SELECT * FROM repeat_attempts WHERE route_id = ? ORDER BY id",
+                (route_id,),
+            )
+        return [dict(r) for r in cur.fetchall()]
 
     def count(self) -> int:
         return self.conn.execute("SELECT COUNT(*) FROM attempts").fetchone()[0]

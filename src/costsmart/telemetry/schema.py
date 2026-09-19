@@ -100,3 +100,66 @@ MIGRATED_COLUMNS = (
     "temperature",
     "seed",
 )
+
+# ---------------------------------------------------------------------------
+# Stability repeats (costfinal-10): the sweep exposed small-model label noise
+# (L0 flip rate 0.88 across 3 live repeats at requested temperature 0), so
+# every live local-tier (query, route) pair is re-run N_REPEATS times and
+# graded by majority (see costsmart.eval.stability; ties count as incorrect).
+#
+# Repeat rows live in their own table (never in ``attempts``): the frozen
+# sweep matrix stays untouched, and repeat cache keys always hash the
+# 5-tuple (query_id | route_id | prompt_version | model_version |
+# repeat_idx), so they can never collide with a base single-run row even at
+# repeat_idx=0. Base rows are single draws; repeats are fresh draws under
+# the same sampling contract (temperature 0, fixed seed) - repeat_idx only
+# keys storage and never changes sampling.
+# ---------------------------------------------------------------------------
+
+#: Repeat draws per live local-tier pair for stable majority labels.
+N_REPEATS = 3
+
+REPEATS_DDL = """
+CREATE TABLE IF NOT EXISTS repeat_attempts (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    cache_key           TEXT NOT NULL UNIQUE,
+    repeat_idx          INTEGER NOT NULL,
+    query_id            TEXT NOT NULL,
+    route_id            TEXT NOT NULL,
+    prompt_version      TEXT NOT NULL,
+    model_version       TEXT NOT NULL,
+    prediction          TEXT NOT NULL DEFAULT '',
+    reference           TEXT NOT NULL DEFAULT '',
+    exact_match         INTEGER NOT NULL DEFAULT 0,
+    lenient_em          INTEGER NOT NULL DEFAULT 0,
+    token_f1            REAL NOT NULL DEFAULT 0.0,
+    judge_score         REAL,
+    judge_model         TEXT NOT NULL DEFAULT '',
+    tokens_in           INTEGER NOT NULL DEFAULT 0,
+    tokens_out          INTEGER NOT NULL DEFAULT 0,
+    gpu_seconds         REAL NOT NULL DEFAULT 0.0,
+    concurrency         INTEGER NOT NULL DEFAULT 1,
+    cloud_spend_usd     REAL NOT NULL DEFAULT 0.0,
+    amortized_usd       REAL NOT NULL DEFAULT 0.0,
+    latency_ms_total    REAL NOT NULL DEFAULT 0.0,
+    latency_ms_retrieval REAL NOT NULL DEFAULT 0.0,
+    latency_ms_llm      REAL NOT NULL DEFAULT 0.0,
+    latency_ms_verify   REAL NOT NULL DEFAULT 0.0,
+    git_sha             TEXT NOT NULL DEFAULT '',
+    config_hash         TEXT NOT NULL DEFAULT '',
+    created_at          TEXT NOT NULL DEFAULT '',
+    generator_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
+    retrieval_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
+    temperature         REAL NOT NULL DEFAULT 0.0,
+    seed                INTEGER NOT NULL DEFAULT 0
+);
+CREATE INDEX IF NOT EXISTS idx_repeats_pair ON repeat_attempts(query_id, route_id);
+CREATE INDEX IF NOT EXISTS idx_repeats_cache ON repeat_attempts(cache_key);
+"""
+
+#: Repeat-row column order: attempt columns with repeat_idx after cache_key.
+REPEAT_COLUMNS = (
+    "cache_key",
+    "repeat_idx",
+    *ATTEMPT_COLUMNS[1:],
+)

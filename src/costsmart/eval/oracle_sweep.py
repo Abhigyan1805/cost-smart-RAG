@@ -91,6 +91,25 @@ def cache_key(query_id: str, route_id: str, prompt_version: str, model_version: 
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
+def repeat_cache_key(
+    query_id: str,
+    route_id: str,
+    prompt_version: str,
+    model_version: str,
+    repeat_idx: int,
+) -> str:
+    """Idempotency key for one stability-repeat draw (costfinal-10).
+
+    Always hashes the 5-tuple (repeat_idx included, even at 0), so a repeat
+    row can never collide with a base single-run row for the same
+    query+route. ``repeat_idx`` only keys storage - it never changes the
+    generator sampling contract (temperature 0, fixed seed, same as the
+    sweep draw being repeated).
+    """
+    raw = "|".join([query_id, route_id, prompt_version, model_version, str(int(repeat_idx))])
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
 def git_sha() -> str:
     """Current git SHA; env override (GIT_SHA) or 'unknown' outside a repo."""
     env = os.environ.get("GIT_SHA")
