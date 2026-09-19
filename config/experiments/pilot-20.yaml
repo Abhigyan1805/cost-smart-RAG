@@ -1,0 +1,14 @@
+# Pilot-20: first real numbers (costpilot-06 integration task).
+# 20 Tier-A queries (stratified 8 NQ + 7 TriviaQA + 5 HotpotQA, offline
+# synthetic source) x the 7-route Week-1 sweep set = 140 attempts.
+# Generator + cloud costs are STUB ESTIMATES (no API calls, no spend);
+# retrieval latency is MEASURED against data/index/pilot_index.json when
+# present; local tiers are stubbed and marked PRELIMINARY until the
+# captain connects the Colab session (see docs/colab-handoff.md).
+name: pilot-20-tier-a
+routes: [L0, L1, C0, C1, C2, C3, C4]
+prompt_version: v1
+seed: 0
+query_source: tier-a
+tier_a_counts: {nq: 8, triviaqa: 7, hotpotqa: 5}
+corpus_source: synthetic

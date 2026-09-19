@@ -43,10 +43,40 @@ class ColabClient(LLMClient):
         self.model_id = model_id
 
     def generate(self, prompt: str, **kwargs: Any) -> GenerateResult:
-        raise NotImplementedError(
-            "ColabClient is a stub: attach the captain-provided Colab session first. "
-            f"Set {COLAB_ENDPOINT_ENV} (+ optional {COLAB_TOKEN_ENV}) to the live "
-            "Colab model endpoint, then implement generate() here. "
-            "Local execution must go through this interface - "
-            "never assume a local Ollama daemon."
+        endpoint = get_colab_endpoint()
+        if not endpoint:
+            raise RuntimeError(
+                "ColabClient has no live session: the captain connects the Colab "
+                f"session on request; set {COLAB_ENDPOINT_ENV} (+ optional "
+                f"{COLAB_TOKEN_ENV}) to the Colab model endpoint first. "
+                "See docs/colab-handoff.md. "
+                "Local execution must go through this interface - "
+                "never assume a local Ollama daemon."
+            )
+        # Same Ollama-compatible /api/generate contract as OllamaClient,
+        # plus the optional bearer token (OllamaClient takes no headers).
+        import time
+
+        import httpx
+
+        headers: dict[str, str] = {}
+        token = os.environ.get(COLAB_TOKEN_ENV, "")
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+        timeout_s = float(kwargs.pop("timeout_s", 120.0))
+        started = time.monotonic()
+        resp = httpx.post(
+            f"{endpoint.rstrip('/')}/api/generate",
+            json={"model": self.model_id, "prompt": prompt, "stream": False, **kwargs},
+            headers=headers,
+            timeout=timeout_s,
+        )
+        resp.raise_for_status()
+        payload = resp.json()
+        latency = time.monotonic() - started
+        return GenerateResult(
+            text=payload.get("response", ""),
+            tokens=int(payload.get("eval_count", 0) or 0),
+            latency_s=latency,
+            raw=payload,
         )
