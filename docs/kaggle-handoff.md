@@ -48,6 +48,13 @@ until the status is `KernelWorkerStatus.COMPLETE`, then download (3). The
 kernel log (`/tmp/kout/costsweep13-local-sweep.log`) carries the
 `RUNBOOK SUMMARY:` line with the row counts to check against the ingest.
 
+After downloading, persist the log hash and the runbook summary next to the
+ingested DBs (the log itself is ~9.3 MB, so it is not committed). The
+committed record for costsweep-13 is
+`results/costmultihop-12/kaggle_provenance.json` +
+`results/costmultihop-12/KAGGLE_PROVENANCE.md`, which also hash-pin the
+ingested `sweep.db` / `repeats.db` / `sweep.csv`.
+
 ## Ingest + recount (cloud side, stdlib only, $0)
 
 ```sh
@@ -68,7 +75,10 @@ PYTHONPATH=src python scripts/stable_oracle.py \
 count as incorrect), rebuilds the oracle matrix on stable labels, and
 recomputes the gate with 10k-resample bootstrap CIs + the McNemar paired
 test (`results/costmultihop-12/headroom_stable.{json,svg}` and
-`comparison.json`).
+`comparison.json`). Its `--sweep-db`, `--repeats-db`, and `--out-dir` are
+required (no legacy defaults): a bare invocation refuses, and a sweep/repeats
+pair drawn from different mixes refuses before writing anything, so the
+recount cannot silently fall back to the legacy pilot mix.
 
 ## Verification / caveats
 
@@ -80,7 +90,11 @@ test (`results/costmultihop-12/headroom_stable.{json,svg}` and
 - Before trusting a resumed base, check that the new Kaggle repeat draws
   agree with the preserved Colab repeat draws on the pairs present in both
   (same majority side, similar token_f1 distribution); a gross mismatch is
-  a provenance red flag, not a result.
+  a provenance red flag, not a result. For costsweep-13 this check is
+  effectively vacuous: the Colab epoch (269 draws) and Kaggle epoch (931
+  draws) share only **1** pair, so the two hosts cannot be cross-validated
+  from the committed data - the Kaggle draws are trusted via the persisted
+  log hash + runbook summary (`KAGGLE_PROVENANCE.md`), not via overlap.
 - Kaggle GPU kernels have a weekly quota (currently ~30h) and a per-run
   wall-clock cap; the repeat run is the long pole (~930 draws * a few
   seconds). The kernel self-terminates the server when done.

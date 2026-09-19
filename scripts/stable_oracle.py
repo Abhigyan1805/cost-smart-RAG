@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stable-oracle rebuild + headroom recount for costfinal-10.
+"""Stable-oracle rebuild + headroom recount.
 
 Reads the frozen single-run sweep matrix (read-only) plus the measured
 repeat draws, grades every live local-tier pair by majority (ties count as
@@ -9,17 +9,32 @@ routable_fraction + max_savings + bootstrap CIs + McNemar) for BOTH the
 single-run matrix and the stable matrix, so the report can state exactly
 whether single-run label noise would have changed any conclusion.
 
-Writes results/costfinal-10/:
+Every path is REQUIRED on purpose. There are two incompatible mixes in the
+repo - the legacy pilot mix (`results/costsweep-08` + `results/costfinal-10`)
+and the multi-hop mix (`results/costmultihop-12`) - so a bare invocation
+with defaults used to silently recount the legacy mix even when the reader
+meant the multi-hop one. The script now refuses to start without explicit
+`--sweep-db`, `--repeats-db`, and `--out-dir`, and it cross-checks that the
+repeats belong to the sweep matrix before writing anything.
+
+Writes into `--out-dir`:
   stable_labels.json    per-pair votes, verdict, tie flags
   stable_attempts.json  oracle matrix rows (representative repeat draws for
                         repeated routes, base single-run rows otherwise)
   flip_report.json      string-flip + label-flip distributions per route
-  headroom_single.json/.svg  gate on single-run labels (the Week-2 baseline)
+  headroom_single.json/.svg  gate on single-run labels (the baseline)
   headroom_stable.json/.svg  gate on stable majority labels (the recount)
   comparison.json       single-vs-stable label changes + verdict deltas
 
-Usage:
-    python scripts/stable_oracle.py --sweep-db results/costsweep-08/sweep.db \\
+Usage (multi-hop mix; the runbook in docs/kaggle-handoff.md):
+    python scripts/stable_oracle.py \\
+        --sweep-db results/costmultihop-12/sweep.db \\
+        --repeats-db results/costmultihop-12/repeats.db \\
+        --out-dir results/costmultihop-12
+
+Usage (legacy mix):
+    python scripts/stable_oracle.py \\
+        --sweep-db results/costsweep-08/sweep.db \\
         --repeats-db results/costfinal-10/repeats.db \\
         --out-dir results/costfinal-10
 """
@@ -51,11 +66,14 @@ def load_rows(db_path: str, table: str = "attempts") -> list[dict]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Stable oracle rebuild")
-    parser.add_argument("--sweep-db", default="results/costsweep-08/sweep.db")
-    parser.add_argument("--repeats-db",
-                        default="results/costfinal-10/repeats.db")
-    parser.add_argument("--out-dir", default="results/costfinal-10")
+    parser = argparse.ArgumentParser(
+        description="Stable oracle rebuild (explicit paths required)")
+    parser.add_argument("--sweep-db", required=True,
+                        help="frozen single-run sweep matrix (read-only)")
+    parser.add_argument("--repeats-db", required=True,
+                        help="measured repeat draws for this sweep")
+    parser.add_argument("--out-dir", required=True,
+                        help="directory to write the recount artifacts into")
     parser.add_argument("--cheap", default="L0")
     parser.add_argument("--strong", default="C4")
     parser.add_argument("--resamples", type=int, default=10_000)
@@ -72,6 +90,21 @@ def main(argv: list[str] | None = None) -> int:
     repeats_by_pair: dict[tuple[str, str], list[dict]] = {}
     for r in repeat_rows:
         repeats_by_pair.setdefault((r["query_id"], r["route_id"]), []).append(r)
+
+    # Refuse a mismatched pair of inputs (e.g. a legacy sweep with multi-hop
+    # repeats, or vice versa): every repeated pair must exist in the base
+    # sweep matrix. A mismatch means the reader pointed at two different
+    # mixes, and recounting would silently blend them.
+    orphans = sorted(set(repeats_by_pair) - set(base_by_pair))
+    if orphans:
+        sample = ", ".join(f"{q}/{r}" for q, r in orphans[:5])
+        raise SystemExit(
+            f"refusing mixed inputs: {len(orphans)} repeated pair(s) are not "
+            f"in the base sweep matrix ({sample}"
+            f"{', ...' if len(orphans) > 5 else ''}). "
+            f"--sweep-db={args.sweep_db} and "
+            f"--repeats-db={args.repeats_db} do not describe the same mix; "
+            f"pass a matching sweep/repeats pair explicitly.")
 
     # Only routes with a full repeat set get stable labels; every other
     # route (cloud stubs, C0 stub) keeps its single-run row - deterministic

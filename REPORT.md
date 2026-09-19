@@ -1,8 +1,46 @@
-# costsmart-rag Experiment Report (stub - Week-1 skeleton)
+# costsmart-rag Experiment Report
 
-> Each experiment below measures its claim against the exhaustive oracle over
-> the joint (model x retrieval depth x reasoning strategy) space. Sections are
-> placeholders until sweep telemetry lands.
+> Each experiment measures its claim against the exhaustive oracle over the
+> joint (model x retrieval depth x reasoning strategy) space. The headroom
+> gates below are the only completed experiments; Exp 1-14 further down are
+> still placeholders.
+
+## Scope and claim strength (read first)
+
+**The NO-GO is a pipeline result on a synthetic smoke corpus, not a
+benchmark conclusion.** Both full-matrix recounts (legacy mix,
+`costfinal-10`; multi-hop mix, `costmultihop-12` / `costsweep-13`) run on
+the offline synthetic corpus (`SYNTHETIC_SEED=20260919`), whose templates
+keep the answer entity in the question text (`results/costmultihop-12/MIX.md`,
+`results/costmultihop-12/CALIBRATION.md` "Assumptions / caveats"). The
+measured effect shows the pipeline responds to query difficulty; it is
+**not** an estimate of real 2Wiki/MuSiQue or multi-hop QA behaviour. **A
+real-dataset re-run (NQ/TriviaQA/HotpotQA/2Wiki/MuSiQue via the existing HF
+loader path) is required before any product decision**, and the current
+NO-GO must not be read as a durable routing conclusion.
+
+Three further limits are load-bearing:
+
+- **"Dense" retrieval is the stdlib hash-embedding fallback in this
+  environment.** `sentence-transformers` is unavailable here, so
+  `src/costsmart/retrieval/dense.py` falls back to a 256-dim sha256
+  bag-of-words vector while the index metadata still names
+  `all-MiniLM-L6-v2`. Every committed row is `retrieval_mode='measured'`,
+  but what was measured is hybrid search over that fallback, not MiniLM
+  dense retrieval - so the retrieval quality and timings in these artifacts
+  are not the real-model numbers a reader might assume.
+- **The cloud-stub cost columns are ESTIMATED, not spent.** C1..C4 never
+  execute (there is no live cloud code path); their `cloud_spend_usd` is the
+  deterministic stub's token draw priced at pinned rates. Every dollar figure
+  quoted below (oracle `$0.006402`, all-C4 `$0.120015`, etc.) is a stub
+  estimate; **actual cloud spend is $0**. The oracle/comparison cost figures
+  inherit this.
+- **Measured-model identity is self-attested.** `model_version` is the
+  string the client sends, not a server-side attestation: an endpoint could
+  serve a different checkpoint and still be recorded as the pinned id. The
+  repeats model check compares two client-supplied strings.
+
+These are the boundaries within which every number below should be read.
 
 ## Headroom gate (costheadroom-09): cheapest-local vs strongest-cloud
 
@@ -24,8 +62,8 @@ full payload in `results/costheadroom-09/headroom.json`, figure in
 
 - Routable fraction (L0 already correct): **0.55 [0.35, 0.75]**.
 - Max saving at no quality loss (oracle cheapest-correct vs all-C4): **94.7%
-  [94.0%, 95.3%]** (oracle $0.000650 vs all-C4 $0.012325; 20/20 queries
-  routed off C4, 0 quality-loss queries).
+  [94.0%, 95.3%]** (oracle $0.000650 vs all-C4 $0.012325, both stub-estimated;
+  20/20 queries routed off C4, 0 quality-loss queries).
 - Paired accuracy gap (C4 − L0): **0.45 [0.25, 0.65]**; McNemar exact
   two-sided p = **0.0039** (b=9, c=0, 9 discordant).
 
@@ -76,8 +114,10 @@ single-run -> stable, and unanimous-incorrect dominates (352/400 pairs).
 | single-run | 16 / 0 / 184 / 0 | 0.08 [0.045, 0.12] | 95.1% [94.9%, 95.3%] | 0.92 [0.88, 0.955] | p = 1.8e-41 | **NO-GO** |
 | stable (majority) | 12 / 0 / 188 / 0 | 0.06 [0.03, 0.095] | 95.0% [94.8%, 95.3%] | 0.94 [0.905, 0.97] | p = 2.4e-42 | **NO-GO** |
 
-(Oracle $0.00614 vs all-C4 $0.12385; 200/200 routed off C4, 0 quality-loss
-queries - C4 stub is exactly correct on every query.)
+(Oracle $0.00614 vs all-C4 $0.12385 - both are stub-ESTIMATED cloud spend,
+not spent; actual cloud spend is $0. 200/200 routed off C4, 0 quality-loss
+queries - C4 stub is exactly correct on every query by the frozen stub
+contract.)
 
 ### Did single-run labels change any Week-2 conclusion? No.
 
@@ -123,11 +163,12 @@ change single-run -> stable.
 | single-run | 19 / 0 / 181 / 0 | 0.095 [0.055, 0.140] | 94.69% [94.45%, 94.93%] | 0.905 | p = 8.0e-41 | **NO-GO** |
 | stable (majority) | 9 / 0 / 191 / 0 | 0.045 [0.020, 0.075] | 94.67% [94.42%, 94.89%] | 0.955 | p = 5.2e-43 | **NO-GO** |
 
-(Oracle $0.006402 vs all-C4 $0.120015; 200/200 routed off C4, 0 quality-loss
+(Oracle $0.006402 vs all-C4 $0.120015 - both are stub-ESTIMATED cloud spend,
+not spent; actual cloud spend is $0. 200/200 routed off C4, 0 quality-loss
 queries - the C4 stub is exactly correct on every query by the frozen stub
 contract.)
 
-### Verdict: reweighting did not open the gate
+### Verdict: reweighting did not open the gate on the synthetic mix
 
 The hypothesis in `MIX.md` was that collapsing closed-book L0 accuracy on
 multi-hop questions would open the routing gap. It half-held: the measured
@@ -143,12 +184,16 @@ Recommendation (unchanged, per `MIX.md`): do not reweight further. The
 next lever is the policy around L0 (shrink/retire the closed-book local
 tier, or gate on retrieval) rather than query difficulty - and any cloud
 correctness claim here stays bounded by the exact-correct cloud stubs
-(real cloud accuracy is untested; $0 spent).
+(real cloud accuracy is untested; $0 spent). This recommendation is
+**scoped to the synthetic smoke corpus**: re-run on a real dataset before
+treating it as product guidance.
 
-**Corpus caveat:** the source is the offline synthetic corpus
+**Corpus caveat (load-bearing).** The source is the offline synthetic corpus
 (`SYNTHETIC_SEED=20260919`), whose templates keep the answer entity in the
-question text; this is a pipeline signal, not an estimate of real
-2Wiki/MuSiQue difficulty.
+question text. The NO-GO is therefore a **pipeline smoke signal, not an
+estimate of real 2Wiki/MuSiQue difficulty and not a benchmark conclusion**;
+a real-dataset re-run is required before any product decision. See "Scope
+and claim strength (read first)" at the top of this report.
 
 ## Exp 1: Closed-book baselines per model tier
 _TODO: quality/cost of k=0 direct for each model._
