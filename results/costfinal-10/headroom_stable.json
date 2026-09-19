@@ -1,0 +1,56 @@
+{
+  "cheap_route": "L0",
+  "strong_route": "C4",
+  "n_paired_queries": 200,
+  "n_skipped": 0,
+  "contingency": {
+    "both_correct": 12,
+    "cheap_only": 0,
+    "strong_only": 188,
+    "neither": 0,
+    "both_correct_rate": 0.06,
+    "cheap_only_rate": 0.0,
+    "strong_only_rate": 0.94,
+    "neither_rate": 0.0
+  },
+  "routable_fraction": {
+    "estimate": 0.06,
+    "k": 12,
+    "n": 200,
+    "cheap_route": "L0",
+    "strong_route": "C4",
+    "ci_lo": 0.03,
+    "ci_hi": 0.095,
+    "ci": 0.95,
+    "n_resamples": 10000
+  },
+  "savings": {
+    "strong_cost": 0.12385250000000002,
+    "oracle_cost": 0.006137341236569369,
+    "saving_fraction": 0.9504463677635141,
+    "ci_lo": 0.9481026842851834,
+    "ci_hi": 0.952705073629359,
+    "n_routed_off_strong": 200,
+    "n_no_correct_route": 0,
+    "n_quality_loss_queries": 0,
+    "n_resamples": 10000
+  },
+  "paired": {
+    "cheap_accuracy": 0.06,
+    "strong_accuracy": 1.0,
+    "accuracy_gap": 0.94,
+    "gap_ci_lo": 0.905,
+    "gap_ci_hi": 0.97,
+    "mcnemar_b": 188,
+    "mcnemar_c": 0,
+    "mcnemar_statistic": 186.00531914893617,
+    "mcnemar_p": 2.3677249684589986e-42,
+    "mcnemar_n_discordant": 188
+  },
+  "gate": {
+    "threshold": 0.1,
+    "verdict": "NO-GO"
+  },
+  "n_resamples": 10000,
+  "seed": 1000
+}

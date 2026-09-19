@@ -1,0 +1,16 @@
+{
+  "mode": "live",
+  "sweep_db": "results/costsweep-08/sweep.db",
+  "repeats_db": "results/costfinal-10/repeats.db",
+  "routes": [
+    "L0"
+  ],
+  "n_pairs": 200,
+  "repeats": 3,
+  "draws_expected": 600,
+  "inserted": 600,
+  "skipped_existing": 0,
+  "total_repeat_rows": 600,
+  "temperature": 0,
+  "seed": 0
+}

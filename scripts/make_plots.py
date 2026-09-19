@@ -179,9 +179,17 @@ def render_headroom_svg(data: dict) -> str:
 
 
 def cmd_headroom(args: argparse.Namespace) -> int:
-    attempts = load_attempts(args.db)
+    if args.attempts_json:
+        # Stable-oracle recount (costfinal-10): compute the gate over a
+        # JSON attempts matrix (e.g. results/costfinal-10/stable_attempts.json)
+        # instead of a telemetry DB. Reproducible via:
+        #   python scripts/make_plots.py headroom --attempts-json \\
+        #       results/costfinal-10/stable_attempts.json --out-dir <dir>
+        attempts = json.loads(Path(args.attempts_json).read_text())
+    else:
+        attempts = load_attempts(args.db)
     if not attempts:
-        raise SystemExit(f"no attempts in {args.db}")
+        raise SystemExit(f"no attempts in {args.db or args.attempts_json}")
     data = compute_headroom(attempts, args.cheap, args.strong,
                             args.resamples, args.seed)
     out_dir = Path(args.out_dir)
@@ -199,7 +207,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Report figures (SVG, stdlib)")
     sub = parser.add_subparsers(dest="cmd", required=True)
     head = sub.add_parser("headroom", help="headroom 2x2 gate figure")
-    head.add_argument("--db", required=True)
+    head.add_argument("--db", default=None,
+                      help="telemetry SQLite DB (ignored with --attempts-json)")
+    head.add_argument("--attempts-json", default=None,
+                      help="JSON attempts matrix (stable-oracle recount path)")
     head.add_argument("--out-dir", required=True)
     head.add_argument("--cheap", default=CHEAP_ROUTE)
     head.add_argument("--strong", default=STRONG_ROUTE)
