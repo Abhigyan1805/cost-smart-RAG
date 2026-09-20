@@ -7,17 +7,32 @@
 
 ## Scope and claim strength (read first)
 
-**The NO-GO is a pipeline result on a synthetic smoke corpus, not a
-benchmark conclusion.** Both full-matrix recounts (legacy mix,
+**The NO-GO holds on REAL labelled Tier-A data, not only on the synthetic
+smoke corpus.** The audit objection was that the synthetic templates leak
+the answer entity into the question, so the synthetic NO-GO is only a
+pipeline smoke signal. The `realdata-15` recount answers that directly:
+the same 7-route sweep and 3x-majority stable gate, run live on **real NQ
+open + HotpotQA + MuSiQue** (200 queries, 75% multi-hop, fetched through
+the HF loader path and committed at `results/realdata-15/corpus.json`),
+also reads **NO-GO** - routable fraction **0.095 [0.055, 0.14]** on
+single-run labels and **0.095 [0.055, 0.135]** on stable labels, both
+below the 0.10 gate. The synthetic result did not manufacture the verdict;
+the low cheap-tier routable fraction is a property of the measured local
+model on real questions. **The real-data verdict is nevertheless
+*marginal*: the point estimate sits at 0.095 against a 0.10 gate, and the
+CI upper bound (~0.14) crosses it, whereas the synthetic stable run read a
+comfortable 0.045.** Full section: "Real-data recount (realdata-15)"
+below.
+
+**The synthetic corpora remain pipeline results, not benchmark
+conclusions.** Both full-matrix *synthetic* recounts (legacy mix,
 `costfinal-10`; multi-hop mix, `costmultihop-12` / `costsweep-13`) run on
 the offline synthetic corpus (`SYNTHETIC_SEED=20260919`), whose templates
 keep the answer entity in the question text (`results/costmultihop-12/MIX.md`,
-`results/costmultihop-12/CALIBRATION.md` "Assumptions / caveats"). The
-measured effect shows the pipeline responds to query difficulty; it is
-**not** an estimate of real 2Wiki/MuSiQue or multi-hop QA behaviour. **A
-real-dataset re-run (NQ/TriviaQA/HotpotQA/2Wiki/MuSiQue via the existing HF
-loader path) is required before any product decision**, and the current
-NO-GO must not be read as a durable routing conclusion.
+`results/costmultihop-12/CALIBRATION.md` "Assumptions / caveats"). Their
+measured effect shows the pipeline responds to query difficulty; they are
+**not** an estimate of real 2Wiki/MuSiQue behaviour. The real-data recount
+below supersedes them for the product question.
 
 Three further limits are load-bearing:
 
@@ -28,7 +43,10 @@ Three further limits are load-bearing:
   `all-MiniLM-L6-v2`. Every committed row is `retrieval_mode='measured'`,
   but what was measured is hybrid search over that fallback, not MiniLM
   dense retrieval - so the retrieval quality and timings in these artifacts
-  are not the real-model numbers a reader might assume.
+  are not the real-model numbers a reader might assume. (Exception: the
+  `realdata-15` Kaggle host has `sentence-transformers`, so its L1 retrieval
+  used the pinned MiniLM model end-to-end; see
+  `results/realdata-15/KAGGLE_PROVENANCE.md`.)
 - **The cloud-stub cost columns are ESTIMATED, not spent.** C1..C4 never
   execute (there is no live cloud code path); their `cloud_spend_usd` is the
   deterministic stub's token draw priced at pinned rates. Every dollar figure
@@ -41,6 +59,86 @@ Three further limits are load-bearing:
   repeats model check compares two client-supplied strings.
 
 These are the boundaries within which every number below should be read.
+
+## Real-data recount (realdata-15): gate NO-GO on real Tier-A data
+
+This is the decisive re-run the audit called for. It replaces the synthetic
+corpus with **real labelled Tier-A data** and repeats the exact committed
+gate protocol (7-route sweep, measured L0/L1, 3x-majority stable recount,
+10k-resample bootstrap CIs, McNemar). All artifacts are in
+`results/realdata-15/`; the run is pinned by
+`results/realdata-15/KAGGLE_PROVENANCE.md` + `kaggle_provenance.json`.
+
+### Corpus (real, committed)
+
+200 real validation queries - **50 NQ (`nq_open`) + 80 HotpotQA
+(`distractor`) + 70 MuSiQue** = 75% multi-hop, mirroring the synthetic
+`costmultihop-12` 25/75 composition. Fetched through the repo's existing HF
+loader path (`scripts/fetch_tier_a.py` -> `normalize_hf_row`) on the Kaggle
+host and committed at `results/realdata-15/corpus.json`; per-dataset
+licence, resolved revision, and question/passage checksums are in the
+manifest and `results/realdata-15/CORPUS_MANIFEST.md`. No dataset was
+substituted or fabricated. NQ (`nq_open`) ships question+answer only, so NQ
+queries have no gold passage and no passage pool; the gate reads L0
+(closed-book) vs the C4 stub, not L1.
+
+### Execution
+
+Kaggle GPU kernel `abhigyan1818/realdata15-local-sweep` (T4, branch
+`fm/costsmart-realdata-15`), pinned model `Qwen/Qwen2.5-1.5B-Instruct`,
+temperature 0, fixed seed. **400 measured L0/L1 base rows** (200 + 200) and
+**1200/1200 measured repeat draws** (400 pairs x 3), all
+`generator_mode='measured'`; C0..C4 stub (C4 exactly correct by the frozen
+stub contract). Cloud spend **$0** - no live cloud path executed, no stub
+row overwrote a measured row. The L1 retrieval index used the pinned MiniLM
+model (384-dim, `sentence-transformers`), not the hash fallback.
+
+### Gate: single-run labels vs stable labels (n=200 paired, 95% CIs)
+
+| labels | contingency (both / L0-only / C4-only / neither) | routable fraction | max saving | gap (C4-L0) | McNemar | verdict |
+|---|---|---|---|---|---|---|
+| single-run | 19 / 0 / 181 / 0 | 0.095 [0.055, 0.140] | 94.77% [94.51%, 95.03%] | 0.905 | p = 8.0e-41 | **NO-GO** |
+| stable (majority) | 19 / 0 / 181 / 0 | 0.095 [0.055, 0.135] | 94.77% [94.51%, 95.02%] | 0.905 | p = 8.0e-41 | **NO-GO** |
+
+(Measured L0 = 19/200 correct closed-book, L1 = 25/200; C4 stub = 200/200
+correct. Oracle $0.006162 vs all-C4 $0.117915 - both stub-ESTIMATED cloud
+spend, not spent; actual cloud spend is $0. 200/200 routed off C4, 0
+quality-loss queries. `comparison.json` records 0 single->stable label
+changes.)
+
+### Measured accuracy by source (single-run)
+
+| source | L0 (closed-book) | L0 mean token-F1 | L1 (k=5 retrieval) | L1 mean token-F1 |
+|---|---|---|---|---|
+| NQ | 0/50 (0.00) | 0.094 | 2/50 (0.04) | 0.071 |
+| HotpotQA | 15/80 (0.19) | 0.193 | 16/80 (0.20) | 0.260 |
+| MuSiQue | 4/70 (0.06) | 0.076 | 7/70 (0.10) | 0.104 |
+| **all** | **19/200 (0.095)** | 0.127 | **25/200 (0.125)** | 0.158 |
+
+### Label stability on real data
+
+String flip rate is **0.0** on both routes (all 3 draws byte-identical per
+pair) versus 0.220 on the synthetic multi-hop mix and 0.865 on the legacy
+mix: real short factual answers leave no paraphrase room, so the
+single-run/stable split is empty here (0 label changes). The real-data
+verdict therefore does not depend on the label-noise fix.
+
+### Verdict: real-data NO-GO, same direction as synthetic but marginal
+
+The real-data verdict is **NO-GO, and it does not differ from the synthetic
+verdict** - the low routable fraction is real, not a template artifact. But
+it is **marginal**, not comfortable: the real point estimate (0.095) sits
+just below the 0.10 gate and its CI upper bound (~0.14) crosses the gate,
+whereas the synthetic stable estimate was 0.045. The honest reading is that
+the synthetic smoke corpus *understated* the cheap tier's real routable
+fraction: on real data a closed-book 1.5B model routes roughly one query in
+ten to itself (mostly HotpotQA yes/no), still short of the exploitable-
+separation gate but close enough that a GO call would not be robust.
+Recommendation (unchanged in direction, strengthened in caveat): do not
+build a routing policy on the L0 default yet; the measured gap is real
+(McNemar p ~ 8e-41) but the cheap tier's coverage is at the decision
+boundary. Any cloud-correctness/savings claim stays bounded by the
+exact-correct C4 stub (real cloud accuracy untested; $0 spent).
 
 ## Headroom gate (costheadroom-09): cheapest-local vs strongest-cloud
 
