@@ -336,6 +336,18 @@ def render_table_md(tiers: list[dict], break_even: dict) -> str:
                 f"{e['saving_at_gate']:.4f} | {e['verdict']} |")
     lines.append("")
     lines.append(break_even["statement"])
+    lines.append("")
+    lines.append("## Provenance")
+    lines.append("")
+    for tier in sorted([t for t in tiers if t["params_billions"] is not None],
+                       key=lambda t: t["params_billions"]):
+        a = (tier.get("attestation") or {}).get("counts", {})
+        lines.append(
+            f"- {tier['model_version']}: sweep "
+            f"`{tier.get('source_sweep_db', 'n/a')}`, repeats "
+            f"`{tier.get('source_repeats_db', 'n/a')}`; attestation "
+            f"server-attested={a.get('server-attested', 0)}, "
+            f"unattested={a.get('unattested', 0)}, stub={a.get('stub', 0)}")
     return "\n".join(lines)
 
 
@@ -352,22 +364,45 @@ def discover_runs(db_dir: Path) -> list[tuple[str, Path, Path]]:
     return runs
 
 
+def parse_run_specs(specs: list[str]) -> list[tuple[str, Path, Path]]:
+    """Parse ``tag=sweep.db:repeats.db`` run specs into (tag, sweep, repeats)."""
+    runs = []
+    for spec in specs:
+        tag, sep, paths = spec.partition("=")
+        sweep, colon, repeats = paths.partition(":")
+        if not (sep and colon):
+            raise SystemExit(
+                f"bad --run {spec!r}: expected tag=sweep.db:repeats.db")
+        runs.append((tag.strip(), Path(sweep.strip()), Path(repeats.strip())))
+    return runs
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Tier break-even analysis")
-    parser.add_argument("--db-dir", required=True,
+    parser.add_argument("--db-dir", default=None,
                         help="directory with sweep-<tag>.db / repeats-<tag>.db")
+    parser.add_argument("--run", action="append", default=[],
+                        help="explicit tag=sweep.db:repeats.db pair (repeatable; "
+                             "use to cite a tier measured by another run, e.g. "
+                             "1p5b=results/realdata-15/sweep.db:...repeats.db)")
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--resamples", type=int, default=10_000)
     parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args(argv)
 
-    db_dir = Path(args.db_dir)
-    runs = discover_runs(db_dir)
+    if args.run:
+        runs = parse_run_specs(args.run)
+    elif args.db_dir:
+        runs = discover_runs(Path(args.db_dir))
+    else:
+        raise SystemExit("pass --db-dir and/or --run tag=sweep.db:repeats.db")
     if not runs:
-        raise SystemExit(f"no sweep-<tag>.db / repeats-<tag>.db pairs in {db_dir}")
+        raise SystemExit(f"no sweep/repeats pairs found (db-dir={args.db_dir})")
 
     tiers: list[dict] = []
     for tag, sweep_db, repeats_db in runs:
+        if not sweep_db.exists() or not repeats_db.exists():
+            raise SystemExit(f"run {tag}: missing {sweep_db} or {repeats_db}")
         base_rows = load_rows(str(sweep_db), "attempts")
         repeat_rows = load_rows(str(repeats_db), "repeat_attempts")
         stable_matrix, meta = build_stable_matrix(base_rows, repeat_rows)
@@ -382,6 +417,8 @@ def main(argv: list[str] | None = None) -> int:
             tier = analyse_tier(model, base_rows, stable_matrix, repeat_rows,
                                 args.resamples, args.seed)
             tier["tag"] = tag
+            tier["source_sweep_db"] = str(sweep_db)
+            tier["source_repeats_db"] = str(repeats_db)
             tier.update(meta)
             tiers.append(tier)
         print(f"analysed {tag}: models={[m.split('/')[-1] for m in models]} "

@@ -64,9 +64,14 @@ MODELS = (
     ("Qwen/Qwen2.5-3B-Instruct", "3b"),
     ("Qwen/Qwen2.5-7B-Instruct", "7b"),
 )
-#: Optional substring filter (env COSTSMART_TIERS=3b,7b) for shorter pushes.
+#: Which tiers to sweep. Default 3b,7b: the 1.5B tier is already measured on
+#: this exact corpus by the committed realdata-15 run (results/realdata-15/),
+#: so re-measuring it would just re-spend GPU time. Override with the
+#: environment variable COSTSMART_TIERS (e.g. "1p5b,3b,7b") when a fresh
+#: 1.5B run is actually wanted.
 TARGET_FILTER = tuple(
-    t.strip() for t in os.environ.get("COSTSMART_TIERS", "").split(",") if t.strip()
+    t.strip() for t in os.environ.get("COSTSMART_TIERS", "3b,7b").split(",")
+    if t.strip()
 )
 
 
