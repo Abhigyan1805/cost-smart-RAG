@@ -44,6 +44,22 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   `results/realdata-15/{sweep,repeats}.db`. `data/` is gitignored — commit
   corpus/artifacts under `results/`. `nq_open` ships question+answer only, so
   NQ has no passages (gate reads L0 vs C4 stub, not L1).
+- Cheap-tier break-even (tiersweep-16): sweep L0/L1/C0 on stronger checkpoints
+  with `oracle_sweep --live-local --live-model <hf-id>` (the override becomes
+  the row's `model_version`, so checkpoints never collide) and
+  `kernels/tiersweep-16-local-sweep/` (defaults to the unmeasured tiers
+  `COSTSMART_TIERS=3b,7b`; the 1.5B tier is the committed realdata-15 run).
+  Recount with `scripts/tier_sweep.py --run tag=sweep.db:repeats.db`; artifacts
+  in `results/tiersweep-16/`.
+- Measured-model attestation (tiersweep-16 audit fix): the serving endpoint
+  reports `model_revision` + `weights_sha256`; rows carry `attestation`
+  (`server-attested`/`unattested`/`stub`/`unflagged-legacy`). Audit with
+  `scripts/attestation_audit.py --db <db>` (non-zero exit when a measured row
+  is unattested). Legacy measured rows are flagged, never falsified.
+- Kaggle CLI 2.2.4 has NO `kernels stop`; cancel a run with
+  `kaggle kernels delete -y <slug>` then re-push. `push` uploads only
+  `kernel.py`, so the kernel clones the branch itself. `.gitignore` ignores
+  root `/telemetry/` only; keep `src/costsmart/telemetry/` modules tracked.
 
 ## Maintaining this file
 

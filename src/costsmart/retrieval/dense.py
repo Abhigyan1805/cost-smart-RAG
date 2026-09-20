@@ -32,14 +32,53 @@ def _hash_embed(text: str, dim: int = FALLBACK_DIM) -> list[float]:
     return [v / norm for v in vec]
 
 
-def _st_embed(texts: list[str]) -> list[list[float]] | None:
+#: Cached sentence-transformers model. The constructor loads ~90 MB of
+#: weights from disk, so loading it per call (once per query and per repeat)
+#: dominated sweep latency and inflated the measured per-query GPU cost.
+#: Load once, reuse; cache the load *failure* too so a broken install does
+#: not retry the constructor on every call.
+_ST_MODEL = None
+_ST_LOAD_FAILED = False
+
+
+def _get_st_model():
+    """Return the process-wide SentenceTransformer, loading it at most once.
+
+    Returns ``None`` (without retrying) when sentence-transformers is absent
+    or the model fails to load, so callers fall back to the hash embedding.
+    """
+    global _ST_MODEL, _ST_LOAD_FAILED
+    if _ST_MODEL is not None:
+        return _ST_MODEL
+    if _ST_LOAD_FAILED:
+        return None
     try:
         from sentence_transformers import SentenceTransformer  # type: ignore
     except ImportError:
+        _ST_LOAD_FAILED = True
         return None
     try:
-        model = SentenceTransformer(EMBEDDING_MODEL)
-        return [list(map(float, v)) for v in model.encode(texts, normalize_embeddings=True)]
+        _ST_MODEL = SentenceTransformer(EMBEDDING_MODEL)
+    except Exception:
+        _ST_LOAD_FAILED = True
+        return None
+    return _ST_MODEL
+
+
+def _reset_st_cache() -> None:
+    """Drop the cached model/load-failure (test isolation + reload support)."""
+    global _ST_MODEL, _ST_LOAD_FAILED
+    _ST_MODEL = None
+    _ST_LOAD_FAILED = False
+
+
+def _st_embed(texts: list[str]) -> list[list[float]] | None:
+    model = _get_st_model()
+    if model is None:
+        return None
+    try:
+        return [list(map(float, v))
+                for v in model.encode(texts, normalize_embeddings=True)]
     except Exception:
         return None
 
