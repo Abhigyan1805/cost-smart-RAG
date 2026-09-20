@@ -62,6 +62,15 @@ class TierKernelTest(unittest.TestCase):
         self.assertIn("results/tiersweep-16", text)
         self.assertIn("tier_sweep.py", text)
 
+    def test_runbook_cites_reused_1p5b_run(self):
+        # The filtered kernel does not produce sweep-1p5b.db, so the runbook
+        # must cite the committed realdata-15 1.5B run explicitly instead of
+        # silently dropping the tier from the break-even table.
+        text = HANDOFF.read_text()
+        self.assertIn(
+            "--run 1p5b=results/realdata-15/sweep.db:"
+            "results/realdata-15/repeats.db", text)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -118,6 +118,12 @@ def cmd_serve(model: str, port: int) -> int:
     )
     lm.eval()
     model_revision, weights_sha256 = _resolve_attestation(model, lm)
+    # The id transformers actually loaded (not the client's request), so a
+    # mislabeled request can be detected server-side.
+    served_model = str(
+        getattr(lm, "name_or_path", "")
+        or getattr(getattr(lm, "config", None), "_name_or_path", "")
+        or model)
     print(f"serving {model} on :{port} (device: "
           f"{'cuda' if torch.cuda.is_available() else 'cpu'}; attesting "
           f"revision={model_revision or 'unknown'} "
@@ -175,8 +181,9 @@ def cmd_serve(model: str, port: int) -> int:
                         "prompt_eval_count": prompt_tokens,
                         "latency_s": time.monotonic() - t0,
                         "model": req.get("model", model),
-                        # Server-side attestation: the revision/weight hash
+                        # Server-side attestation: the id/revision/weight hash
                         # actually served (tiersweep-16).
+                        "served_model": served_model,
                         "model_revision": model_revision,
                         "weights_sha256": weights_sha256})
 

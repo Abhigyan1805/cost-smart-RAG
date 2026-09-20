@@ -170,20 +170,27 @@ kaggle kernels status abhigyan1818/tiersweep16-local-sweep
 kaggle kernels output abhigyan1818/tiersweep16-local-sweep -p /tmp/kout
 ```
 
-Ingest (files land flat in `/tmp/kout`) and recount the break-even:
+Ingest (files land flat in `/tmp/kout`) and recount the break-even. The
+filtered kernel only produces `3b`/`7b`; the **1.5B tier is the committed
+realdata-15 run** (same corpus/routes, not re-measured), so it is cited
+explicitly via `--run` rather than silently omitted:
 
 ```sh
-for tag in 1p5b 3b 7b; do
+for tag in 3b 7b; do
   cp /tmp/kout/sweep-$tag.db   results/tiersweep-16/sweep-$tag.db
   cp /tmp/kout/repeats-$tag.db results/tiersweep-16/repeats-$tag.db
   cp /tmp/kout/sweep-$tag.csv  results/tiersweep-16/sweep-$tag.csv
 done
-PYTHONPATH=src python scripts/tier_sweep.py \
-  --db-dir results/tiersweep-16 --out-dir results/tiersweep-16
+PYTHONPATH=src python scripts/tier_sweep.py --out-dir results/tiersweep-16 \
+  --run 1p5b=results/realdata-15/sweep.db:results/realdata-15/repeats.db \
+  --run 3b=results/tiersweep-16/sweep-3b.db:results/tiersweep-16/repeats-3b.db \
+  --run 7b=results/tiersweep-16/sweep-7b.db:results/tiersweep-16/repeats-7b.db
 ```
 
-`scripts/tier_sweep.py` rebuilds each tier's stable matrix (3x majority, ties
-incorrect), computes coverage + bootstrap CI, the C4-vs-tier gap, McNemar and
-the measured amortized GPU-seconds/USD per query, then writes
-`results/tiersweep-16/{tiers.json,TIERS.md,tiers.svg}` with the break-even
-statement.
+(`--db-dir results/tiersweep-16` alone discovers only the `sweep-*.db` files
+present, so the explicit `--run 1p5b=...` is required to include the reused
+1.5B tier.) `scripts/tier_sweep.py` rebuilds each tier's stable matrix (3x
+majority, ties incorrect), computes coverage + bootstrap CI, the C4-vs-tier
+gap, McNemar and the measured amortized GPU-seconds/USD per query, then
+writes `results/tiersweep-16/{tiers.json,TIERS.md,tiers.svg}` with the
+break-even statement and per-tier provenance.

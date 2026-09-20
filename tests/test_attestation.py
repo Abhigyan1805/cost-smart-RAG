@@ -35,9 +35,10 @@ class FakeServerClient:
     model_id = "Qwen/Qwen2.5-3B-Instruct"
 
     def __init__(self, revision="a09a35458c702b33eeacc393d103063234e8bc28",
-                 weights="f" * 64):
+                 weights="f" * 64, served_model=None):
         self.revision = revision
         self.weights = weights
+        self.served_model = served_model
 
     def generate(self, prompt, **kwargs):
         raw = {"response": "Final answer: photosynthesis", "eval_count": 3,
@@ -46,6 +47,9 @@ class FakeServerClient:
             raw["model_revision"] = self.revision
         if self.weights is not None:
             raw["weights_sha256"] = self.weights
+        raw["served_model"] = (self.served_model
+                               if self.served_model is not None
+                               else self.model_id)
         return GenerateResult(text=raw["response"], tokens=3, latency_s=1.5,
                               raw=raw)
 
@@ -76,6 +80,26 @@ class BuildAttemptAttestationTest(unittest.TestCase):
         attempt = sweep.build_attempt(_query(), "C1", "v1", "sha", "cfg",
                                       retrieval_ms=6.0)
         self.assertEqual(attempt["attestation"], ATTESTATION_STUB)
+
+    def test_served_model_mismatch_is_not_attested(self):
+        # The server says it loaded a different checkpoint than the row
+        # claims: provenance exists, but the identity does not match, so the
+        # row must not read server-attested.
+        attempt = sweep.build_attempt(
+            _query(), "L0", "v1", "sha", "cfg", seed=0, retrieval_ms=6.0,
+            live_client=FakeServerClient(served_model="someone/else-3B"),
+            live_model_version=FakeServerClient.model_id, temperature=0)
+        self.assertEqual(attempt["generator_mode"], "measured")
+        self.assertEqual(attempt["attestation"], ATTESTATION_UNATTESTED)
+
+    def test_attested_requires_served_model_confirmation(self):
+        # Revision present but the server does not report the served id ->
+        # strict: flagged unattested.
+        attempt = sweep.build_attempt(
+            _query(), "L0", "v1", "sha", "cfg", seed=0, retrieval_ms=6.0,
+            live_client=FakeServerClient(served_model=""),
+            live_model_version=FakeServerClient.model_id, temperature=0)
+        self.assertEqual(attempt["attestation"], ATTESTATION_UNATTESTED)
 
 
 class AttestationStatusTest(unittest.TestCase):

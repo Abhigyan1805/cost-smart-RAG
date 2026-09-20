@@ -391,6 +391,9 @@ def execute_live_local(
         "model_version": model_version,
         "model_revision": str(raw.get("model_revision") or ""),
         "weights_sha256": str(raw.get("weights_sha256") or ""),
+        # Server-reported id of the checkpoint it actually loaded; the client
+        # only marks a row attested when this equals the requested model id.
+        "served_model": str(raw.get("served_model") or ""),
     }
 
 
@@ -419,10 +422,16 @@ def build_attempt(
         generator_mode = GENERATOR_MEASURED
         model_revision = run.pop("model_revision", "")
         weights_sha256 = run.pop("weights_sha256", "")
-        attestation = (
-            ATTESTATION_ATTESTED if (model_revision or weights_sha256)
-            else ATTESTATION_UNATTESTED
+        served_model = run.pop("served_model", "")
+        # Attested only when the server proves provenance AND confirms the
+        # checkpoint it loaded is the one this row claims (served_model ==
+        # model_version). A mismatch or a missing served_model is flagged
+        # unattested, never silently trusted.
+        attested = (
+            (bool(model_revision) or bool(weights_sha256))
+            and bool(served_model) and served_model == model_version
         )
+        attestation = ATTESTATION_ATTESTED if attested else ATTESTATION_UNATTESTED
     else:
         run = stub_execute(query, route_id, seed)
         generator_mode = GENERATOR_STUB
@@ -478,6 +487,32 @@ def build_attempt(
     }
 
 
+def _verify_index_backend(index: dict) -> None:
+    """Refuse an index built by a different embedding backend than the process.
+
+    A 256-dim hash-fallback query silently truncated against a 384-dim MiniLM
+    index (or vice versa) would score garbage with no error, so the sweep
+    checks backend + dimension once at index load and fails loudly.
+    """
+    from ..retrieval.dense import embed_texts, embedding_backend
+
+    idx_backend = index.get("embedding_backend")
+    idx_dim = index.get("embedding_dim")
+    if not idx_backend and not idx_dim:
+        return
+    probe = embed_texts(["backend probe"])
+    cur_backend = embedding_backend()
+    cur_dim = len(probe[0]) if probe else 0
+    if idx_backend and cur_backend != idx_backend:
+        raise RuntimeError(
+            f"index embedding_backend={idx_backend!r} but this process embeds "
+            f"with {cur_backend!r}; refusing to sweep with mismatched backends")
+    if idx_dim and cur_dim and int(idx_dim) != cur_dim:
+        raise RuntimeError(
+            f"index embedding_dim={idx_dim} but this process produces "
+            f"{cur_dim}-dim vectors; refusing to sweep with mismatched dims")
+
+
 def _load_retrieval_index(index_path: str | Path | None) -> dict | None:
     """Load the pilot index for measured retrieval latency (None = stub)."""
     if not index_path:
@@ -486,21 +521,38 @@ def _load_retrieval_index(index_path: str | Path | None) -> dict | None:
     if not path.exists():
         print(f"warning: index {path} missing; retrieval latency stays stubbed", file=sys.stderr)
         return None
-    return json.loads(path.read_text())
+    index = json.loads(path.read_text())
+    _verify_index_backend(index)
+    # Hoist the chunk_id -> text map out of the per-attempt retrieval call.
+    index.setdefault(
+        "_chunk_by_id",
+        {c["chunk_id"]: c["text"] for c in index.get("chunks", [])},
+    )
+    return index
 
 
-def _measured_retrieval(question: str, index: dict, top_k: int = 5) -> tuple[float, list[str]]:
+def _measured_retrieval(question: str, index: dict, top_k: int = 5,
+                        cache: dict | None = None) -> tuple[float, list[str]]:
     """Time one hybrid_search over the pilot index; also contract-check features.
 
     Returns ``(latency_ms, passage_texts)``: the texts back the live
     local-tier prompts (k passages per ROUTE_SPECS), so generation and
     retrieval timing share one index lookup per attempt.
+
+    ``cache`` (tiersweep-16) memoizes the result per ``(question, top_k)``
+    within one sweep/repeat run: retrieval is a property of the query+index,
+    so the 7 routes and 3 repeats of a query reuse one measured lookup instead
+    of re-embedding the same question 21 times. The chunk_id->text map is
+    hoisted into the index at load (see :func:`_load_retrieval_index`).
     """
     import time as _time
 
     from ..retrieval.features import FEATURE_NAMES, extract_routing_features
     from ..retrieval.hybrid import hybrid_search
 
+    key = (question, top_k)
+    if cache is not None and key in cache:
+        return cache[key]
     t0 = _time.perf_counter()
     hits = hybrid_search(
         question,
@@ -514,9 +566,13 @@ def _measured_retrieval(question: str, index: dict, top_k: int = 5) -> tuple[flo
     missing = [k for k in FEATURE_NAMES if k not in feats]
     if missing:
         raise RuntimeError(f"retrieval feature contract broken, missing: {missing}")
-    by_id = {c["chunk_id"]: c["text"] for c in index["chunks"]}
+    by_id = index.get("_chunk_by_id") or {
+        c["chunk_id"]: c["text"] for c in index["chunks"]}
     passages = [by_id[h["chunk_id"]] for h in hits if h["chunk_id"] in by_id]
-    return dt_ms, passages
+    result = (dt_ms, passages)
+    if cache is not None:
+        cache[key] = result
+    return result
 
 
 def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
@@ -605,6 +661,7 @@ def run_sweep(
 
     index = _load_retrieval_index(index_path) if use_retrieval else None
     retrieval_measured = 0
+    retrieval_cache: dict = {}
 
     clients: dict[str, object] = {}
     live_set = tuple(r for r in live_routes if r in LOCAL_ROUTES)
@@ -638,7 +695,8 @@ def run_sweep(
             retrieval_ms = None
             passages: list[str] = []
             if index is not None and query.get("question"):
-                retrieval_ms, passages = _measured_retrieval(query["question"], index)
+                retrieval_ms, passages = _measured_retrieval(
+                    query["question"], index, cache=retrieval_cache)
                 retrieval_measured += 1
             if live_client is not None:
                 n_live += 1

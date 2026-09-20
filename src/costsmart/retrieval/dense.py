@@ -106,7 +106,16 @@ def embedding_backend() -> str:
 
 
 def cosine_similarity(a: list[float], b: list[float]) -> float:
-    """Cosine similarity for (already normalised) vectors."""
+    """Cosine similarity for (already normalised) vectors.
+
+    Raises on a dimension mismatch: ``zip`` would otherwise silently truncate
+    (e.g. a 256-dim hash-fallback query scored against a 384-dim MiniLM
+    index) and return a garbage score with no error.
+    """
+    if len(a) != len(b):
+        raise ValueError(
+            f"embedding dimension mismatch: {len(a)} vs {len(b)}; the query "
+            "and index vectors were produced by different backends")
     return sum(x * y for x, y in zip(a, b))
 
 
@@ -115,6 +124,11 @@ def dense_search(
 ) -> list[dict]:
     """Rank ``chunks`` by cosine similarity to the embedded query."""
     qvec = embed_texts([query])[0]
+    if vectors and len(vectors[0]) != len(qvec):
+        raise ValueError(
+            f"dense dimension mismatch: query vector dim {len(qvec)} != "
+            f"index vector dim {len(vectors[0])}; the index was built with a "
+            "different embedding backend (e.g. MiniLM vs hash fallback)")
     scored = [
         {"chunk_id": c["chunk_id"], "doc_id": c["doc_id"], "score": cosine_similarity(qvec, v)}
         for c, v in zip(chunks, vectors)

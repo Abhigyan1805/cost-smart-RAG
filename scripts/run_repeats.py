@@ -182,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
         from costsmart.eval.oracle_sweep import ROUTE_SPECS, _measured_retrieval
         inserted = skipped = 0
         draws = 0
+        retrieval_cache: dict = {}
         for pair in pairs:
             route_id = pair["route_id"]
             query = qmap[pair["query_id"]]
@@ -212,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
                 passages: list[str] = []
                 if index is not None and query.get("question"):
                     retrieval_ms, passages = _measured_retrieval(
-                        query["question"], index)
+                        query["question"], index, cache=retrieval_cache)
                 attempt = None
                 last_err: Exception | None = None
                 # Transient tunnel/generation errors retry the same draw

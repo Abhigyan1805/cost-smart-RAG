@@ -54,6 +54,13 @@ class DenseCacheTest(unittest.TestCase):
         self.assertEqual(self.FakeModel.encode_calls, 5)
         self.assertEqual(dense.embedding_backend(), "sentence-transformers")
 
+    def test_dimension_mismatch_raises_instead_of_truncating(self):
+        with self.assertRaises(ValueError):
+            dense.cosine_similarity([1.0, 0.0], [1.0, 0.0, 0.0])
+        chunks = [{"chunk_id": "c1", "doc_id": "d1"}]
+        with self.assertRaises(ValueError):
+            dense.dense_search("q", chunks, [[1.0, 0.0, 0.0]], top_k=1)
+
     def test_failed_load_is_not_retried(self):
         # A model that raises on construction is cached as failed, so the
         # constructor is not retried on the next call (hash fallback used).
