@@ -714,6 +714,10 @@ def run_sweep(
                 inserted += 1
             else:
                 skipped += 1
+            if (n_live + n_stub) % 50 == 0:
+                print(f"  ... {n_live + n_stub}/{len(matrix)} attempts "
+                      f"({n_live} measured, {inserted} new, {skipped} skipped)",
+                      file=sys.stderr, flush=True)
         total = store.count()
     finally:
         if own_store:
