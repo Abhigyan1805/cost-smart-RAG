@@ -27,6 +27,11 @@ import sys
 from pathlib import Path
 
 from ..telemetry import cost as cost_mod
+from ..telemetry.schema import (
+    ATTESTATION_ATTESTED,
+    ATTESTATION_STUB,
+    ATTESTATION_UNATTESTED,
+)
 from ..telemetry.store import TelemetryStore
 from . import graders
 
@@ -371,6 +376,9 @@ def execute_live_local(
     # Server-tokenized prompt count when the Colab server reports it
     # (scripts/colab_local_tier.py serve); else a whitespace estimate.
     tokens_in = int(raw.get("prompt_eval_count", 0) or len(prompt.split()))
+    # Server-side model attestation (tiersweep-16): the endpoint reports the
+    # resolved revision / weight hash it actually served, so the row's model
+    # identity is proven by the server, not declared by the client.
     return {
         "prediction": extract_final_answer(result.text),
         "tokens_in": tokens_in,
@@ -381,6 +389,11 @@ def execute_live_local(
         "latency_ms_verify": 0.0,
         "latency_ms_total": max(0.0, float(server_latency_s)) * 1000.0,
         "model_version": model_version,
+        "model_revision": str(raw.get("model_revision") or ""),
+        "weights_sha256": str(raw.get("weights_sha256") or ""),
+        # Server-reported id of the checkpoint it actually loaded; the client
+        # only marks a row attested when this equals the requested model id.
+        "served_model": str(raw.get("served_model") or ""),
     }
 
 
@@ -407,9 +420,24 @@ def build_attempt(
         )
         model_version = run.pop("model_version")
         generator_mode = GENERATOR_MEASURED
+        model_revision = run.pop("model_revision", "")
+        weights_sha256 = run.pop("weights_sha256", "")
+        served_model = run.pop("served_model", "")
+        # Attested only when the server proves provenance AND confirms the
+        # checkpoint it loaded is the one this row claims (served_model ==
+        # model_version). A mismatch or a missing served_model is flagged
+        # unattested, never silently trusted.
+        attested = (
+            (bool(model_revision) or bool(weights_sha256))
+            and bool(served_model) and served_model == model_version
+        )
+        attestation = ATTESTATION_ATTESTED if attested else ATTESTATION_UNATTESTED
     else:
         run = stub_execute(query, route_id, seed)
         generator_mode = GENERATOR_STUB
+        model_revision = ""
+        weights_sha256 = ""
+        attestation = ATTESTATION_STUB
     if retrieval_ms is not None:
         # Measured hybrid-retrieval latency replaces the stub estimate; the
         # generator itself stays a stub (cloud spend estimated, not spent).
@@ -453,7 +481,36 @@ def build_attempt(
         "retrieval_mode": retrieval_mode,
         "temperature": temperature,
         "seed": seed,
+        "model_revision": model_revision,
+        "weights_sha256": weights_sha256,
+        "attestation": attestation,
     }
+
+
+def _verify_index_backend(index: dict) -> None:
+    """Refuse an index built by a different embedding backend than the process.
+
+    A 256-dim hash-fallback query silently truncated against a 384-dim MiniLM
+    index (or vice versa) would score garbage with no error, so the sweep
+    checks backend + dimension once at index load and fails loudly.
+    """
+    from ..retrieval.dense import embed_texts, embedding_backend
+
+    idx_backend = index.get("embedding_backend")
+    idx_dim = index.get("embedding_dim")
+    if not idx_backend and not idx_dim:
+        return
+    probe = embed_texts(["backend probe"])
+    cur_backend = embedding_backend()
+    cur_dim = len(probe[0]) if probe else 0
+    if idx_backend and cur_backend != idx_backend:
+        raise RuntimeError(
+            f"index embedding_backend={idx_backend!r} but this process embeds "
+            f"with {cur_backend!r}; refusing to sweep with mismatched backends")
+    if idx_dim and cur_dim and int(idx_dim) != cur_dim:
+        raise RuntimeError(
+            f"index embedding_dim={idx_dim} but this process produces "
+            f"{cur_dim}-dim vectors; refusing to sweep with mismatched dims")
 
 
 def _load_retrieval_index(index_path: str | Path | None) -> dict | None:
@@ -464,21 +521,38 @@ def _load_retrieval_index(index_path: str | Path | None) -> dict | None:
     if not path.exists():
         print(f"warning: index {path} missing; retrieval latency stays stubbed", file=sys.stderr)
         return None
-    return json.loads(path.read_text())
+    index = json.loads(path.read_text())
+    _verify_index_backend(index)
+    # Hoist the chunk_id -> text map out of the per-attempt retrieval call.
+    index.setdefault(
+        "_chunk_by_id",
+        {c["chunk_id"]: c["text"] for c in index.get("chunks", [])},
+    )
+    return index
 
 
-def _measured_retrieval(question: str, index: dict, top_k: int = 5) -> tuple[float, list[str]]:
+def _measured_retrieval(question: str, index: dict, top_k: int = 5,
+                        cache: dict | None = None) -> tuple[float, list[str]]:
     """Time one hybrid_search over the pilot index; also contract-check features.
 
     Returns ``(latency_ms, passage_texts)``: the texts back the live
     local-tier prompts (k passages per ROUTE_SPECS), so generation and
     retrieval timing share one index lookup per attempt.
+
+    ``cache`` (tiersweep-16) memoizes the result per ``(question, top_k)``
+    within one sweep/repeat run: retrieval is a property of the query+index,
+    so the 7 routes and 3 repeats of a query reuse one measured lookup instead
+    of re-embedding the same question 21 times. The chunk_id->text map is
+    hoisted into the index at load (see :func:`_load_retrieval_index`).
     """
     import time as _time
 
     from ..retrieval.features import FEATURE_NAMES, extract_routing_features
     from ..retrieval.hybrid import hybrid_search
 
+    key = (question, top_k)
+    if cache is not None and key in cache:
+        return cache[key]
     t0 = _time.perf_counter()
     hits = hybrid_search(
         question,
@@ -492,9 +566,13 @@ def _measured_retrieval(question: str, index: dict, top_k: int = 5) -> tuple[flo
     missing = [k for k in FEATURE_NAMES if k not in feats]
     if missing:
         raise RuntimeError(f"retrieval feature contract broken, missing: {missing}")
-    by_id = {c["chunk_id"]: c["text"] for c in index["chunks"]}
+    by_id = index.get("_chunk_by_id") or {
+        c["chunk_id"]: c["text"] for c in index["chunks"]}
     passages = [by_id[h["chunk_id"]] for h in hits if h["chunk_id"] in by_id]
-    return dt_ms, passages
+    result = (dt_ms, passages)
+    if cache is not None:
+        cache[key] = result
+    return result
 
 
 def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
@@ -503,15 +581,24 @@ def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
     return dt_ms
 
 
-def _build_live_clients(route_ids: list[str]) -> dict[str, object]:
+def _build_live_clients(
+    route_ids: list[str], live_model: str | None = None,
+) -> dict[str, object]:
     """Attach Colab clients for the local tiers in this sweep.
 
     Fails fast when the session is not attached (never a silent stub
     fallback). Cloud routes are excluded by construction — see
     :func:`execute_live_local`.
+
+    ``live_model`` (tiersweep-16) overrides the served model id for every
+    live route: the attached endpoint serves ONE model, so a tier sweep runs
+    the same routes against progressively stronger checkpoints. The override
+    becomes the row's ``model_version`` (hence the cache key), so rows for
+    different checkpoints never collide. When ``None`` the historical
+    route->tier mapping is used unchanged.
     """
     from ..models.colab_client import COLAB_ENDPOINT_ENV, get_colab_endpoint
-    from ..models.registry import get_client
+    from ..models.registry import create_client, get_client
 
     tiers = {ROUTE_SPECS[r][0] for r in route_ids if r in LOCAL_ROUTES}
     if not tiers:
@@ -522,6 +609,11 @@ def _build_live_clients(route_ids: list[str]) -> dict[str, object]:
             f"set {COLAB_ENDPOINT_ENV} per docs/colab-handoff.md "
             "(the captain connects the Colab session on request)"
         )
+    if live_model:
+        entry = {"name": "live-served-model", "provider": "colab",
+                 "model_id": live_model}
+        client = create_client(entry)
+        return {tier: client for tier in sorted(tiers)}
     clients: dict[str, object] = {}
     for tier in sorted(tiers):
         clients[tier] = get_client(tier)
@@ -538,6 +630,7 @@ def run_sweep(
     live_local: bool = False,
     live_clients: dict[str, object] | None = None,
     live_routes: tuple[str, ...] = LOCAL_ROUTES,
+    live_model: str | None = None,
 ) -> dict:
     """Run the query x route matrix; resumable via cache_key skips.
 
@@ -568,11 +661,15 @@ def run_sweep(
 
     index = _load_retrieval_index(index_path) if use_retrieval else None
     retrieval_measured = 0
+    retrieval_cache: dict = {}
 
     clients: dict[str, object] = {}
     live_set = tuple(r for r in live_routes if r in LOCAL_ROUTES)
     if live_local:
-        clients = dict(live_clients or _build_live_clients(list(live_set)))
+        clients = dict(
+            live_clients
+            or _build_live_clients(list(live_set), live_model=live_model)
+        )
 
     own_store = store is None
     store = store or TelemetryStore(db_path)
@@ -598,7 +695,8 @@ def run_sweep(
             retrieval_ms = None
             passages: list[str] = []
             if index is not None and query.get("question"):
-                retrieval_ms, passages = _measured_retrieval(query["question"], index)
+                retrieval_ms, passages = _measured_retrieval(
+                    query["question"], index, cache=retrieval_cache)
                 retrieval_measured += 1
             if live_client is not None:
                 n_live += 1
@@ -616,6 +714,10 @@ def run_sweep(
                 inserted += 1
             else:
                 skipped += 1
+            if (n_live + n_stub) % 50 == 0:
+                print(f"  ... {n_live + n_stub}/{len(matrix)} attempts "
+                      f"({n_live} measured, {inserted} new, {skipped} skipped)",
+                      file=sys.stderr, flush=True)
         total = store.count()
     finally:
         if own_store:
@@ -632,6 +734,7 @@ def run_sweep(
         "retrieval_measured_attempts": retrieval_measured,
         "live_local": live_local,
         "live_routes": list(live_set) if live_local else [],
+        "live_model": live_model,
         "generator_measured_attempts": n_live,
         "generator_stubbed_attempts": n_stub,
         "temperature": GENERATOR_TEMPERATURE,
@@ -659,6 +762,10 @@ def main(argv: list[str] | None = None) -> int:
                         help="comma-separated subset of local routes to run live "
                              "(default all); restrict to the tiers the attached "
                              "session actually serves, e.g. 'L0,L1'")
+    parser.add_argument("--live-model", default=None,
+                        help="served model id override for every live local route "
+                             "(tier sweep: one endpoint, progressively stronger "
+                             "checkpoints); recorded as the row's model_version")
     args = parser.parse_args(argv)
 
     limit = None if args.no_limit else args.limit
@@ -671,6 +778,7 @@ def main(argv: list[str] | None = None) -> int:
         use_retrieval=not args.no_retrieval,
         live_local=args.live_local,
         live_routes=live_routes,
+        live_model=args.live_model,
     )
     if args.export_csv or args.export_parquet:
         store = TelemetryStore(args.db)

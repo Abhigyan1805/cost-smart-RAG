@@ -32,14 +32,53 @@ def _hash_embed(text: str, dim: int = FALLBACK_DIM) -> list[float]:
     return [v / norm for v in vec]
 
 
-def _st_embed(texts: list[str]) -> list[list[float]] | None:
+#: Cached sentence-transformers model. The constructor loads ~90 MB of
+#: weights from disk, so loading it per call (once per query and per repeat)
+#: dominated sweep latency and inflated the measured per-query GPU cost.
+#: Load once, reuse; cache the load *failure* too so a broken install does
+#: not retry the constructor on every call.
+_ST_MODEL = None
+_ST_LOAD_FAILED = False
+
+
+def _get_st_model():
+    """Return the process-wide SentenceTransformer, loading it at most once.
+
+    Returns ``None`` (without retrying) when sentence-transformers is absent
+    or the model fails to load, so callers fall back to the hash embedding.
+    """
+    global _ST_MODEL, _ST_LOAD_FAILED
+    if _ST_MODEL is not None:
+        return _ST_MODEL
+    if _ST_LOAD_FAILED:
+        return None
     try:
         from sentence_transformers import SentenceTransformer  # type: ignore
     except ImportError:
+        _ST_LOAD_FAILED = True
         return None
     try:
-        model = SentenceTransformer(EMBEDDING_MODEL)
-        return [list(map(float, v)) for v in model.encode(texts, normalize_embeddings=True)]
+        _ST_MODEL = SentenceTransformer(EMBEDDING_MODEL)
+    except Exception:
+        _ST_LOAD_FAILED = True
+        return None
+    return _ST_MODEL
+
+
+def _reset_st_cache() -> None:
+    """Drop the cached model/load-failure (test isolation + reload support)."""
+    global _ST_MODEL, _ST_LOAD_FAILED
+    _ST_MODEL = None
+    _ST_LOAD_FAILED = False
+
+
+def _st_embed(texts: list[str]) -> list[list[float]] | None:
+    model = _get_st_model()
+    if model is None:
+        return None
+    try:
+        return [list(map(float, v))
+                for v in model.encode(texts, normalize_embeddings=True)]
     except Exception:
         return None
 
@@ -67,7 +106,16 @@ def embedding_backend() -> str:
 
 
 def cosine_similarity(a: list[float], b: list[float]) -> float:
-    """Cosine similarity for (already normalised) vectors."""
+    """Cosine similarity for (already normalised) vectors.
+
+    Raises on a dimension mismatch: ``zip`` would otherwise silently truncate
+    (e.g. a 256-dim hash-fallback query scored against a 384-dim MiniLM
+    index) and return a garbage score with no error.
+    """
+    if len(a) != len(b):
+        raise ValueError(
+            f"embedding dimension mismatch: {len(a)} vs {len(b)}; the query "
+            "and index vectors were produced by different backends")
     return sum(x * y for x, y in zip(a, b))
 
 
@@ -76,6 +124,11 @@ def dense_search(
 ) -> list[dict]:
     """Rank ``chunks`` by cosine similarity to the embedded query."""
     qvec = embed_texts([query])[0]
+    if vectors and len(vectors[0]) != len(qvec):
+        raise ValueError(
+            f"dense dimension mismatch: query vector dim {len(qvec)} != "
+            f"index vector dim {len(vectors[0])}; the index was built with a "
+            "different embedding backend (e.g. MiniLM vs hash fallback)")
     scored = [
         {"chunk_id": c["chunk_id"], "doc_id": c["doc_id"], "score": cosine_similarity(qvec, v)}
         for c, v in zip(chunks, vectors)

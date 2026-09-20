@@ -4,6 +4,7 @@
 # below per query; the router is scored by its cost-quality distance to that oracle.
 models:
   - local-small
+  - local-3b
   - local-medium
   - cloud-small
   - cloud-large

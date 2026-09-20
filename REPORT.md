@@ -53,10 +53,16 @@ Three further limits are load-bearing:
   quoted below (oracle `$0.006402`, all-C4 `$0.120015`, etc.) is a stub
   estimate; **actual cloud spend is $0**. The oracle/comparison cost figures
   inherit this.
-- **Measured-model identity is self-attested.** `model_version` is the
-  string the client sends, not a server-side attestation: an endpoint could
-  serve a different checkpoint and still be recorded as the pinned id. The
-  repeats model check compares two client-supplied strings.
+- **Measured-model identity is now server-attested for new rows, and flagged
+  where it is not.** Before `tiersweep-16`, `model_version` was the string
+  the client sent, not a server-side attestation: an endpoint could serve a
+  different checkpoint and still be recorded as the pinned id. The serving
+  endpoint now reports the resolved revision + weight hash and the client
+  records them (`model_revision` / `weights_sha256` / `attestation`); every
+  measured row lacking server provenance is flagged `unattested` by
+  `scripts/attestation_audit.py`. The `tiersweep-16` 3B/7B rows are
+  `server-attested`; the committed `realdata-15` 1.5B rows (and all older
+  artifacts) predate the columns and are flagged, never falsified.
 
 These are the boundaries within which every number below should be read.
 
@@ -139,6 +145,81 @@ build a routing policy on the L0 default yet; the measured gap is real
 (McNemar p ~ 8e-41) but the cheap tier's coverage is at the decision
 boundary. Any cloud-correctness/savings claim stays bounded by the
 exact-correct C4 stub (real cloud accuracy untested; $0 spent).
+
+## Cheap-tier break-even (tiersweep-16): 3B clears the closed-book gate
+
+The `realdata-15` NO-GO is driven by the **cheap tier**, not the router: the
+1.5B closed-book route (L0) covers only 0.095 of queries against the 0.10
+gate, while the oracle ceiling is ~94% saving at no quality loss. This sweep
+asks where a stronger cheap tier starts to pay: the same three cheap-tier
+routes - **L0** (k=0, direct), **L1** (k=5, direct), **C0** (k=5,
+chain-of-thought) - on **Qwen2.5-1.5B / 3B / 7B**, over the same committed
+real Tier-A corpus (NQ + HotpotQA + MuSiQue), temperature 0, seed 0, 3x
+majority repeats. The 1.5B tier reuses the committed `realdata-15` run (not
+re-measured); 3B/7B ran fresh on the Kaggle GPU route
+(`kernels/tiersweep-16-local-sweep/`, git `e282989`, 1800/1800 repeat draws
+per tier) and are **server-attested**. Artifacts: `results/tiersweep-16/`
+(`tiers.json`, `TIERS.md`, `tiers.svg`, `kaggle_provenance.json`,
+`MODEL_MANIFEST.md`).
+
+### Tier-vs-coverage-vs-cost (n=200 paired per route; 95% bootstrap CIs)
+
+| tier | route | coverage (routable fraction) | C4-gap | McNemar p | GPU-s/query | cost ratio r | saving @ gate | verdict |
+|---|---|---|---|---|---|---|---|---|
+| Qwen2.5-1.5B | L0 | 0.095 [0.055, 0.140] | 0.905 | 8.0e-41 | 1.00 | 0.166 | 0.083 | **NO-GO** |
+| Qwen2.5-1.5B | L1 | 0.125 [0.080, 0.170] | 0.875 | 1.6e-39 | 3.25 | 0.536 | 0.046 | GO (marginal) |
+| Qwen2.5-3B | L0 | **0.155 [0.105, 0.205]** | 0.845 | 3.3e-38 | 3.27 | 0.540 | 0.046 | **GO** |
+| Qwen2.5-3B | L1 | 0.085 [0.050, 0.125] | 0.915 | 2.9e-41 | 6.80 | 1.122 | -0.012 | NO-GO |
+| Qwen2.5-3B | C0 | 0.170 [0.120, 0.225] | 0.830 | 1.5e-37 | 5.07 | 0.836 | 0.016 | GO |
+| Qwen2.5-7B | L0 | 0.150 [0.100, 0.200] | 0.850 | 2.0e-38 | 1.86 | 0.306 | 0.069 | **GO** |
+| Qwen2.5-7B | L1 | 0.065 [0.035, 0.100] | 0.935 | 3.9e-42 | 8.03 | 1.325 | -0.033 | NO-GO |
+| Qwen2.5-7B | C0 | 0.075 [0.040, 0.115] | 0.925 | 1.1e-41 | 13.74 | 2.265 | -0.127 | NO-GO |
+
+### Break-even statement
+
+At the measured cheap/strong cost ratio `r`, the no-quality-loss saving from
+routing a covered fraction `f` is `f * (1 - r)`; the plan's 0.10
+exploitable-separation gate is the break-even coverage, so clearing it
+asserts a saving of at least `0.10 * (1 - r)`. **The closed-book cheap route
+L0 first clears the gate at Qwen2.5-3B**: coverage 0.155 [0.105, 0.205] (the
+CI lower bound clears 0.10), cost ratio r = 0.540. Qwen2.5-7B is statistically
+indistinguishable (0.150 [0.100, 0.200], r = 0.306) - so the break-even sits
+between 1.5B and 3B, and adding parameters past 3B buys no further closed-book
+coverage here. The 1.5B L1 route already clears the gate on the point estimate
+(0.125) but not its CI lower bound, so the historical NO-GO is specific to the
+closed-book L0 route.
+
+### Caveats (load-bearing)
+
+- **The strong route is still a stub.** C4 is exactly correct on every query
+  by the frozen stub contract, so the gate's routable fraction equals the
+  measured cheap-tier accuracy and the C4-vs-tier gap is `1 - accuracy`; the
+  McNemar tests are therefore degenerate (c = 0) and are reported only for
+  completeness. Real cloud accuracy remains untested ($0 spent).
+- **The cost ratio mixes measured local GPU cost with a stub cloud
+  estimate.** Cheap cost is measured amortized T4 GPU-seconds; strong cost is
+  the deterministic stub's token draw priced at gpt-4o rates (tiny token
+  counts), so `r` is an artifact of the stub as much as of the hardware. The
+  measured GPU-seconds/query column is the robust cost axis.
+- **L1/C0 degrade with model size - a prompt-adherence artifact, not a
+  capability claim.** The larger checkpoints answer direct/CoT prompts
+  verbosely and ramble past the 256-token cap (`extract_final_answer` then
+  returns the whole text), so `token_f1` falls below 0.5 on routes whose
+  reference answers are short; e.g. 7B L1 averages 104 output tokens and hits
+  the cap on many queries. The closed-book L0 route, which yields short
+  answers, is the clean cross-tier comparison and the basis of the
+  break-even.
+- **Licence.** The first tier to clear the gate (3B) is under the **Qwen
+  Research License**; the 7B is Apache-2.0. A commercially deployable
+  break-even therefore depends on the 7B, whose coverage is statistically
+  indistinguishable from 3B's (`MODEL_MANIFEST.md`).
+- **Retrieval-latency caveat.** The `realdata-15` run reloaded the
+  MiniLM embedding model once per attempt, inflating its measured
+  `latency_ms_retrieval` (avg 1380 ms vs 72 ms after the `tiersweep-16`
+  module-level cache fix) and wall-clock. This does **not** affect correctness
+  labels or the amortized GPU cost (`gpu_seconds` is generation-only, from the
+  server), so the two tiers' cost ratios stay comparable; the 1.5B rows keep
+  their original latency columns.
 
 ## Headroom gate (costheadroom-09): cheapest-local vs strongest-cloud
 

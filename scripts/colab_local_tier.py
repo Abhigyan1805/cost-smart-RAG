@@ -44,8 +44,56 @@ def cmd_check(base_url: str, model: str, prompt: str, timeout_s: float) -> int:
     dt = time.monotonic() - t0
     text = payload.get("response", "")
     print(f"check OK: {dt * 1000:.0f}ms response={text[:120]!r} "
-          f"eval_count={payload.get('eval_count', 0)}")
+          f"eval_count={payload.get('eval_count', 0)} "
+          f"revision={payload.get('model_revision') or 'unknown'} "
+          f"weights={(payload.get('weights_sha256') or '')[:12] or 'unavailable'}")
     return 0
+
+
+def _weights_sha256(model_id: str) -> str:
+    """Best-effort sha256 over the served checkpoint's safetensors shards.
+
+    Reads the weights from the local HuggingFace cache (the same files
+    transformers just loaded), so the hash proves the served bytes without a
+    second full-weight copy in memory. Returns "" when the shards are not
+    found - the resolved revision still attests the checkpoint (tiersweep-16).
+    """
+    import hashlib
+    import os
+    from pathlib import Path
+
+    try:
+        from huggingface_hub import constants  # type: ignore
+
+        hub_cache = Path(
+            os.environ.get("HF_HUB_CACHE") or constants.HF_HUB_CACHE)
+    except Exception:  # noqa: BLE001 - fall back to the default cache path
+        hub_cache = Path(os.path.expanduser("~/.cache/huggingface/hub"))
+    repo_dir = hub_cache / ("models--" + model_id.replace("/", "--"))
+    snapshots = sorted(p for p in (repo_dir / "snapshots").glob("*")
+                       if p.is_dir())
+    for snap in reversed(snapshots):
+        shards = sorted(snap.glob("*.safetensors"))
+        if not shards:
+            continue
+        digest = hashlib.sha256()
+        for shard in shards:
+            with open(shard, "rb") as fh:
+                for chunk in iter(lambda: fh.read(1 << 20), b""):
+                    digest.update(chunk)
+        return digest.hexdigest()
+    return ""
+
+
+def _resolve_attestation(model_id: str, lm) -> tuple[str, str]:
+    """(resolved_revision, weights_sha256) reported for the served model.
+
+    The revision comes from transformers' resolved commit for the loaded
+    config (`_commit_hash`), i.e. the exact hub snapshot served - not the
+    mutable ``main`` ref the client asked for.
+    """
+    revision = str(getattr(getattr(lm, "config", None), "_commit_hash", "") or "")
+    return revision, _weights_sha256(model_id)
 
 
 def cmd_serve(model: str, port: int) -> int:
@@ -69,8 +117,17 @@ def cmd_serve(model: str, port: int) -> int:
         device_map="auto",
     )
     lm.eval()
+    model_revision, weights_sha256 = _resolve_attestation(model, lm)
+    # The id transformers actually loaded (not the client's request), so a
+    # mislabeled request can be detected server-side.
+    served_model = str(
+        getattr(lm, "name_or_path", "")
+        or getattr(getattr(lm, "config", None), "_name_or_path", "")
+        or model)
     print(f"serving {model} on :{port} (device: "
-          f"{'cuda' if torch.cuda.is_available() else 'cpu'})", flush=True)
+          f"{'cuda' if torch.cuda.is_available() else 'cpu'}; attesting "
+          f"revision={model_revision or 'unknown'} "
+          f"weights={weights_sha256[:12] or 'unavailable'})", flush=True)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *args):  # quieter logs
@@ -123,7 +180,12 @@ def cmd_serve(model: str, port: int) -> int:
                         "eval_count": len(tok.encode(gen)),
                         "prompt_eval_count": prompt_tokens,
                         "latency_s": time.monotonic() - t0,
-                        "model": req.get("model", model)})
+                        "model": req.get("model", model),
+                        # Server-side attestation: the id/revision/weight hash
+                        # actually served (tiersweep-16).
+                        "served_model": served_model,
+                        "model_revision": model_revision,
+                        "weights_sha256": weights_sha256})
 
     HTTPServer(("0.0.0.0", port), Handler).serve_forever()
     return 0

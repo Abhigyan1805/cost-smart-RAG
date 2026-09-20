@@ -139,3 +139,58 @@ from the shared multi-hop pool; the headroom gate reads L0 (closed-book) vs
 the C4 stub, not L1. Licences + revisions + checksums are recorded per
 dataset in `results/realdata-15/corpus.json`'s manifest and in
 `results/realdata-15/CORPUS_MANIFEST.md` (never inferred from memory).
+
+## tiersweep-16: cheap-tier break-even sweep (1.5B / 3B / 7B)
+
+`kernels/tiersweep-16-local-sweep/` reuses the realdata-15 route (clone the
+public task branch, committed real corpus + deterministic real index, repo's
+own transformers server) but loops the cheap-tier routes **L0 (closed-book),
+L1 (k=5 retrieval), C0 (k=5 chain-of-thought)** over progressively stronger
+Qwen2.5 checkpoints: **1.5B -> 3B -> 7B**. Each model writes its own DBs
+(`sweep-<tag>.db` / `repeats-<tag>.db`, tag in `1p5b|3b|7b`) with the same
+resumable 3x-majority repeat protocol (temperature 0, seed 0); cloud routes
+stay stub-estimated ($0). The `--live-model <checkpoint>` override forces
+every live route onto the one attached endpoint and becomes the row's
+`model_version`, so rows for different checkpoints never collide and a
+re-push resumes from any committed partial DB.
+
+**Attestation (tiersweep-16 audit fix).** `scripts/colab_local_tier.py serve`
+reports the resolved HuggingFace commit (`model_revision`) and a best-effort
+sha256 of the served weight shards (`weights_sha256`) in every
+`/api/generate` response; the client records them and derives the
+`attestation` column (`server-attested` / `unattested` / `stub` /
+`unflagged-legacy`). Measured rows lacking server provenance are flagged,
+never falsified - committed legacy rows keep their labels. Audit with
+`python scripts/attestation_audit.py --db <db>` (non-zero exit when any
+measured row is unattested).
+
+```sh
+kaggle kernels push   -p kernels/tiersweep-16-local-sweep
+kaggle kernels status abhigyan1818/tiersweep16-local-sweep
+kaggle kernels output abhigyan1818/tiersweep16-local-sweep -p /tmp/kout
+```
+
+Ingest (files land flat in `/tmp/kout`) and recount the break-even. The
+filtered kernel only produces `3b`/`7b`; the **1.5B tier is the committed
+realdata-15 run** (same corpus/routes, not re-measured), so it is cited
+explicitly via `--run` rather than silently omitted:
+
+```sh
+for tag in 3b 7b; do
+  cp /tmp/kout/sweep-$tag.db   results/tiersweep-16/sweep-$tag.db
+  cp /tmp/kout/repeats-$tag.db results/tiersweep-16/repeats-$tag.db
+  cp /tmp/kout/sweep-$tag.csv  results/tiersweep-16/sweep-$tag.csv
+done
+PYTHONPATH=src python scripts/tier_sweep.py --out-dir results/tiersweep-16 \
+  --run 1p5b=results/realdata-15/sweep.db:results/realdata-15/repeats.db \
+  --run 3b=results/tiersweep-16/sweep-3b.db:results/tiersweep-16/repeats-3b.db \
+  --run 7b=results/tiersweep-16/sweep-7b.db:results/tiersweep-16/repeats-7b.db
+```
+
+(`--db-dir results/tiersweep-16` alone discovers only the `sweep-*.db` files
+present, so the explicit `--run 1p5b=...` is required to include the reused
+1.5B tier.) `scripts/tier_sweep.py` rebuilds each tier's stable matrix (3x
+majority, ties incorrect), computes coverage + bootstrap CI, the C4-vs-tier
+gap, McNemar and the measured amortized GPU-seconds/USD per query, then
+writes `results/tiersweep-16/{tiers.json,TIERS.md,tiers.svg}` with the
+break-even statement and per-tier provenance.

@@ -128,6 +128,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-retrieval", action="store_true")
     parser.add_argument("--routes", default="L0,L1",
                         help="comma-separated local routes (default L0,L1)")
+    parser.add_argument("--live-model", default=None,
+                        help="served model id override for every live local "
+                             "route (tier sweep); must match the sweep rows' "
+                             "model_version or the run refuses to mix models")
     parser.add_argument("--repeats", type=int, default=N_REPEATS)
     parser.add_argument("--limit", type=int, default=None,
                         help="cap on (query, route) pairs (smoke slices)")
@@ -169,9 +173,7 @@ def main(argv: list[str] | None = None) -> int:
     clients: dict[str, object] = {}
     if args.mode == "live":
         from costsmart.eval.oracle_sweep import _build_live_clients
-        clients = _build_live_clients(routes)
-        from costsmart.eval.oracle_sweep import ROUTE_SPECS
-        tiers = {ROUTE_SPECS[r][0] for r in routes}
+        clients = _build_live_clients(routes, live_model=args.live_model)
 
     store = TelemetryStore(args.db)
     try:
@@ -180,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
         from costsmart.eval.oracle_sweep import ROUTE_SPECS, _measured_retrieval
         inserted = skipped = 0
         draws = 0
+        retrieval_cache: dict = {}
         for pair in pairs:
             route_id = pair["route_id"]
             query = qmap[pair["query_id"]]
@@ -210,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
                 passages: list[str] = []
                 if index is not None and query.get("question"):
                     retrieval_ms, passages = _measured_retrieval(
-                        query["question"], index)
+                        query["question"], index, cache=retrieval_cache)
                 attempt = None
                 last_err: Exception | None = None
                 # Transient tunnel/generation errors retry the same draw
@@ -276,6 +279,7 @@ def main(argv: list[str] | None = None) -> int:
         "sweep_db": args.sweep_db,
         "repeats_db": args.db,
         "routes": routes,
+        "live_model": args.live_model,
         "n_pairs": len(pairs),
         "repeats": args.repeats,
         "draws_expected": len(pairs) * args.repeats,

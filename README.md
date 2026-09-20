@@ -51,13 +51,22 @@ spent and the `cloud_spend_usd` columns are *estimates*, not charges.
 - **Routing + verification + agent loop** (`src/costsmart/routing`,
   `src/costsmart/verify`, `src/costsmart/agent`): router training and
   baselines, verification critics, and the demo agent loop.
-- **Remote GPU route** (Colab, plus `kernels/costsweep-13-local-sweep/` and
-  `kernels/realdata-15-local-sweep/` on Kaggle): the Kaggle kernel clones
-  the repo, serves `Qwen/Qwen2.5-1.5B-Instruct`, and resumes the committed
-  DBs by cache key. The real-data kernel also fetches the real corpus and
-  builds the real index. Runbook logs are hash-pinned in
-  `results/costmultihop-12/KAGGLE_PROVENANCE.md` and
-  `results/realdata-15/KAGGLE_PROVENANCE.md`.
+- **Remote GPU route** (Colab, plus `kernels/costsweep-13-local-sweep/`,
+  `kernels/realdata-15-local-sweep/` and `kernels/tiersweep-16-local-sweep/`
+  on Kaggle): the Kaggle kernel clones the repo, serves the pinned
+  checkpoint, and resumes the committed DBs by cache key. The real-data and
+  tier kernels fetch/use the real corpus and build the real index. Runbook
+  logs are hash-pinned in `results/costmultihop-12/KAGGLE_PROVENANCE.md`,
+  `results/realdata-15/KAGGLE_PROVENANCE.md` and
+  `results/tiersweep-16/KAGGLE_PROVENANCE.md`.
+- **Server-side model attestation** (`scripts/colab_local_tier.py`,
+  `src/costsmart/telemetry/attestation.py`): the endpoint reports the
+  resolved revision + weight hash, rows carry `model_revision` /
+  `weights_sha256` / `attestation`, and `scripts/attestation_audit.py` flags
+  any measured row without server provenance.
+- **Cheap-tier break-even** (`scripts/tier_sweep.py`,
+  `results/tiersweep-16/`): per-tier coverage + bootstrap CI, C4-vs-tier gap,
+  McNemar and measured amortized GPU-seconds/query across Qwen2.5-1.5B/3B/7B.
 
 ## Status at a glance
 
@@ -88,6 +97,20 @@ on real data the L1 retrieval used the pinned MiniLM, while synthetic
 environment. The cloud-stub cost columns are estimates, not spent ($0).
 Full framing: `REPORT.md`, "Scope and claim strength (read first)" and
 "Real-data recount (realdata-15)".
+
+**Cheap-tier break-even (`tiersweep-16`).** The NO-GO is a property of the
+1.5B cheap tier, not the router: its closed-book L0 coverage is 0.095 against
+the 0.10 gate. Sweeping L0/L1/C0 on Qwen2.5-1.5B/3B/7B over the same real
+corpus, the closed-book route first clears the gate at **Qwen2.5-3B**
+(L0 coverage 0.155 [0.105, 0.205], measured amortized 3.27 GPU-s/query,
+cost ratio r = 0.540); **Qwen2.5-7B is statistically indistinguishable**
+(0.150 [0.100, 0.200], 1.86 GPU-s/query, r = 0.306), so the break-even sits
+between 1.5B and 3B. The 3B is under the Qwen Research License while the 7B
+is Apache-2.0, so commercial deployability depends on 7B. The 3B/7B rows are
+**server-attested** (resolved revision + weight hash recorded in telemetry;
+`results/tiersweep-16/`), closing the audit's self-declared-model gap;
+the reused 1.5B `realdata-15` rows are flagged `unattested`. Full section:
+`REPORT.md`, "Cheap-tier break-even (tiersweep-16)".
 
 ## Reproducing
 
