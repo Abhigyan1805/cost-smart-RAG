@@ -1,0 +1,1021 @@
+{
+  "tiers": [
+    {
+      "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+      "params_billions": 1.5,
+      "n_base_measured": 400,
+      "n_repeat_measured": 1200,
+      "attestation": {
+        "n_rows": 1600,
+        "n_measured": 1600,
+        "counts": {
+          "server-attested": 0,
+          "unattested": 1600,
+          "stub": 0,
+          "unflagged-legacy": 0
+        },
+        "unattested_measured": 1600,
+        "unattested_examples": [
+          {
+            "query_id": "nq:0000",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0000",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0001",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0001",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0002",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0002",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0003",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0003",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0004",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0004",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0005",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0005",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0006",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0006",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0007",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0007",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0008",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0008",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0009",
+            "route_id": "L0",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          },
+          {
+            "query_id": "nq:0009",
+            "route_id": "L1",
+            "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+            "generator_mode": "measured"
+          }
+        ]
+      },
+      "routes": {
+        "L0": {
+          "n_queries": 200,
+          "coverage": 0.095,
+          "coverage_ci": [
+            0.055,
+            0.14
+          ],
+          "gap_c4_minus_tier": 0.905,
+          "gap_ci": [
+            0.86,
+            0.945
+          ],
+          "mcnemar_b": 181,
+          "mcnemar_c": 0,
+          "mcnemar_p": 7.990203477180627e-41,
+          "verdict": "NO-GO",
+          "gpu_seconds_per_query": 1.0039294610350082,
+          "amortized_usd_per_query": 9.760425315618136e-05,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 0.16555018980822006,
+          "saving_at_gate": 0.083444981019178,
+          "gate": {
+            "cheap_route": "L0",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 19,
+              "cheap_only": 0,
+              "strong_only": 181,
+              "neither": 0,
+              "both_correct_rate": 0.095,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.905,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.095,
+              "k": 19,
+              "n": 200,
+              "cheap_route": "L0",
+              "strong_route": "C4",
+              "ci_lo": 0.055,
+              "ci_hi": 0.14,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.006162191044166557,
+              "saving_fraction": 0.947740397369575,
+              "ci_lo": 0.9450808056681828,
+              "ci_hi": 0.9502492045098161,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.095,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.905,
+              "gap_ci_lo": 0.86,
+              "gap_ci_hi": 0.945,
+              "mcnemar_b": 181,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 179.00552486187846,
+              "mcnemar_p": 7.990203477180627e-41,
+              "mcnemar_n_discordant": 181
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "NO-GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        },
+        "L1": {
+          "n_queries": 200,
+          "coverage": 0.125,
+          "coverage_ci": [
+            0.08,
+            0.17
+          ],
+          "gap_c4_minus_tier": 0.875,
+          "gap_ci": [
+            0.83,
+            0.92
+          ],
+          "mcnemar_b": 175,
+          "mcnemar_c": 0,
+          "mcnemar_p": 1.6320043148058357e-39,
+          "verdict": "GO",
+          "gpu_seconds_per_query": 3.252855522965,
+          "amortized_usd_per_query": 0.0003162498425104861,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 0.536403074266185,
+          "saving_at_gate": 0.046359692573381496,
+          "gate": {
+            "cheap_route": "L1",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 25,
+              "cheap_only": 0,
+              "strong_only": 175,
+              "neither": 0,
+              "both_correct_rate": 0.125,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.875,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.125,
+              "k": 25,
+              "n": 200,
+              "cheap_route": "L1",
+              "strong_route": "C4",
+              "ci_lo": 0.08,
+              "ci_hi": 0.17,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.006162191044166557,
+              "saving_fraction": 0.947740397369575,
+              "ci_lo": 0.9450808056681828,
+              "ci_hi": 0.9502492045098161,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.125,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.875,
+              "gap_ci_lo": 0.83,
+              "gap_ci_hi": 0.92,
+              "mcnemar_b": 175,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 173.00571428571428,
+              "mcnemar_p": 1.6320043148058357e-39,
+              "mcnemar_n_discordant": 175
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        }
+      },
+      "best_cheap_route": "L1",
+      "best_coverage": 0.125,
+      "tag": "1p5b",
+      "source_sweep_db": "results/realdata-15/sweep.db",
+      "source_repeats_db": "results/realdata-15/repeats.db",
+      "n_repeated_pairs": 400,
+      "n_repeat_rows": 1200
+    },
+    {
+      "model_version": "Qwen/Qwen2.5-3B-Instruct",
+      "params_billions": 3.0,
+      "n_base_measured": 600,
+      "n_repeat_measured": 1800,
+      "attestation": {
+        "n_rows": 2400,
+        "n_measured": 2400,
+        "counts": {
+          "server-attested": 2400,
+          "unattested": 0,
+          "stub": 0,
+          "unflagged-legacy": 0
+        },
+        "unattested_measured": 0,
+        "unattested_examples": []
+      },
+      "routes": {
+        "L0": {
+          "n_queries": 200,
+          "coverage": 0.155,
+          "coverage_ci": [
+            0.105,
+            0.205
+          ],
+          "gap_c4_minus_tier": 0.845,
+          "gap_ci": [
+            0.79,
+            0.895
+          ],
+          "mcnemar_b": 169,
+          "mcnemar_c": 0,
+          "mcnemar_p": 3.335318783304675e-38,
+          "verdict": "GO",
+          "gpu_seconds_per_query": 3.2743211558249983,
+          "amortized_usd_per_query": 0.0003183367790385415,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 0.5399428046279803,
+          "saving_at_gate": 0.04600571953720198,
+          "gate": {
+            "cheap_route": "L0",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 31,
+              "cheap_only": 0,
+              "strong_only": 169,
+              "neither": 0,
+              "both_correct_rate": 0.155,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.845,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.155,
+              "k": 31,
+              "n": 200,
+              "cheap_route": "L0",
+              "strong_route": "C4",
+              "ci_lo": 0.105,
+              "ci_hi": 0.205,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.0061028905667085045,
+              "saving_fraction": 0.948243306053441,
+              "ci_lo": 0.945613039909578,
+              "ci_hi": 0.9507243034102755,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.155,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.845,
+              "gap_ci_lo": 0.79,
+              "gap_ci_hi": 0.895,
+              "mcnemar_b": 169,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 167.0059171597633,
+              "mcnemar_p": 3.335318783304675e-38,
+              "mcnemar_n_discordant": 169
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        },
+        "L1": {
+          "n_queries": 200,
+          "coverage": 0.085,
+          "coverage_ci": [
+            0.05,
+            0.125
+          ],
+          "gap_c4_minus_tier": 0.915,
+          "gap_ci": [
+            0.875,
+            0.95
+          ],
+          "mcnemar_b": 183,
+          "mcnemar_c": 0,
+          "mcnemar_p": 2.923411388518761e-41,
+          "verdict": "NO-GO",
+          "gpu_seconds_per_query": 6.801882457310014,
+          "amortized_usd_per_query": 0.0006612941277940291,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 1.1216454696926246,
+          "saving_at_gate": -0.012164546969262459,
+          "gate": {
+            "cheap_route": "L1",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 17,
+              "cheap_only": 0,
+              "strong_only": 183,
+              "neither": 0,
+              "both_correct_rate": 0.085,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.915,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.085,
+              "k": 17,
+              "n": 200,
+              "cheap_route": "L1",
+              "strong_route": "C4",
+              "ci_lo": 0.05,
+              "ci_hi": 0.125,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.0061028905667085045,
+              "saving_fraction": 0.948243306053441,
+              "ci_lo": 0.945613039909578,
+              "ci_hi": 0.9507243034102755,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.085,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.915,
+              "gap_ci_lo": 0.875,
+              "gap_ci_hi": 0.95,
+              "mcnemar_b": 183,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 181.0054644808743,
+              "mcnemar_p": 2.923411388518761e-41,
+              "mcnemar_n_discordant": 183
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "NO-GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        },
+        "C0": {
+          "n_queries": 200,
+          "coverage": 0.17,
+          "coverage_ci": [
+            0.12,
+            0.225
+          ],
+          "gap_c4_minus_tier": 0.83,
+          "gap_ci": [
+            0.775,
+            0.88
+          ],
+          "mcnemar_b": 166,
+          "mcnemar_c": 0,
+          "mcnemar_p": 1.5081540005885357e-37,
+          "verdict": "GO",
+          "gpu_seconds_per_query": 5.072241687829992,
+          "amortized_usd_per_query": 0.000493134608539027,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 0.8364238791316235,
+          "saving_at_gate": 0.01635761208683765,
+          "gate": {
+            "cheap_route": "C0",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 34,
+              "cheap_only": 0,
+              "strong_only": 166,
+              "neither": 0,
+              "both_correct_rate": 0.17,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.83,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.17,
+              "k": 34,
+              "n": 200,
+              "cheap_route": "C0",
+              "strong_route": "C4",
+              "ci_lo": 0.12,
+              "ci_hi": 0.225,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.0061028905667085045,
+              "saving_fraction": 0.948243306053441,
+              "ci_lo": 0.945613039909578,
+              "ci_hi": 0.9507243034102755,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.17,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.83,
+              "gap_ci_lo": 0.775,
+              "gap_ci_hi": 0.88,
+              "mcnemar_b": 166,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 164.00602409638554,
+              "mcnemar_p": 1.5081540005885357e-37,
+              "mcnemar_n_discordant": 166
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        }
+      },
+      "best_cheap_route": "C0",
+      "best_coverage": 0.17,
+      "tag": "3b",
+      "source_sweep_db": "results/tiersweep-16/sweep-3b.db",
+      "source_repeats_db": "results/tiersweep-16/repeats-3b.db",
+      "n_repeated_pairs": 600,
+      "n_repeat_rows": 1800
+    },
+    {
+      "model_version": "Qwen/Qwen2.5-7B-Instruct",
+      "params_billions": 7.0,
+      "n_base_measured": 600,
+      "n_repeat_measured": 1800,
+      "attestation": {
+        "n_rows": 2400,
+        "n_measured": 2400,
+        "counts": {
+          "server-attested": 2400,
+          "unattested": 0,
+          "stub": 0,
+          "unflagged-legacy": 0
+        },
+        "unattested_measured": 0,
+        "unattested_examples": []
+      },
+      "routes": {
+        "L0": {
+          "n_queries": 200,
+          "coverage": 0.15,
+          "coverage_ci": [
+            0.1,
+            0.2
+          ],
+          "gap_c4_minus_tier": 0.85,
+          "gap_ci": [
+            0.8,
+            0.9
+          ],
+          "mcnemar_b": 170,
+          "mcnemar_c": 0,
+          "mcnemar_p": 2.017048714951221e-38,
+          "verdict": "GO",
+          "gpu_seconds_per_query": 1.8557417042350335,
+          "amortized_usd_per_query": 0.00018041933235618377,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 0.3060159137619196,
+          "saving_at_gate": 0.06939840862380804,
+          "gate": {
+            "cheap_route": "L0",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 30,
+              "cheap_only": 0,
+              "strong_only": 170,
+              "neither": 0,
+              "both_correct_rate": 0.15,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.85,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.15,
+              "k": 30,
+              "n": 200,
+              "cheap_route": "L0",
+              "strong_route": "C4",
+              "ci_lo": 0.1,
+              "ci_hi": 0.2,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.00615070480904177,
+              "saving_fraction": 0.9478378085142537,
+              "ci_lo": 0.9452394233527034,
+              "ci_hi": 0.950331074128838,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.15,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.85,
+              "gap_ci_lo": 0.8,
+              "gap_ci_hi": 0.9,
+              "mcnemar_b": 170,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 168.00588235294117,
+              "mcnemar_p": 2.017048714951221e-38,
+              "mcnemar_n_discordant": 170
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        },
+        "L1": {
+          "n_queries": 200,
+          "coverage": 0.065,
+          "coverage_ci": [
+            0.035,
+            0.1
+          ],
+          "gap_c4_minus_tier": 0.935,
+          "gap_ci": [
+            0.9,
+            0.965
+          ],
+          "mcnemar_b": 187,
+          "mcnemar_c": 0,
+          "mcnemar_p": 3.914087826227406e-42,
+          "verdict": "NO-GO",
+          "gpu_seconds_per_query": 8.032575935954837,
+          "amortized_usd_per_query": 0.0007809448826622758,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 1.3245895478306844,
+          "saving_at_gate": -0.03245895478306844,
+          "gate": {
+            "cheap_route": "L1",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 13,
+              "cheap_only": 0,
+              "strong_only": 187,
+              "neither": 0,
+              "both_correct_rate": 0.065,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.935,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.065,
+              "k": 13,
+              "n": 200,
+              "cheap_route": "L1",
+              "strong_route": "C4",
+              "ci_lo": 0.035,
+              "ci_hi": 0.1,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.00615070480904177,
+              "saving_fraction": 0.9478378085142537,
+              "ci_lo": 0.9452394233527034,
+              "ci_hi": 0.950331074128838,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.065,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.935,
+              "gap_ci_lo": 0.9,
+              "gap_ci_hi": 0.965,
+              "mcnemar_b": 187,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 185.00534759358288,
+              "mcnemar_p": 3.914087826227406e-42,
+              "mcnemar_n_discordant": 187
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "NO-GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        },
+        "C0": {
+          "n_queries": 200,
+          "coverage": 0.075,
+          "coverage_ci": [
+            0.04,
+            0.115
+          ],
+          "gap_c4_minus_tier": 0.925,
+          "gap_ci": [
+            0.885,
+            0.96
+          ],
+          "mcnemar_b": 185,
+          "mcnemar_c": 0,
+          "mcnemar_p": 1.0696647723168781e-41,
+          "verdict": "NO-GO",
+          "gpu_seconds_per_query": 13.737624267804904,
+          "amortized_usd_per_query": 0.0013356023593699212,
+          "strong_usd_per_query": 0.0005895750000000001,
+          "cost_ratio_cheap_over_strong": 2.2653646429545367,
+          "saving_at_gate": -0.12653646429545368,
+          "gate": {
+            "cheap_route": "C0",
+            "strong_route": "C4",
+            "n_paired_queries": 200,
+            "n_skipped": 0,
+            "contingency": {
+              "both_correct": 15,
+              "cheap_only": 0,
+              "strong_only": 185,
+              "neither": 0,
+              "both_correct_rate": 0.075,
+              "cheap_only_rate": 0.0,
+              "strong_only_rate": 0.925,
+              "neither_rate": 0.0
+            },
+            "routable_fraction": {
+              "estimate": 0.075,
+              "k": 15,
+              "n": 200,
+              "cheap_route": "C0",
+              "strong_route": "C4",
+              "ci_lo": 0.04,
+              "ci_hi": 0.115,
+              "ci": 0.95,
+              "n_resamples": 10000
+            },
+            "savings": {
+              "strong_cost": 0.11791499999999996,
+              "oracle_cost": 0.00615070480904177,
+              "saving_fraction": 0.9478378085142537,
+              "ci_lo": 0.9452394233527034,
+              "ci_hi": 0.950331074128838,
+              "n_routed_off_strong": 200,
+              "n_no_correct_route": 0,
+              "n_quality_loss_queries": 0,
+              "n_resamples": 10000
+            },
+            "paired": {
+              "cheap_accuracy": 0.075,
+              "strong_accuracy": 1.0,
+              "accuracy_gap": 0.925,
+              "gap_ci_lo": 0.885,
+              "gap_ci_hi": 0.96,
+              "mcnemar_b": 185,
+              "mcnemar_c": 0,
+              "mcnemar_statistic": 183.0054054054054,
+              "mcnemar_p": 1.0696647723168781e-41,
+              "mcnemar_n_discordant": 185
+            },
+            "gate": {
+              "threshold": 0.1,
+              "verdict": "NO-GO"
+            },
+            "n_resamples": 10000,
+            "seed": 0
+          }
+        }
+      },
+      "best_cheap_route": "L0",
+      "best_coverage": 0.15,
+      "tag": "7b",
+      "source_sweep_db": "results/tiersweep-16/sweep-7b.db",
+      "source_repeats_db": "results/tiersweep-16/repeats-7b.db",
+      "n_repeated_pairs": 600,
+      "n_repeat_rows": 1800
+    }
+  ],
+  "break_even": {
+    "gate_threshold": 0.1,
+    "rule": "coverage (routable fraction) must clear the 0.10 gate; at measured cost ratio r the no-loss saving at coverage f is f*(1-r), so requiring saving >= s gives break-even coverage X(s) = s/(1-r); at the gate the guaranteed saving is 0.10*(1-r)",
+    "entries": [
+      {
+        "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+        "params_billions": 1.5,
+        "route": "L0",
+        "coverage": 0.095,
+        "coverage_ci": [
+          0.055,
+          0.14
+        ],
+        "cost_ratio": 0.16555018980822006,
+        "gpu_seconds_per_query": 1.0039294610350082,
+        "decision": "NO-GO"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+        "params_billions": 1.5,
+        "route": "L1",
+        "coverage": 0.125,
+        "coverage_ci": [
+          0.08,
+          0.17
+        ],
+        "cost_ratio": 0.536403074266185,
+        "gpu_seconds_per_query": 3.252855522965,
+        "decision": "GO (marginal: CI lower bound < gate)"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-3B-Instruct",
+        "params_billions": 3.0,
+        "route": "L0",
+        "coverage": 0.155,
+        "coverage_ci": [
+          0.105,
+          0.205
+        ],
+        "cost_ratio": 0.5399428046279803,
+        "gpu_seconds_per_query": 3.2743211558249983,
+        "decision": "GO"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-3B-Instruct",
+        "params_billions": 3.0,
+        "route": "L1",
+        "coverage": 0.085,
+        "coverage_ci": [
+          0.05,
+          0.125
+        ],
+        "cost_ratio": 1.1216454696926246,
+        "gpu_seconds_per_query": 6.801882457310014,
+        "decision": "NO-GO"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-3B-Instruct",
+        "params_billions": 3.0,
+        "route": "C0",
+        "coverage": 0.17,
+        "coverage_ci": [
+          0.12,
+          0.225
+        ],
+        "cost_ratio": 0.8364238791316235,
+        "gpu_seconds_per_query": 5.072241687829992,
+        "decision": "GO"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-7B-Instruct",
+        "params_billions": 7.0,
+        "route": "L0",
+        "coverage": 0.15,
+        "coverage_ci": [
+          0.1,
+          0.2
+        ],
+        "cost_ratio": 0.3060159137619196,
+        "gpu_seconds_per_query": 1.8557417042350335,
+        "decision": "GO"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-7B-Instruct",
+        "params_billions": 7.0,
+        "route": "L1",
+        "coverage": 0.065,
+        "coverage_ci": [
+          0.035,
+          0.1
+        ],
+        "cost_ratio": 1.3245895478306844,
+        "gpu_seconds_per_query": 8.032575935954837,
+        "decision": "NO-GO"
+      },
+      {
+        "model_version": "Qwen/Qwen2.5-7B-Instruct",
+        "params_billions": 7.0,
+        "route": "C0",
+        "coverage": 0.075,
+        "coverage_ci": [
+          0.04,
+          0.115
+        ],
+        "cost_ratio": 2.2653646429545367,
+        "gpu_seconds_per_query": 13.737624267804904,
+        "decision": "NO-GO"
+      }
+    ],
+    "first_go_by_route": {
+      "L0": {
+        "model_version": "Qwen/Qwen2.5-3B-Instruct",
+        "params_billions": 3.0,
+        "route": "L0",
+        "coverage": 0.155,
+        "coverage_ci": [
+          0.105,
+          0.205
+        ],
+        "cost_ratio": 0.5399428046279803,
+        "gpu_seconds_per_query": 3.2743211558249983,
+        "decision": "GO"
+      },
+      "L1": {
+        "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+        "params_billions": 1.5,
+        "route": "L1",
+        "coverage": 0.125,
+        "coverage_ci": [
+          0.08,
+          0.17
+        ],
+        "cost_ratio": 0.536403074266185,
+        "gpu_seconds_per_query": 3.252855522965,
+        "decision": "GO (marginal: CI lower bound < gate)"
+      },
+      "C0": {
+        "model_version": "Qwen/Qwen2.5-3B-Instruct",
+        "params_billions": 3.0,
+        "route": "C0",
+        "coverage": 0.17,
+        "coverage_ci": [
+          0.12,
+          0.225
+        ],
+        "cost_ratio": 0.8364238791316235,
+        "gpu_seconds_per_query": 5.072241687829992,
+        "decision": "GO"
+      }
+    },
+    "first_go_l0": {
+      "model_version": "Qwen/Qwen2.5-3B-Instruct",
+      "params_billions": 3.0,
+      "route": "L0",
+      "coverage": 0.155,
+      "coverage_ci": [
+        0.105,
+        0.205
+      ],
+      "cost_ratio": 0.5399428046279803,
+      "gpu_seconds_per_query": 3.2743211558249983,
+      "decision": "GO"
+    },
+    "first_go_any": {
+      "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+      "params_billions": 1.5,
+      "route": "L1",
+      "coverage": 0.125,
+      "coverage_ci": [
+        0.08,
+        0.17
+      ],
+      "cost_ratio": 0.536403074266185,
+      "gpu_seconds_per_query": 3.252855522965,
+      "decision": "GO (marginal: CI lower bound < gate)"
+    },
+    "first_go": {
+      "model_version": "Qwen/Qwen2.5-3B-Instruct",
+      "params_billions": 3.0,
+      "route": "L0",
+      "coverage": 0.155,
+      "coverage_ci": [
+        0.105,
+        0.205
+      ],
+      "cost_ratio": 0.5399428046279803,
+      "gpu_seconds_per_query": 3.2743211558249983,
+      "decision": "GO"
+    },
+    "statement": "Routing pays when cheap-tier coverage exceeds the 0.10 exploitable-separation gate. The closed-book cheap route L0 first clears the gate at Qwen/Qwen2.5-3B-Instruct (coverage 0.155 [0.105, 0.205], cost ratio r=0.5399)."
+  }
+}

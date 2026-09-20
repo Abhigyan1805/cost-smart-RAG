@@ -1,0 +1,406 @@
+{
+  "results/tiersweep-16/sweep-3b.db": {
+    "db": "results/tiersweep-16/sweep-3b.db",
+    "attempts": {
+      "n_rows": 1400,
+      "n_measured": 600,
+      "counts": {
+        "server-attested": 600,
+        "unattested": 0,
+        "stub": 800,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    },
+    "repeat_attempts": {
+      "n_rows": 0,
+      "n_measured": 0,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    }
+  },
+  "results/tiersweep-16/repeats-3b.db": {
+    "db": "results/tiersweep-16/repeats-3b.db",
+    "attempts": {
+      "n_rows": 0,
+      "n_measured": 0,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    },
+    "repeat_attempts": {
+      "n_rows": 1800,
+      "n_measured": 1800,
+      "counts": {
+        "server-attested": 1800,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    }
+  },
+  "results/tiersweep-16/sweep-7b.db": {
+    "db": "results/tiersweep-16/sweep-7b.db",
+    "attempts": {
+      "n_rows": 1400,
+      "n_measured": 600,
+      "counts": {
+        "server-attested": 600,
+        "unattested": 0,
+        "stub": 800,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    },
+    "repeat_attempts": {
+      "n_rows": 0,
+      "n_measured": 0,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    }
+  },
+  "results/tiersweep-16/repeats-7b.db": {
+    "db": "results/tiersweep-16/repeats-7b.db",
+    "attempts": {
+      "n_rows": 0,
+      "n_measured": 0,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    },
+    "repeat_attempts": {
+      "n_rows": 1800,
+      "n_measured": 1800,
+      "counts": {
+        "server-attested": 1800,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    }
+  },
+  "results/realdata-15/sweep.db": {
+    "db": "results/realdata-15/sweep.db",
+    "attempts": {
+      "n_rows": 1400,
+      "n_measured": 400,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 400,
+        "stub": 1000,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 400,
+      "unattested_examples": [
+        {
+          "query_id": "nq:0000",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0000",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0001",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0001",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0002",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0002",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0003",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0003",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0004",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0004",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0005",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0005",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0006",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0006",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0007",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0007",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0008",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0008",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0009",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "nq:0009",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        }
+      ]
+    },
+    "repeat_attempts": {
+      "n_rows": 0,
+      "n_measured": 0,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    }
+  },
+  "results/realdata-15/repeats.db": {
+    "db": "results/realdata-15/repeats.db",
+    "attempts": {
+      "n_rows": 0,
+      "n_measured": 0,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 0,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 0,
+      "unattested_examples": []
+    },
+    "repeat_attempts": {
+      "n_rows": 1200,
+      "n_measured": 1200,
+      "counts": {
+        "server-attested": 0,
+        "unattested": 1200,
+        "stub": 0,
+        "unflagged-legacy": 0
+      },
+      "unattested_measured": 1200,
+      "unattested_examples": [
+        {
+          "query_id": "hotpotqa:0000",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0000",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0000",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0000",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0000",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0000",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0001",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0001",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0001",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0001",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0001",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0001",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0002",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0002",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0002",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0002",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0002",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0002",
+          "route_id": "L1",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0003",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        },
+        {
+          "query_id": "hotpotqa:0003",
+          "route_id": "L0",
+          "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+          "generator_mode": "measured"
+        }
+      ]
+    }
+  }
+}

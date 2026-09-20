@@ -1,0 +1,126 @@
+{
+  "description": "Provenance for the tiersweep-16 Kaggle run: cheap-tier routes L0/L1/C0 on Qwen2.5-3B/7B over the committed real Tier-A corpus. The 1.5B tier is the committed realdata-15 run and is not re-measured; its rows predate server attestation and are flagged 'unattested' by scripts/attestation_audit.py.",
+  "kernel": {
+    "id": "abhigyan1818/tiersweep16-local-sweep",
+    "metadata": "kernels/tiersweep-16-local-sweep/kernel-metadata.json",
+    "code": "kernels/tiersweep-16-local-sweep/kernel.py",
+    "branch": "fm/costsmart-tiersweep-16",
+    "git_sha": "e282989062723296bdd14808f71ef8f06c6ea5e6",
+    "models": [
+      "Qwen/Qwen2.5-3B-Instruct",
+      "Qwen/Qwen2.5-7B-Instruct"
+    ]
+  },
+  "download": {
+    "command": "kaggle kernels output abhigyan1818/tiersweep16-local-sweep -p /tmp/kout",
+    "status": "complete"
+  },
+  "logs": {
+    "3b-server.log": {
+      "sha256": "c73a98b09b6ee6746d8ea9d7f8ad58d1a7dad212c861a8f902b3d45f40d21755"
+    },
+    "7b-server.log": {
+      "sha256": "b4434627cf4c4dac186c9862bed4f1bc30b023527d24fc9a93a444dd193a9f43"
+    },
+    "tiersweep16-local-sweep.log": {
+      "sha256": "fa96f4b17637e093e25dcfcd70b37446e834fc8ff273fff2c5d73f59bcdb8f97",
+      "note": "Kaggle kernel stdout/stderr; not committed."
+    }
+  },
+  "models": {
+    "Qwen/Qwen2.5-3B-Instruct": {
+      "model_version": "Qwen/Qwen2.5-3B-Instruct",
+      "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "weights_sha256": "04a84318cdec5543e99a10e0db40df3f7843226f88a8c0e840da95bbfa52487c",
+      "attestation": "server-attested",
+      "measured_rows": 2400,
+      "tags": [
+        "3b"
+      ],
+      "license": "other",
+      "license_name": "qwen-research",
+      "license_link": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct/blob/main/LICENSE",
+      "card_sha": "aa8e72537993ba99e69dfaafa59ed015b17504d1"
+    },
+    "Qwen/Qwen2.5-7B-Instruct": {
+      "model_version": "Qwen/Qwen2.5-7B-Instruct",
+      "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "weights_sha256": "175d8c141750c8e6f8af96dda0d1870efdc15da736ff36cd25105a5d11241367",
+      "attestation": "server-attested",
+      "measured_rows": 2400,
+      "tags": [
+        "7b"
+      ],
+      "license": "apache-2.0",
+      "card_sha": "a09a35458c702b33eeacc393d103063234e8bc28"
+    }
+  },
+  "reused_1p5b": {
+    "model_version": "Qwen/Qwen2.5-1.5B-Instruct",
+    "sweep_db": "results/realdata-15/sweep.db",
+    "repeats_db": "results/realdata-15/repeats.db",
+    "note": "Measured by the realdata-15 run; reused as the 1.5B tier by cache key, not re-measured. No server revision was recorded then, so those rows are flagged unattested."
+  },
+  "artifacts": {
+    "sweep-3b.db": {
+      "sha256": "25f7ada857b92ac727f36d42a140e5a90aca48fd1c20212eff9c3b1c377d2297",
+      "bytes": 1150976
+    },
+    "repeats-3b.db": {
+      "sha256": "62382d346d1a771900ea20d18731f79a1db2d43e03b7507ea70fd4e6c50eb052",
+      "bytes": 1945600
+    },
+    "sweep-3b.csv": {
+      "sha256": "dab869086a00ed3f65e5d60fec906eeef836439e39af44597890e95435fc333c",
+      "bytes": 837203
+    },
+    "repeats-3b_summary.json": {
+      "sha256": "252c0b2da430de85e82d38b340de35c664867c98df05101c777ed3804b36b87f",
+      "bytes": 383
+    },
+    "sweep-7b.db": {
+      "sha256": "8d597c2ad27ed607fd2d45d3dcc4e5728644d6f3d97302690d766d36e60429fa",
+      "bytes": 1208320
+    },
+    "repeats-7b.db": {
+      "sha256": "52539ef8a7f5cb0a7bed4f8753ebdbe164bd04d47bbfc5ac5efad13abd741f6d",
+      "bytes": 2146304
+    },
+    "sweep-7b.csv": {
+      "sha256": "124c964b8f5ae4013928ab3af1f2512c1d59e239d49e6ec0c054785f63f48511",
+      "bytes": 886573
+    },
+    "repeats-7b_summary.json": {
+      "sha256": "5c40e54c6551838958552911d47ab2780388a8d65cbf176613693b04fd6d78eb",
+      "bytes": 383
+    },
+    "3b-server.log": {
+      "sha256": "c73a98b09b6ee6746d8ea9d7f8ad58d1a7dad212c861a8f902b3d45f40d21755",
+      "bytes": 124179
+    },
+    "7b-server.log": {
+      "sha256": "b4434627cf4c4dac186c9862bed4f1bc30b023527d24fc9a93a444dd193a9f43",
+      "bytes": 100437
+    },
+    "tiers.json": {
+      "sha256": "559e588225fc17f0d5a3252cc35936cb52fbaf7180fcf0ab6d2838a6e469bd27",
+      "bytes": 31589
+    },
+    "TIERS.md": {
+      "sha256": "22f71f51fdde0a1703cd6561b76c1a50866b31d08cb33063ff4ccfa9691b8b0d",
+      "bytes": 1723
+    },
+    "tiers.svg": {
+      "sha256": "b8c08d007f1f5b88df6b3c0afc870251a57f8e4f023e1dd1a67bc93f30502f7f",
+      "bytes": 2450
+    },
+    "attestation_audit.json": {
+      "sha256": "ac148b160345aa40ad0ad8b2fce222b40c449613e8f8ea06aa4f9450ddf79fcd",
+      "bytes": 11036
+    },
+    "MODEL_MANIFEST.md": {
+      "sha256": "777521c6cf767b571483731c9abeb92d8e609851091711d608b5608fb8f6bdea",
+      "bytes": 2161
+    }
+  }
+}

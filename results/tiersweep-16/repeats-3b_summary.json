@@ -1,0 +1,19 @@
+{
+  "mode": "live",
+  "sweep_db": "results/tiersweep-16/sweep-3b.db",
+  "repeats_db": "results/tiersweep-16/repeats-3b.db",
+  "routes": [
+    "L0",
+    "L1",
+    "C0"
+  ],
+  "live_model": "Qwen/Qwen2.5-3B-Instruct",
+  "n_pairs": 600,
+  "repeats": 3,
+  "draws_expected": 1800,
+  "inserted": 1800,
+  "skipped_existing": 0,
+  "total_repeat_rows": 1800,
+  "temperature": 0,
+  "seed": 0
+}
