@@ -1,0 +1,1053 @@
+{
+  "mix": "realdata-15",
+  "counts": {
+    "nq": 50,
+    "hotpotqa": 80,
+    "musique": 70
+  },
+  "n_queries": 200,
+  "n_passages": 2192,
+  "config_hash": "098d87aeb6e6132b7bfd196be64c9db9956ecd79f82ebebefd8ea0d48ece2cb8",
+  "set_sha256": "a83fd10ad74efb132206fa3d59aa3cd77c5654b95e91c688d4e957a7ce8ade3d",
+  "corpus_sha256": "0cdd131bc982f7a7e3e058858203a5d2ae91c427946bb8e6e55047672a190a9f",
+  "datasets": {
+    "nq": {
+      "hf_repo": "google-research-datasets/nq_open",
+      "config": null,
+      "split": "validation",
+      "revision": "5dd9790a83002ad084ddeb7c420dc716852c6f28",
+      "license": "cc-by-sa-3.0",
+      "n_queries": 50,
+      "n_passages": 0,
+      "n_gold_passages": 0,
+      "questions_sha256": "b1549a7662d538076a119cd821cbc6e3329427dc25806fbfae5d33a7d2aff23d",
+      "passages_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hotpotqa": {
+      "hf_repo": "hotpotqa/hotpot_qa",
+      "config": "distractor",
+      "split": "validation",
+      "revision": "1908d6afbbead072334abe2965f91bd2709910ab",
+      "license": "cc-by-sa-4.0",
+      "n_queries": 80,
+      "n_passages": 792,
+      "n_gold_passages": 160,
+      "questions_sha256": "e208c13c83b510783620216d5de6c0380ae6f9fa50309dce790a7dc2fc313708",
+      "passages_sha256": "e0464efd71ce188482bd4ad6aa2dabf05f88946a354efbfc0c36fdd452b44920"
+    },
+    "musique": {
+      "hf_repo": "dgslibisey/MuSiQue",
+      "config": "default",
+      "split": "validation",
+      "revision": "c8f4f8c9465fb69d31a8eae894c3fd509c4ca321",
+      "license": null,
+      "n_queries": 70,
+      "n_passages": 1400,
+      "n_gold_passages": 140,
+      "questions_sha256": "eaaa73058ef3a1cdaf1fb20279b4f79bda22b1c7c11807d8a384c33dacc0f91a",
+      "passages_sha256": "f835e7387adfb3f93a8088d0866a51f8d2c08b17ea7966c9237ce0c299d63823"
+    }
+  },
+  "queries": [
+    {
+      "query_id": "nq:0000",
+      "question": "when was the last time anyone was on the moon",
+      "reference": "14 December 1972 UTC"
+    },
+    {
+      "query_id": "nq:0001",
+      "question": "who wrote he ain't heavy he's my brother lyrics",
+      "reference": "Bobby Scott"
+    },
+    {
+      "query_id": "nq:0002",
+      "question": "how many seasons of the bastard executioner are there",
+      "reference": "one"
+    },
+    {
+      "query_id": "nq:0003",
+      "question": "when did the eagles win last super bowl",
+      "reference": "2017"
+    },
+    {
+      "query_id": "nq:0004",
+      "question": "who won last year's ncaa women's basketball",
+      "reference": "South Carolina"
+    },
+    {
+      "query_id": "nq:0005",
+      "question": "when did the isle of wight become an island",
+      "reference": "During the last Ice Age"
+    },
+    {
+      "query_id": "nq:0006",
+      "question": "love yourself by justin bieber is about who",
+      "reference": "Rihanna"
+    },
+    {
+      "query_id": "nq:0007",
+      "question": "who was the ruler of england in 1616",
+      "reference": "James I"
+    },
+    {
+      "query_id": "nq:0008",
+      "question": "what is the hot coffee mod in san andreas",
+      "reference": "a normally inaccessible mini-game"
+    },
+    {
+      "query_id": "nq:0009",
+      "question": "what is the maximum data rate for the 802.11a standard select one",
+      "reference": "54\u00a0Mbit/s"
+    },
+    {
+      "query_id": "nq:0010",
+      "question": "which state is located in the centre of india",
+      "reference": "Chhattisgarh"
+    },
+    {
+      "query_id": "nq:0011",
+      "question": "who sang i ran all the way home",
+      "reference": "The Impalas"
+    },
+    {
+      "query_id": "nq:0012",
+      "question": "where did the last name wallace come from",
+      "reference": "a Scottish surname"
+    },
+    {
+      "query_id": "nq:0013",
+      "question": "who was the actor that played ben stone on law and order",
+      "reference": "Michael Moriarty"
+    },
+    {
+      "query_id": "nq:0014",
+      "question": "who does the voice of nala in the lion king",
+      "reference": "Niketa Calame"
+    },
+    {
+      "query_id": "nq:0015",
+      "question": "who plays gram on the young and the restless",
+      "reference": "Max Shippee"
+    },
+    {
+      "query_id": "nq:0016",
+      "question": "what is the oath that new citizens take",
+      "reference": "United States Oath of Allegiance"
+    },
+    {
+      "query_id": "nq:0017",
+      "question": "who is under the mask of darth vader",
+      "reference": "Anakin Skywalker"
+    },
+    {
+      "query_id": "nq:0018",
+      "question": "who had a baby at 100 in the bible",
+      "reference": "Sarah"
+    },
+    {
+      "query_id": "nq:0019",
+      "question": "what age do you need to be to buy a bb gun",
+      "reference": "18"
+    },
+    {
+      "query_id": "nq:0020",
+      "question": "ethiopia flight 961 crashes in to the sea",
+      "reference": "23 November 1996"
+    },
+    {
+      "query_id": "nq:0021",
+      "question": "where was percy jackson and the olympians filmed",
+      "reference": "Vancouver"
+    },
+    {
+      "query_id": "nq:0022",
+      "question": "how many seasons of vampire diaries r there",
+      "reference": "eight"
+    },
+    {
+      "query_id": "nq:0023",
+      "question": "how many episodes are there in dragon ball z",
+      "reference": "291 episodes"
+    },
+    {
+      "query_id": "nq:0024",
+      "question": "who plays auggie in the movie the wonder",
+      "reference": "Jacob Tremblay"
+    },
+    {
+      "query_id": "nq:0025",
+      "question": "when was the first australian prime minister elected",
+      "reference": "Sir Edmund Barton"
+    },
+    {
+      "query_id": "nq:0026",
+      "question": "who plays matthew on anne with an e",
+      "reference": "R. H. Thomson"
+    },
+    {
+      "query_id": "nq:0027",
+      "question": "who is the girl in green day 21 guns",
+      "reference": "Lisa Stelly"
+    },
+    {
+      "query_id": "nq:0028",
+      "question": "who plays joker in batman the dark knight",
+      "reference": "Ledger"
+    },
+    {
+      "query_id": "nq:0029",
+      "question": "when was the south asian association for regional co-operation (saarc) formed",
+      "reference": "December 1985"
+    },
+    {
+      "query_id": "nq:0030",
+      "question": "when was the first hunger games book published",
+      "reference": "September 14, 2008"
+    },
+    {
+      "query_id": "nq:0031",
+      "question": "who did bette midler portray in the rose",
+      "reference": "Mary Rose Foster"
+    },
+    {
+      "query_id": "nq:0032",
+      "question": "who is the lead singer of depeche mode",
+      "reference": "David Gahan"
+    },
+    {
+      "query_id": "nq:0033",
+      "question": "where did the butchers in the slaughterhouse cases live",
+      "reference": "New Orleans"
+    },
+    {
+      "query_id": "nq:0034",
+      "question": "who developed the concept of total quality management",
+      "reference": "W. Edwards Deming"
+    },
+    {
+      "query_id": "nq:0035",
+      "question": "who wrote cant get you out of my head lyrics",
+      "reference": "Cathy Dennis and Rob Davis"
+    },
+    {
+      "query_id": "nq:0036",
+      "question": "where does no game no life anime end",
+      "reference": "the Elkia Federation"
+    },
+    {
+      "query_id": "nq:0037",
+      "question": "when did taylor swift's first album release",
+      "reference": "October 24, 2006"
+    },
+    {
+      "query_id": "nq:0038",
+      "question": "what are the three fifty shades of grey books",
+      "reference": "Fifty Shades of Grey"
+    },
+    {
+      "query_id": "nq:0039",
+      "question": "who has the power (judicial) to make decisions in courts of law",
+      "reference": "judges"
+    },
+    {
+      "query_id": "nq:0040",
+      "question": "what are the ranks in the us navy",
+      "reference": "E-8s senior chief petty officer"
+    },
+    {
+      "query_id": "nq:0041",
+      "question": "i was a great islamic scholar and mathematician who died in 1131 ce",
+      "reference": "Omar Khayyam"
+    },
+    {
+      "query_id": "nq:0042",
+      "question": "who is the coach for the ottawa senators",
+      "reference": "Guy Boucher"
+    },
+    {
+      "query_id": "nq:0043",
+      "question": "last episode of what happens to my family",
+      "reference": "53"
+    },
+    {
+      "query_id": "nq:0044",
+      "question": "when is the last time the vikings were in the nfc championship",
+      "reference": "1976"
+    },
+    {
+      "query_id": "nq:0045",
+      "question": "what are the colors of the netherlands flag",
+      "reference": "blue"
+    },
+    {
+      "query_id": "nq:0046",
+      "question": "where is lord's prayer found in bible",
+      "reference": "in the Gospel of Luke"
+    },
+    {
+      "query_id": "nq:0047",
+      "question": "when was the last time oklahoma won a national championship in football",
+      "reference": "2003"
+    },
+    {
+      "query_id": "nq:0048",
+      "question": "location of the ten commandments in the bible",
+      "reference": "Exodus"
+    },
+    {
+      "query_id": "nq:0049",
+      "question": "where did the allies go after north africa",
+      "reference": "Italy"
+    },
+    {
+      "query_id": "hotpotqa:0000",
+      "question": "Were Scott Derrickson and Ed Wood of the same nationality?",
+      "reference": "yes"
+    },
+    {
+      "query_id": "hotpotqa:0001",
+      "question": "What government position was held by the woman who portrayed Corliss Archer in the film Kiss and Tell?",
+      "reference": "Chief of Protocol"
+    },
+    {
+      "query_id": "hotpotqa:0002",
+      "question": "What science fantasy young adult series, told in first person, has a set of companion books narrating the stories of enslaved worlds and alien species?",
+      "reference": "Animorphs"
+    },
+    {
+      "query_id": "hotpotqa:0003",
+      "question": "Are the Laleli Mosque and Esma Sultan Mansion located in the same neighborhood?",
+      "reference": "no"
+    },
+    {
+      "query_id": "hotpotqa:0004",
+      "question": "The director of the romantic comedy \"Big Stone Gap\" is based in what New York city?",
+      "reference": "Greenwich Village, New York City"
+    },
+    {
+      "query_id": "hotpotqa:0005",
+      "question": "2014 S/S is the debut album of a South Korean boy group that was formed by who?",
+      "reference": "YG Entertainment"
+    },
+    {
+      "query_id": "hotpotqa:0006",
+      "question": "Who was known by his stage name Aladin and helped organizations improve their performance as a consultant?",
+      "reference": "Eenasul Fateh"
+    },
+    {
+      "query_id": "hotpotqa:0007",
+      "question": "The arena where the Lewiston Maineiacs played their home games can seat how many people?",
+      "reference": "3,677 seated"
+    },
+    {
+      "query_id": "hotpotqa:0008",
+      "question": "Who is older, Annie Morton or Terry Richardson?",
+      "reference": "Terry Richardson"
+    },
+    {
+      "query_id": "hotpotqa:0009",
+      "question": "Are Local H and For Against both from the United States?",
+      "reference": "yes"
+    },
+    {
+      "query_id": "hotpotqa:0010",
+      "question": "What is the name of the fight song of the university whose main campus is in Lawrence, Kansas and whose branch campuses are in the Kansas City metropolitan area?",
+      "reference": "Kansas Song"
+    },
+    {
+      "query_id": "hotpotqa:0011",
+      "question": "What screenwriter with credits for \"Evolution\" co-wrote a film starring Nicolas Cage and T\u00e9a Leoni?",
+      "reference": "David Weissman"
+    },
+    {
+      "query_id": "hotpotqa:0012",
+      "question": "What year did Guns N Roses perform a promo for a movie starring Arnold Schwarzenegger as a former New York Police detective?",
+      "reference": "1999"
+    },
+    {
+      "query_id": "hotpotqa:0013",
+      "question": "Are Random House Tower and 888 7th Avenue both used for real estate?",
+      "reference": "no"
+    },
+    {
+      "query_id": "hotpotqa:0014",
+      "question": "The football manager who recruited David Beckham managed Manchester United during what timeframe?",
+      "reference": "from 1986 to 2013"
+    },
+    {
+      "query_id": "hotpotqa:0015",
+      "question": "Brown State Fishing Lake is in a country that has a population of how many inhabitants ?",
+      "reference": "9,984"
+    },
+    {
+      "query_id": "hotpotqa:0016",
+      "question": "The Vermont Catamounts men's soccer team currently competes in a conference that was formerly known as what from 1988 to 1996?",
+      "reference": "the North Atlantic Conference"
+    },
+    {
+      "query_id": "hotpotqa:0017",
+      "question": "Are Giuseppe Verdi and Ambroise Thomas both Opera composers ?",
+      "reference": "yes"
+    },
+    {
+      "query_id": "hotpotqa:0018",
+      "question": "Roger O. Egeberg was Assistant Secretary for Health and Scientific Affairs during the administration of a president that served during what years?",
+      "reference": "1969 until 1974"
+    },
+    {
+      "query_id": "hotpotqa:0019",
+      "question": "Which writer was from England, Henry Roth or Robert Erskine Childers?",
+      "reference": "Robert Erskine Childers DSC"
+    },
+    {
+      "query_id": "hotpotqa:0020",
+      "question": "Which other Mexican Formula One race car driver has held the podium besides the Force India driver born in 1990?",
+      "reference": "Pedro Rodr\u00edguez"
+    },
+    {
+      "query_id": "hotpotqa:0021",
+      "question": "This singer of A Rather Blustery Day also voiced what hedgehog?",
+      "reference": "Sonic"
+    },
+    {
+      "query_id": "hotpotqa:0022",
+      "question": "Aside from the Apple Remote, what other device can control the program Apple Remote was originally designed to interact with?",
+      "reference": "keyboard function keys"
+    },
+    {
+      "query_id": "hotpotqa:0023",
+      "question": "Which performance act has a higher instrument to person ratio, Badly Drawn Boy or Wolf Alice?",
+      "reference": "Badly Drawn Boy"
+    },
+    {
+      "query_id": "hotpotqa:0024",
+      "question": "What was the father of Kasper Schmeichel voted to be by the IFFHS in 1992?",
+      "reference": "World's Best Goalkeeper"
+    },
+    {
+      "query_id": "hotpotqa:0025",
+      "question": "Who was the writer of These Boots Are Made for Walkin' and who died in 2007?",
+      "reference": "Barton Lee Hazlewood"
+    },
+    {
+      "query_id": "hotpotqa:0026",
+      "question": "The 2011\u201312 VCU Rams men's basketball team, led by third year head coach Shaka Smart, represented Virginia Commonwealth University which was founded in what year?",
+      "reference": "1838"
+    },
+    {
+      "query_id": "hotpotqa:0027",
+      "question": "Are both Dictyosperma, and Huernia described as a genus?",
+      "reference": "yes"
+    },
+    {
+      "query_id": "hotpotqa:0028",
+      "question": "Kaiser Ventures corporation was founded by an American industrialist who became known as the father of modern American shipbuilding?",
+      "reference": "Henry J. Kaiser"
+    },
+    {
+      "query_id": "hotpotqa:0029",
+      "question": "What is the name for the adventure in \"Tunnels and Trolls\", a game designed by Ken St. Andre?",
+      "reference": "Arena of Khazan"
+    },
+    {
+      "query_id": "hotpotqa:0030",
+      "question": "When was Poison's album \"Shut Up, Make Love\" released?",
+      "reference": "2000"
+    },
+    {
+      "query_id": "hotpotqa:0031",
+      "question": "Hayden is a singer-songwriter from Canada, but where does Buck-Tick hail from?",
+      "reference": "Fujioka, Gunma"
+    },
+    {
+      "query_id": "hotpotqa:0032",
+      "question": "Which  French ace pilot and adventurer fly L'Oiseau Blanc",
+      "reference": "Charles Eug\u00e8ne"
+    },
+    {
+      "query_id": "hotpotqa:0033",
+      "question": "Are Freakonomics and In the Realm of the Hackers both American documentaries?",
+      "reference": "no"
+    },
+    {
+      "query_id": "hotpotqa:0034",
+      "question": "Which band, Letters to Cleo or Screaming Trees, had more members?",
+      "reference": "Letters to Cleo"
+    },
+    {
+      "query_id": "hotpotqa:0035",
+      "question": "Alexander Kerensky was defeated and destroyed by the Bolsheviks in the course of a civil war that ended when ?",
+      "reference": "October 1922"
+    },
+    {
+      "query_id": "hotpotqa:0036",
+      "question": "Seven Brief Lessons on Physics was written by an Italian physicist that has worked in France since what year?",
+      "reference": "2000"
+    },
+    {
+      "query_id": "hotpotqa:0037",
+      "question": "The Livesey Hal War Memorial commemorates the fallen of which war, that had over 60 million casualties?",
+      "reference": "World War II"
+    },
+    {
+      "query_id": "hotpotqa:0038",
+      "question": "Are both Elko Regional Airport and Gerald R. Ford International Airport located in Michigan?",
+      "reference": "no"
+    },
+    {
+      "query_id": "hotpotqa:0039",
+      "question": "Ralph Hefferline was a psychology professor at a university that is located in what city?",
+      "reference": "New York City"
+    },
+    {
+      "query_id": "hotpotqa:0040",
+      "question": "Which dog's ancestors include Gordon and Irish Setters: the Manchester Terrier or the Scotch Collie?",
+      "reference": "Scotch Collie"
+    },
+    {
+      "query_id": "hotpotqa:0041",
+      "question": "Where is the company that Sachin Warrier worked for as a software engineer headquartered?",
+      "reference": "Mumbai"
+    },
+    {
+      "query_id": "hotpotqa:0042",
+      "question": "A Japanese manga series based on a 16 year old high school student Ichitaka Seto, is written and illustrated by someone born in what year?",
+      "reference": "1962"
+    },
+    {
+      "query_id": "hotpotqa:0043",
+      "question": "The battle in which Giuseppe Arimondi lost his life secured what for Ethiopia?",
+      "reference": "sovereignty"
+    },
+    {
+      "query_id": "hotpotqa:0044",
+      "question": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under which United States Vice President?",
+      "reference": "Nelson Rockefeller"
+    },
+    {
+      "query_id": "hotpotqa:0045",
+      "question": "A medieval fortress in Dirleton, East Lothian, Scotland borders on the south side of what coastal area?",
+      "reference": "Yellowcraig"
+    },
+    {
+      "query_id": "hotpotqa:0046",
+      "question": "Who is the writer of this song that was inspired by words on a tombstone and was the first track on the box set Back to Mono?",
+      "reference": "Phil Spector"
+    },
+    {
+      "query_id": "hotpotqa:0047",
+      "question": "What type of forum did a former Soviet statesman initiate?",
+      "reference": "Organizations could come together to address global issues"
+    },
+    {
+      "query_id": "hotpotqa:0048",
+      "question": "Are Ferocactus and Silene both types of plant?",
+      "reference": "yes"
+    },
+    {
+      "query_id": "hotpotqa:0049",
+      "question": "Which British first-generation jet-powered medium bomber was used in the South West Pacific theatre of World War II?",
+      "reference": "English Electric Canberra"
+    },
+    {
+      "query_id": "hotpotqa:0050",
+      "question": "Which year and which conference was the 14th season for this conference as part of the NCAA Division that the Colorado Buffaloes played in with a record of 2-6 in conference play?",
+      "reference": "2009 Big 12 Conference"
+    },
+    {
+      "query_id": "hotpotqa:0051",
+      "question": "In 1991 Euromarch\u00e9 was bought by a chain that operated how any hypermarkets at the end of 2016?",
+      "reference": "1,462"
+    },
+    {
+      "query_id": "hotpotqa:0052",
+      "question": "What race track in the midwest hosts a 500 mile race eavery May?",
+      "reference": "Indianapolis Motor Speedway"
+    },
+    {
+      "query_id": "hotpotqa:0053",
+      "question": "In what city did the \"Prince of tenors\" star in a film based on an opera by Giacomo Puccini?",
+      "reference": "Rome"
+    },
+    {
+      "query_id": "hotpotqa:0054",
+      "question": "Ellie Goulding worked with what other writers on her third studio album, Delirium?",
+      "reference": "Max Martin, Savan Kotecha and Ilya Salmanzadeh"
+    },
+    {
+      "query_id": "hotpotqa:0055",
+      "question": "Which Australian city founded in 1838 contains a boarding school opened by a Prime Minister of Australia and named after a school in London of the same name.",
+      "reference": "Marion, South Australia"
+    },
+    {
+      "query_id": "hotpotqa:0056",
+      "question": "D1NZ is a series based on what oversteering technique?",
+      "reference": "Drifting"
+    },
+    {
+      "query_id": "hotpotqa:0057",
+      "question": "who is younger Keith Bostic or Jerry Glanville ?",
+      "reference": "Keith Bostic"
+    },
+    {
+      "query_id": "hotpotqa:0058",
+      "question": "According to the 2001 census, what was the population of the city in which Kirton End is located?",
+      "reference": "35,124"
+    },
+    {
+      "query_id": "hotpotqa:0059",
+      "question": "Are both Cypress and Ajuga genera?",
+      "reference": "no"
+    },
+    {
+      "query_id": "hotpotqa:0060",
+      "question": "What distinction is held by the former NBA player who was a member of the Charlotte Hornets during their 1992-93 season and was head coach for the WNBA team Charlotte Sting?",
+      "reference": "shortest player ever to play in the National Basketball Association"
+    },
+    {
+      "query_id": "hotpotqa:0061",
+      "question": "What is the name of the executive producer of the film that has a score composed by Jerry Goldsmith?",
+      "reference": "Ronald Shusett"
+    },
+    {
+      "query_id": "hotpotqa:0062",
+      "question": "Who was born earlier, Emma Bull or Virginia Woolf?",
+      "reference": "Adeline Virginia Woolf"
+    },
+    {
+      "query_id": "hotpotqa:0063",
+      "question": "What was the Roud Folk Song Index of the nursery rhyme inspiring What Are Little Girls Made Of?",
+      "reference": "821"
+    },
+    {
+      "query_id": "hotpotqa:0064",
+      "question": "Scott Parkin has been a vocal critic of Exxonmobil and another corporation that has operations in how many countries ?",
+      "reference": "more than 70 countries"
+    },
+    {
+      "query_id": "hotpotqa:0065",
+      "question": "What WB supernatrual drama series was Jawbreaker star Rose Mcgowan best known for being in?",
+      "reference": "Charmed"
+    },
+    {
+      "query_id": "hotpotqa:0066",
+      "question": "Vince Phillips held a junior welterweight title by an organization recognized by what larger Hall of Fame?",
+      "reference": "International Boxing Hall of Fame"
+    },
+    {
+      "query_id": "hotpotqa:0067",
+      "question": "What is the name of the singer who's song was released as the lead single from the album \"Confessions\", and that had popular song stuck behind for eight consecutive weeks?",
+      "reference": "Usher"
+    },
+    {
+      "query_id": "hotpotqa:0068",
+      "question": "who is the younger brother of The episode guest stars of The Hard Easy",
+      "reference": "Bill Murray"
+    },
+    {
+      "query_id": "hotpotqa:0069",
+      "question": "The 2017\u201318 Wigan Athletic F.C. season will be a year in which the team competes in the league cup known as what for sponsorship reasons?",
+      "reference": "Carabao Cup"
+    },
+    {
+      "query_id": "hotpotqa:0070",
+      "question": "Which of Tara Strong major voice role in animated series is an American animated television series based on the DC Comics fictional superhero team, the \"Teen Titans\"?",
+      "reference": "Teen Titans Go!"
+    },
+    {
+      "query_id": "hotpotqa:0071",
+      "question": "What is the inhabitant of the city where  122nd SS-Standarte was formed in2014",
+      "reference": "276,170 inhabitants"
+    },
+    {
+      "query_id": "hotpotqa:0072",
+      "question": "What color clothing do people of the Netherlands wear during Oranjegekte or to celebrate the national holiday Koningsdag?",
+      "reference": "orange"
+    },
+    {
+      "query_id": "hotpotqa:0073",
+      "question": "What was the name of the 1996 loose adaptation of William Shakespeare's \"Romeo & Juliet\" written by James Gunn?",
+      "reference": "Tromeo and Juliet"
+    },
+    {
+      "query_id": "hotpotqa:0074",
+      "question": "Robert Suettinger was the national intelligence officer under which former Governor of Arkansas?",
+      "reference": "William Jefferson Clinton"
+    },
+    {
+      "query_id": "hotpotqa:0075",
+      "question": "What American professional Hawaiian surfer born 18 October 1992 won the Rip Curl Pro Portugal?",
+      "reference": "John John Florence"
+    },
+    {
+      "query_id": "hotpotqa:0076",
+      "question": "What is the middle name of the actress who plays Bobbi Bacha in Suburban Madness?",
+      "reference": "Ann"
+    },
+    {
+      "query_id": "hotpotqa:0077",
+      "question": "Alvaro Mexia had a diplomatic mission with which tribe of indigenous people?",
+      "reference": "Apalachees"
+    },
+    {
+      "query_id": "hotpotqa:0078",
+      "question": "What nationality were social anthropologists Alfred Gell and Edmund Leach?",
+      "reference": "British"
+    },
+    {
+      "query_id": "hotpotqa:0079",
+      "question": "In which year was the King who made the 1925 Birthday Honours born?",
+      "reference": "1865"
+    },
+    {
+      "query_id": "musique:0000",
+      "question": "Who is the spouse of the Green performer?",
+      "reference": "Miquette Giraudy"
+    },
+    {
+      "query_id": "musique:0001",
+      "question": "Who founded the company that distributed the film UHF?",
+      "reference": "Mike Medavoy"
+    },
+    {
+      "query_id": "musique:0002",
+      "question": "What administrative territorial entity is the owner of Ciudad Deportiva located?",
+      "reference": "Tamaulipas"
+    },
+    {
+      "query_id": "musique:0003",
+      "question": "Where is Ulrich Walter's employer headquartered?",
+      "reference": "Cologne"
+    },
+    {
+      "query_id": "musique:0004",
+      "question": "Which company owns the manufacturer of Learjet 60?",
+      "reference": "Bombardier Inc."
+    },
+    {
+      "query_id": "musique:0005",
+      "question": "Who is the child of Caroline LeRoy's spouse?",
+      "reference": "Fletcher Webster"
+    },
+    {
+      "query_id": "musique:0006",
+      "question": "Who is the grandmother of Philippe, Duke of Orl\u00e9ans?",
+      "reference": "Marie de' Medici"
+    },
+    {
+      "query_id": "musique:0007",
+      "question": "What is the goal of the group that European Movement Germany is a member of?",
+      "reference": "European integration"
+    },
+    {
+      "query_id": "musique:0008",
+      "question": "What company succeeded the owner of Empire Sports Network?",
+      "reference": "Time Warner Cable"
+    },
+    {
+      "query_id": "musique:0009",
+      "question": "What province shares a border with the province where Lago District is located?",
+      "reference": "Cabo Delgado Province"
+    },
+    {
+      "query_id": "musique:0010",
+      "question": "What league does the team that plays in Stadio Ciro Vigorito play for?",
+      "reference": "Lega Pro Prima Divisione"
+    },
+    {
+      "query_id": "musique:0011",
+      "question": "What is a notable work written by the author of The Timothy files?",
+      "reference": "Anderson Tapes"
+    },
+    {
+      "query_id": "musique:0012",
+      "question": "In which borough was Callum McManaman born?",
+      "reference": "Knowsley"
+    },
+    {
+      "query_id": "musique:0013",
+      "question": "What other county does the county where Imperial is located share a border with?",
+      "reference": "Crockett County"
+    },
+    {
+      "query_id": "musique:0014",
+      "question": "In what county is William W. Blair's birthplace located?",
+      "reference": "Orleans County"
+    },
+    {
+      "query_id": "musique:0015",
+      "question": "What award did the author of The Red Tree receive?",
+      "reference": "Academy Award for Best Animated Short Film"
+    },
+    {
+      "query_id": "musique:0016",
+      "question": "Where was Tyler MacDuff's child educated?",
+      "reference": "Blair High School"
+    },
+    {
+      "query_id": "musique:0017",
+      "question": "Who is the spouse of the Rabbit Hole's producer?",
+      "reference": "Keith Urban"
+    },
+    {
+      "query_id": "musique:0018",
+      "question": "Who is the child of Sigrid Eskilsdotter's child?",
+      "reference": "Svante Stensson Sture"
+    },
+    {
+      "query_id": "musique:0019",
+      "question": "In which county is Kimbrough Memorial Stadium located?",
+      "reference": "Randall County"
+    },
+    {
+      "query_id": "musique:0020",
+      "question": "What record label is the performer of Almost Made Ya signed to?",
+      "reference": "Derrty Entertainment"
+    },
+    {
+      "query_id": "musique:0021",
+      "question": "Where was the author of Hannibal and Scipio educated at?",
+      "reference": "Exeter College"
+    },
+    {
+      "query_id": "musique:0022",
+      "question": "In which county is Southern Maryland Electric Cooperative headquartered?",
+      "reference": "Charles County"
+    },
+    {
+      "query_id": "musique:0023",
+      "question": "Who is the child of the Victim of Romance performer?",
+      "reference": "Chynna Phillips"
+    },
+    {
+      "query_id": "musique:0024",
+      "question": "What county was Tim Dubois born in?",
+      "reference": "McDonald County"
+    },
+    {
+      "query_id": "musique:0025",
+      "question": "What record label did the person who is part of The Bruce Lee Band start?",
+      "reference": "Asian Man Records"
+    },
+    {
+      "query_id": "musique:0026",
+      "question": "What is another notable work made by the author of Miss Sara Sampson?",
+      "reference": "Emilia Galotti"
+    },
+    {
+      "query_id": "musique:0027",
+      "question": "What instrument is played by the person from The Blackout All-Stars?",
+      "reference": "conga"
+    },
+    {
+      "query_id": "musique:0028",
+      "question": "What is the seat of the county where Van Hook Township is located?",
+      "reference": "Stanley"
+    },
+    {
+      "query_id": "musique:0029",
+      "question": "Who is the father of Edward Baring, 1st Baron Revelstoke's father?",
+      "reference": "Sir Francis Baring, 1st Baronet"
+    },
+    {
+      "query_id": "musique:0030",
+      "question": "What group was the performer of Be the One a member of?",
+      "reference": "Jackson 5"
+    },
+    {
+      "query_id": "musique:0031",
+      "question": "Who is the lead singer of the band performing Bang Bang Rock & Roll?",
+      "reference": "Eddie Argos"
+    },
+    {
+      "query_id": "musique:0032",
+      "question": "What is the network which National Cycle Route 57 is part of an example of?",
+      "reference": "national cycling route network"
+    },
+    {
+      "query_id": "musique:0033",
+      "question": "Who is the spouse of the child of Peter Andreas Heiberg?",
+      "reference": "Johanne Luise Heiberg"
+    },
+    {
+      "query_id": "musique:0034",
+      "question": "The Unwinding author volunteered for which organisation?",
+      "reference": "Peace Corps"
+    },
+    {
+      "query_id": "musique:0035",
+      "question": "What is the capital of the county that Pine Springs is located in?",
+      "reference": "Van Horn"
+    },
+    {
+      "query_id": "musique:0036",
+      "question": "What district is the headquarter of Julia's House located?",
+      "reference": "East Dorset"
+    },
+    {
+      "query_id": "musique:0037",
+      "question": "Who is the spouse of Young Man Luther's author?",
+      "reference": "Joan Erikson"
+    },
+    {
+      "query_id": "musique:0038",
+      "question": "What record label did the performer of The Place and the Time belong to?",
+      "reference": "Columbia Records"
+    },
+    {
+      "query_id": "musique:0039",
+      "question": "Who is the child of the person who followed Tihomir of Serbia?",
+      "reference": "Saint Sava"
+    },
+    {
+      "query_id": "musique:0040",
+      "question": "What team was Anna Benson's husband on?",
+      "reference": "Pittsburgh Pirates"
+    },
+    {
+      "query_id": "musique:0041",
+      "question": "What place does the administrative territorial entity that Juba is located in share a border with?",
+      "reference": "Eastern Equatoria"
+    },
+    {
+      "query_id": "musique:0042",
+      "question": "Where was the spouse of Frances Tupper born?",
+      "reference": "Amherst"
+    },
+    {
+      "query_id": "musique:0043",
+      "question": "Who founded the political party of Dimuthu Bandara Abayakoon?",
+      "reference": "Rohana Wijeweera"
+    },
+    {
+      "query_id": "musique:0044",
+      "question": "Bancroft's county borders what county?",
+      "reference": "Haliburton County"
+    },
+    {
+      "query_id": "musique:0045",
+      "question": "In which county is Mark Dismore's birthplace located?",
+      "reference": "Hancock County"
+    },
+    {
+      "query_id": "musique:0046",
+      "question": "Who was the sibling of Nannina de' Medici?",
+      "reference": "Giuliano de' Medici"
+    },
+    {
+      "query_id": "musique:0047",
+      "question": "What county is the NRHEG High School located in?",
+      "reference": "Waseca County"
+    },
+    {
+      "query_id": "musique:0048",
+      "question": "What league does the team that occupies the Rabat Ajax Football Ground belong to?",
+      "reference": "Maltese Premier League"
+    },
+    {
+      "query_id": "musique:0049",
+      "question": "Who was married to the star of No Escape?",
+      "reference": "John Profumo"
+    },
+    {
+      "query_id": "musique:0050",
+      "question": "What administrative territorial entity contains the place where KPRM is licensed to broadcast to?",
+      "reference": "Hubbard County"
+    },
+    {
+      "query_id": "musique:0051",
+      "question": "Where are the headquarters for the publisher of In the Shadow of Greatness?",
+      "reference": "Annapolis"
+    },
+    {
+      "query_id": "musique:0052",
+      "question": "Who is part of the band that performed Full Cooperation?",
+      "reference": "Erick Sermon"
+    },
+    {
+      "query_id": "musique:0053",
+      "question": "The territory containing Bansaan Island is located at which island?",
+      "reference": "Panglao Island"
+    },
+    {
+      "query_id": "musique:0054",
+      "question": "In which county did Snappy Tomato Pizza form?",
+      "reference": "Kenton County"
+    },
+    {
+      "query_id": "musique:0055",
+      "question": "What's the place of birth of the former member of The Sunnyboys?",
+      "reference": "Kingscliff"
+    },
+    {
+      "query_id": "musique:0056",
+      "question": "In which district was Ernie Watts born?",
+      "reference": "West Berkshire"
+    },
+    {
+      "query_id": "musique:0057",
+      "question": "Which county does Lloyd Dane's birthplace belong to?",
+      "reference": "Miller County"
+    },
+    {
+      "query_id": "musique:0058",
+      "question": "Who is the spouse of the screenwriter of The Actress?",
+      "reference": "Garson Kanin"
+    },
+    {
+      "query_id": "musique:0059",
+      "question": "What award was received by the person who authored Missing Person?",
+      "reference": "Nobel Prize in Literature"
+    },
+    {
+      "query_id": "musique:0060",
+      "question": "What event caused the founder of Australia's liberal party to become Prime Minister?",
+      "reference": "Lyons' death in 1939"
+    },
+    {
+      "query_id": "musique:0061",
+      "question": "What event caused the Liberal Party of Australia's longest-serving leader to become Prime Minister?",
+      "reference": "Lyons' death in 1939"
+    },
+    {
+      "query_id": "musique:0062",
+      "question": "What was the average per capita GVA in 2013 of the country which created Burma's academic system?",
+      "reference": "\u00a323,755"
+    },
+    {
+      "query_id": "musique:0063",
+      "question": "Who is the spouse of the creator of The Nanny Reunion: A Nosh to Remember?",
+      "reference": "Peter Marc Jacobson"
+    },
+    {
+      "query_id": "musique:0064",
+      "question": "Who founded the publisher of The Final Testament of the Holy Bible?",
+      "reference": "Larry Gagosian"
+    },
+    {
+      "query_id": "musique:0065",
+      "question": "During which era was the company that makes Nirbhay founded?",
+      "reference": "From the 1950s to the 1970s"
+    },
+    {
+      "query_id": "musique:0066",
+      "question": "During what era was the manufacturer of Agni-V founded?",
+      "reference": "From the 1950s to the 1970s"
+    },
+    {
+      "query_id": "musique:0067",
+      "question": "In what era was the company known as the manufacturer of Agni-V founded?",
+      "reference": "From the 1950s to the 1970s"
+    },
+    {
+      "query_id": "musique:0068",
+      "question": "What city is located in the county containing Qiantong?",
+      "reference": "Ningbo"
+    },
+    {
+      "query_id": "musique:0069",
+      "question": "What is the performer of Heartbeat named after?",
+      "reference": "Natalie Albino"
+    }
+  ]
+}

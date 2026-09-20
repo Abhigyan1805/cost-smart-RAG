@@ -25,10 +25,12 @@ spent and the `cloud_spend_usd` columns are *estimates*, not charges.
 ## What has shipped
 
 - **Corpus + retrieval** (`src/costsmart/corpus`, `src/costsmart/retrieval`):
-  synthetic Tier-A query sets (legacy pilot + a 75%-multi-hop mix),
+  synthetic Tier-A query sets (legacy pilot + a 75%-multi-hop mix) plus a
+  committed **real** Tier-A corpus (50 NQ + 80 HotpotQA + 70 MuSiQue at
+  `results/realdata-15/corpus.json`, fetched via the HF loader path by
+  `scripts/fetch_tier_a.py` with per-dataset licence/revision/checksums),
   deterministic index builds, BM25 + hybrid retrieval, rerank, and
-  post-retrieval features. The Hugging Face loader path exists but no live
-  fetch happens in this task.
+  post-retrieval features.
 - **Telemetry + sweep harness** (`src/costsmart/eval/oracle_sweep.py`,
   `src/costsmart/telemetry`): exhaustive route sweeps into SQLite with
   per-row provenance (`generator_mode` / `retrieval_mode`, temperature, seed,
@@ -42,25 +44,27 @@ spent and the `cloud_spend_usd` columns are *estimates*, not charges.
   `scripts/make_plots.py`, and the stable-oracle majority recount in
   `scripts/stable_oracle.py`.
 - **Stable-oracle recounts** (`results/costfinal-10/`,
-  `results/costmultihop-12/`): 3x live repeats per measured pair, strict
-  majority grading with ties counted incorrect
+  `results/costmultihop-12/`, `results/realdata-15/`): 3x live repeats per
+  measured pair, strict majority grading with ties counted incorrect
   (`src/costsmart/eval/stability.py`). The recount shows single-run label
-  noise does not change the verdict.
+  noise does not change the verdict, including on real Tier-A data.
 - **Routing + verification + agent loop** (`src/costsmart/routing`,
   `src/costsmart/verify`, `src/costsmart/agent`): router training and
   baselines, verification critics, and the demo agent loop.
-- **Remote GPU route** (Colab, plus `kernels/costsweep-13-local-sweep/` on
-  Kaggle): the Kaggle kernel clones the repo, serves
-  `Qwen/Qwen2.5-1.5B-Instruct`, and resumes the committed DBs by cache key.
-  Its runbook log is hash-pinned in
-  `results/costmultihop-12/KAGGLE_PROVENANCE.md`.
+- **Remote GPU route** (Colab, plus `kernels/costsweep-13-local-sweep/` and
+  `kernels/realdata-15-local-sweep/` on Kaggle): the Kaggle kernel clones
+  the repo, serves `Qwen/Qwen2.5-1.5B-Instruct`, and resumes the committed
+  DBs by cache key. The real-data kernel also fetches the real corpus and
+  builds the real index. Runbook logs are hash-pinned in
+  `results/costmultihop-12/KAGGLE_PROVENANCE.md` and
+  `results/realdata-15/KAGGLE_PROVENANCE.md`.
 
 ## Status at a glance
 
 | Area | Status |
 |---|---|
 | Skeleton / model interfaces / CLI | shipped |
-| Corpus + retrieval | shipped (synthetic; HF loader path exists, no live fetch) |
+| Corpus + retrieval | shipped (synthetic mixes + committed real Tier-A corpus) |
 | Telemetry / sweep harness | shipped (1400-attempt matrices, per-row provenance) |
 | Eval + oracle | shipped (headroom gate + stable recount) |
 | Routing / router training | shipped (pilot `router-v1`; not yet on a real dataset) |
@@ -70,15 +74,20 @@ spent and the `cloud_spend_usd` columns are *estimates*, not charges.
 
 ## Current result and its limits
 
-The headroom gate is **NO-GO on both mixes and both labelings** (stable
-routable fraction 0.06 [0.03, 0.095] on the legacy mix; 0.045 [0.020, 0.075]
-on the multi-hop mix). Read it as a **pipeline smoke signal, not a benchmark
-conclusion**: the corpus is offline synthetic and its templates keep the
-answer entity in the question text. "Dense" retrieval falls back to the
-stdlib hash-embedding in this environment (not the pinned MiniLM), and the
-cloud-stub cost columns are estimated, not spent. **A real-dataset re-run is
-required before any product decision.** Full framing: `REPORT.md`, "Scope and
-claim strength (read first)".
+The headroom gate is **NO-GO on both synthetic mixes, both labelings**
+(stable routable fraction 0.06 [0.03, 0.095] on the legacy mix; 0.045
+[0.020, 0.075] on the multi-hop mix), **and on real labelled Tier-A data**
+(`realdata-15`: routable fraction 0.095 [0.055, 0.135] stable, 0.095
+[0.055, 0.140] single-run). The real-data verdict is the decisive one and it
+does not differ in direction from the synthetic one - the synthetic
+templates did not manufacture the NO-GO - but it is **marginal**, with the
+point estimate just below the 0.10 gate. The synthetic corpora stay pipeline
+smoke signals (their templates keep the answer entity in the question text);
+on real data the L1 retrieval used the pinned MiniLM, while synthetic
+"Dense" retrieval falls back to the stdlib hash-embedding in this
+environment. The cloud-stub cost columns are estimates, not spent ($0).
+Full framing: `REPORT.md`, "Scope and claim strength (read first)" and
+"Real-data recount (realdata-15)".
 
 ## Reproducing
 

@@ -1,0 +1,17 @@
+{
+  "mode": "live",
+  "sweep_db": "results/realdata-15/sweep.db",
+  "repeats_db": "results/realdata-15/repeats.db",
+  "routes": [
+    "L0",
+    "L1"
+  ],
+  "n_pairs": 400,
+  "repeats": 3,
+  "draws_expected": 1200,
+  "inserted": 1200,
+  "skipped_existing": 0,
+  "total_repeat_rows": 1200,
+  "temperature": 0,
+  "seed": 0
+}

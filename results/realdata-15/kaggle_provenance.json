@@ -1,0 +1,82 @@
+{
+  "description": "Provenance for the realdata-15 decisive Kaggle run on REAL Tier-A data (results/realdata-15/). The kernel log (~1.8 MB) is not committed; re-download it with the command below and verify the sha256.",
+  "kernel": {
+    "id": "abhigyan1818/realdata15-local-sweep",
+    "metadata": "kernels/realdata-15-local-sweep/kernel-metadata.json",
+    "code": "kernels/realdata-15-local-sweep/kernel.py",
+    "branch": "fm/costsmart-realdata-15",
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "git_sha": "00db8c47525657b2ab93f569927049d39fc03ddc"
+  },
+  "download": {
+    "command": "kaggle kernels output abhigyan1818/realdata15-local-sweep -p /tmp/kout",
+    "downloaded_at": "2026-09-20",
+    "status": "available",
+    "note": "Output was available and downloaded; the corpus was byte-compared against the committed corpus.json."
+  },
+  "logs": {
+    "realdata15-local-sweep.log": {
+      "sha256": "714a178bf76caff8ed0ae031b66a2748ad2427636c9c226d8b62174cf542a2e2",
+      "note": "Kaggle kernel stdout/stderr. Not committed; re-download and verify the sha256."
+    },
+    "local_tier_server.log": {
+      "sha256": "5a0079ff0d63ae2084be6b52b093ff2085dec1ff6f46a88a65939ad889a179c0"
+    }
+  },
+  "runbook_summary": {
+    "sweep_rows": 1400,
+    "sweep_by_route_mode": [
+      {"route_id": "C0", "generator_mode": "stub", "n": 200},
+      {"route_id": "C1", "generator_mode": "stub", "n": 200},
+      {"route_id": "C2", "generator_mode": "stub", "n": 200},
+      {"route_id": "C3", "generator_mode": "stub", "n": 200},
+      {"route_id": "C4", "generator_mode": "stub", "n": 200},
+      {"route_id": "L0", "generator_mode": "measured", "n": 200},
+      {"route_id": "L1", "generator_mode": "measured", "n": 200}
+    ],
+    "repeat_rows": 1200,
+    "repeat_pairs": 400,
+    "repeat_by_route_mode": [
+      {"route_id": "L0", "generator_mode": "measured", "n": 600},
+      {"route_id": "L1", "generator_mode": "measured", "n": 600}
+    ]
+  },
+  "index": {
+    "path": "data/index/real_index.json (not committed; reproducible via build_index --mix real)",
+    "sha256": "0ac03159279a0f4a58f248a81a590aead9ae637f96d116cc09e8e5d82a9b40bb",
+    "num_queries": 200,
+    "num_passages": 2192,
+    "num_chunks": 2290,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_backend": "sentence-transformers",
+    "embedding_dim": 384,
+    "note": "Unlike the synthetic costsweep-13 route (dense = hash fallback), the Kaggle host has sentence-transformers, so the real-data L1 retrieval used the pinned MiniLM model end-to-end."
+  },
+  "corpus": {
+    "path": "results/realdata-15/corpus.json",
+    "body_sha256": "0cdd131bc982f7a7e3e058858203a5d2ae91c427946bb8e6e55047672a190a9f",
+    "matches_committed": true,
+    "note": "The kernel uses the committed corpus and refuses to run unless its body sha256 matches splits_freeze.json."
+  },
+  "artifacts": {
+    "sweep.db": {
+      "sha256": "b1fe171b1e37356d67e812320916dd2f10417cf403549dceaa3a3f12bdf25bed"
+    },
+    "repeats.db": {
+      "sha256": "7871fd0695a48a60bcb02d2ab69c44f08c3b38e0b5a8df9c7bffcc3e8787d7c7"
+    },
+    "sweep.csv": {
+      "sha256": "f2aca9659d013ef475accf475a9995c5d8b05dbc5659c65de5dc75c025507764"
+    },
+    "repeats_summary.json": {
+      "sha256": "7a3687bb679686a8c50c1c36ec5b2225ea2af4286f07174a84c04e344ae59dae"
+    }
+  },
+  "verification": {
+    "downloaded_corpus_byte_identical_to_committed": true,
+    "all_measured_rows_generator_mode_measured": true,
+    "all_repeat_rows_generator_mode_measured": true,
+    "no_live_cloud_path_executed": true,
+    "cloud_spend_usd": 0.0
+  }
+}

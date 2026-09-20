@@ -1,0 +1,32 @@
+{
+  "cheap_route": "L0",
+  "strong_route": "C4",
+  "n_repeated_pairs": 400,
+  "repeated_routes": [
+    "L0",
+    "L1"
+  ],
+  "n_label_changes_single_vs_stable": 0,
+  "label_changes": [],
+  "single": {
+    "routable_fraction": 0.095,
+    "routable_ci": [
+      0.055,
+      0.14
+    ],
+    "saving_fraction": 0.9477338927590263,
+    "verdict": "NO-GO",
+    "mcnemar_p": 7.990203477180627e-41
+  },
+  "stable": {
+    "routable_fraction": 0.095,
+    "routable_ci": [
+      0.055,
+      0.135
+    ],
+    "saving_fraction": 0.947740397369575,
+    "verdict": "NO-GO",
+    "mcnemar_p": 7.990203477180627e-41
+  },
+  "verdict_changed": false
+}

@@ -34,6 +34,16 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   commands: `docs/kaggle-handoff.md`; the resume provenance (log sha256 +
   runbook summary + artifact hashes) is committed at
   `results/costmultihop-12/KAGGLE_PROVENANCE.{md,json}`.
+- Real Tier-A data route (realdata-15): the committed corpus is
+  `results/realdata-15/corpus.json` (50 NQ + 80 HotpotQA + 70 MuSiQue;
+  licences/revisions/checksums in `results/realdata-15/CORPUS_MANIFEST.md`).
+  Fetch on a network host with `scripts/fetch_tier_a.py` (normalizer
+  `corpus.loaders.normalize_hf_row`); offline loading is `source="real"` /
+  `build_index --mix real`. Decisive live run kernel:
+  `kernels/realdata-15-local-sweep/`; recount with `stable_oracle.py` against
+  `results/realdata-15/{sweep,repeats}.db`. `data/` is gitignored — commit
+  corpus/artifacts under `results/`. `nq_open` ships question+answer only, so
+  NQ has no passages (gate reads L0 vs C4 stub, not L1).
 
 ## Maintaining this file
 
