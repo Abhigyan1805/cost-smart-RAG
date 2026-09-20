@@ -1,0 +1,23 @@
+# tiersweep-16: cheap-tier break-even sweep on REAL Tier-A data ($0 cloud).
+# 200 real Tier-A queries (50 NQ + 80 HotpotQA + 70 MuSiQue, committed at
+# results/realdata-15/corpus.json) x the 7-route Week-1 set = 1400 attempts
+# per served model.
+#
+# Execution contract (same as realdata-15 / costsweep-08):
+# * the cheap-tier routes L0/L1/C0 run FOR REAL through the attached local
+#   model via --live-local --live-model <checkpoint> (temperature 0, seed 0);
+#   generator_mode='measured' and the served model's resolved revision/weight
+#   hash are attested server-side (tiersweep-16 audit fix).
+# * cloud-tier routes C1..C4 are STUB-ESTIMATED ($0 spent; no live cloud code
+#   path). C4 is exactly correct by the frozen stub contract, so the headroom
+#   gate's routable fraction equals the measured cheap-tier accuracy.
+# Rows are idempotent on sha256(query_id | route_id | prompt_version |
+# model_version): the --live-model override is the row's model_version, so
+# different checkpoints never collide and a resumed run skips measured work.
+name: sweep-200-tiersweep16
+routes: [L0, L1, C0, C1, C2, C3, C4]
+prompt_version: v1
+seed: 0
+query_source: tier-a
+tier_a_counts: {nq: 50, hotpotqa: 80, musique: 70}
+corpus_source: real

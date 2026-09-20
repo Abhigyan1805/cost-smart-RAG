@@ -10,6 +10,17 @@ models:
     tier: local
     context_window: 32768
 
+  - name: local-3b
+    provider: colab
+    # tiersweep-16: the intermediate cheap tier between local-small (1.5B)
+    # and local-medium (7B). Always the exact model id here - the served
+    # checkpoint's resolved revision is attested server-side into telemetry
+    # (model_revision / weights_sha256), never inferred from "main".
+    model_id: "Qwen/Qwen2.5-3B-Instruct"
+    revision: "main"
+    tier: local
+    context_window: 32768
+
   - name: local-medium
     provider: colab
     model_id: "Qwen/Qwen2.5-7B-Instruct"

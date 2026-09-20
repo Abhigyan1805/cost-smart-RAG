@@ -27,6 +27,9 @@ _MIGRATION_DEFAULTS = {
     "retrieval_mode": "'unflagged-legacy'",
     "temperature": "0.0",
     "seed": "0",
+    "model_revision": "''",
+    "weights_sha256": "''",
+    "attestation": "'unflagged-legacy'",
 }
 
 
@@ -79,13 +82,17 @@ class TelemetryStore:
         self.close()
 
     def insert_attempt(self, attempt: dict) -> bool:
-        """Insert one attempt row; False when cache_key already present."""
-        row = {k: attempt.get(k) for k in ATTEMPT_COLUMNS}
-        cols = ", ".join(ATTEMPT_COLUMNS)
-        placeholders = ", ".join("?" for _ in ATTEMPT_COLUMNS)
+        """Insert one attempt row; False when cache_key already present.
+
+        Columns absent from ``attempt`` (or ``None``) are omitted from the
+        INSERT so the table DDL default applies - new provenance columns are
+        therefore backward-compatible with callers written before them.
+        """
+        cols = [k for k in ATTEMPT_COLUMNS if attempt.get(k) is not None]
+        placeholders = ", ".join("?" for _ in cols)
         cur = self.conn.execute(
-            f"INSERT OR IGNORE INTO attempts ({cols}) VALUES ({placeholders})",
-            [row[k] for k in ATTEMPT_COLUMNS],
+            f"INSERT OR IGNORE INTO attempts ({', '.join(cols)}) VALUES ({placeholders})",
+            [attempt[k] for k in cols],
         )
         self.conn.commit()
         return cur.rowcount == 1
@@ -106,12 +113,12 @@ class TelemetryStore:
         draws and only executes the remainder (same resumability contract
         as :meth:`insert_attempt`, in a table the sweep matrix never reads).
         """
-        row = {k: repeat.get(k) for k in REPEAT_COLUMNS}
-        cols = ", ".join(REPEAT_COLUMNS)
-        placeholders = ", ".join("?" for _ in REPEAT_COLUMNS)
+        cols = [k for k in REPEAT_COLUMNS if repeat.get(k) is not None]
+        placeholders = ", ".join("?" for _ in cols)
         cur = self.conn.execute(
-            f"INSERT OR IGNORE INTO repeat_attempts ({cols}) VALUES ({placeholders})",
-            [row[k] for k in REPEAT_COLUMNS],
+            f"INSERT OR IGNORE INTO repeat_attempts ({', '.join(cols)}) "
+            f"VALUES ({placeholders})",
+            [repeat[k] for k in cols],
         )
         self.conn.commit()
         return cur.rowcount == 1

@@ -27,6 +27,11 @@ import sys
 from pathlib import Path
 
 from ..telemetry import cost as cost_mod
+from ..telemetry.schema import (
+    ATTESTATION_ATTESTED,
+    ATTESTATION_STUB,
+    ATTESTATION_UNATTESTED,
+)
 from ..telemetry.store import TelemetryStore
 from . import graders
 
@@ -371,6 +376,9 @@ def execute_live_local(
     # Server-tokenized prompt count when the Colab server reports it
     # (scripts/colab_local_tier.py serve); else a whitespace estimate.
     tokens_in = int(raw.get("prompt_eval_count", 0) or len(prompt.split()))
+    # Server-side model attestation (tiersweep-16): the endpoint reports the
+    # resolved revision / weight hash it actually served, so the row's model
+    # identity is proven by the server, not declared by the client.
     return {
         "prediction": extract_final_answer(result.text),
         "tokens_in": tokens_in,
@@ -381,6 +389,8 @@ def execute_live_local(
         "latency_ms_verify": 0.0,
         "latency_ms_total": max(0.0, float(server_latency_s)) * 1000.0,
         "model_version": model_version,
+        "model_revision": str(raw.get("model_revision") or ""),
+        "weights_sha256": str(raw.get("weights_sha256") or ""),
     }
 
 
@@ -407,9 +417,18 @@ def build_attempt(
         )
         model_version = run.pop("model_version")
         generator_mode = GENERATOR_MEASURED
+        model_revision = run.pop("model_revision", "")
+        weights_sha256 = run.pop("weights_sha256", "")
+        attestation = (
+            ATTESTATION_ATTESTED if (model_revision or weights_sha256)
+            else ATTESTATION_UNATTESTED
+        )
     else:
         run = stub_execute(query, route_id, seed)
         generator_mode = GENERATOR_STUB
+        model_revision = ""
+        weights_sha256 = ""
+        attestation = ATTESTATION_STUB
     if retrieval_ms is not None:
         # Measured hybrid-retrieval latency replaces the stub estimate; the
         # generator itself stays a stub (cloud spend estimated, not spent).
@@ -453,6 +472,9 @@ def build_attempt(
         "retrieval_mode": retrieval_mode,
         "temperature": temperature,
         "seed": seed,
+        "model_revision": model_revision,
+        "weights_sha256": weights_sha256,
+        "attestation": attestation,
     }
 
 
@@ -503,15 +525,24 @@ def _measured_retrieval_ms(question: str, index: dict, top_k: int = 5) -> float:
     return dt_ms
 
 
-def _build_live_clients(route_ids: list[str]) -> dict[str, object]:
+def _build_live_clients(
+    route_ids: list[str], live_model: str | None = None,
+) -> dict[str, object]:
     """Attach Colab clients for the local tiers in this sweep.
 
     Fails fast when the session is not attached (never a silent stub
     fallback). Cloud routes are excluded by construction — see
     :func:`execute_live_local`.
+
+    ``live_model`` (tiersweep-16) overrides the served model id for every
+    live route: the attached endpoint serves ONE model, so a tier sweep runs
+    the same routes against progressively stronger checkpoints. The override
+    becomes the row's ``model_version`` (hence the cache key), so rows for
+    different checkpoints never collide. When ``None`` the historical
+    route->tier mapping is used unchanged.
     """
     from ..models.colab_client import COLAB_ENDPOINT_ENV, get_colab_endpoint
-    from ..models.registry import get_client
+    from ..models.registry import create_client, get_client
 
     tiers = {ROUTE_SPECS[r][0] for r in route_ids if r in LOCAL_ROUTES}
     if not tiers:
@@ -522,6 +553,11 @@ def _build_live_clients(route_ids: list[str]) -> dict[str, object]:
             f"set {COLAB_ENDPOINT_ENV} per docs/colab-handoff.md "
             "(the captain connects the Colab session on request)"
         )
+    if live_model:
+        entry = {"name": "live-served-model", "provider": "colab",
+                 "model_id": live_model}
+        client = create_client(entry)
+        return {tier: client for tier in sorted(tiers)}
     clients: dict[str, object] = {}
     for tier in sorted(tiers):
         clients[tier] = get_client(tier)
@@ -538,6 +574,7 @@ def run_sweep(
     live_local: bool = False,
     live_clients: dict[str, object] | None = None,
     live_routes: tuple[str, ...] = LOCAL_ROUTES,
+    live_model: str | None = None,
 ) -> dict:
     """Run the query x route matrix; resumable via cache_key skips.
 
@@ -572,7 +609,10 @@ def run_sweep(
     clients: dict[str, object] = {}
     live_set = tuple(r for r in live_routes if r in LOCAL_ROUTES)
     if live_local:
-        clients = dict(live_clients or _build_live_clients(list(live_set)))
+        clients = dict(
+            live_clients
+            or _build_live_clients(list(live_set), live_model=live_model)
+        )
 
     own_store = store is None
     store = store or TelemetryStore(db_path)
@@ -632,6 +672,7 @@ def run_sweep(
         "retrieval_measured_attempts": retrieval_measured,
         "live_local": live_local,
         "live_routes": list(live_set) if live_local else [],
+        "live_model": live_model,
         "generator_measured_attempts": n_live,
         "generator_stubbed_attempts": n_stub,
         "temperature": GENERATOR_TEMPERATURE,
@@ -659,6 +700,10 @@ def main(argv: list[str] | None = None) -> int:
                         help="comma-separated subset of local routes to run live "
                              "(default all); restrict to the tiers the attached "
                              "session actually serves, e.g. 'L0,L1'")
+    parser.add_argument("--live-model", default=None,
+                        help="served model id override for every live local route "
+                             "(tier sweep: one endpoint, progressively stronger "
+                             "checkpoints); recorded as the row's model_version")
     args = parser.parse_args(argv)
 
     limit = None if args.no_limit else args.limit
@@ -671,6 +716,7 @@ def main(argv: list[str] | None = None) -> int:
         use_retrieval=not args.no_retrieval,
         live_local=args.live_local,
         live_routes=live_routes,
+        live_model=args.live_model,
     )
     if args.export_csv or args.export_parquet:
         store = TelemetryStore(args.db)

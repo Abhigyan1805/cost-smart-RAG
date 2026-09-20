@@ -18,6 +18,21 @@ estimate, $0 spent); ``temperature`` + ``seed`` pin the generator sampling
 contract (local tiers run at temperature 0, fixed seed). Legacy rows written
 before these columns existed migrate to ``unflagged-legacy`` (documented
 per-artifact: pilot.db = stub generator + measured retrieval).
+
+Attestation columns (tiersweep-16, audit finding): a measured row must
+prove *which* weights produced it, not self-declare it. The serving endpoint
+reports the resolved model revision (``model_revision``) and, best-effort, a
+sha256 over the weight shards (``weights_sha256``); the client copies both
+into the row and derives ``attestation``:
+
+* ``server-attested`` -- measured row carrying a server-reported revision or
+  weight hash (provenance is verifiable, not client-declared);
+* ``unattested``     -- measured row with neither (flagged, never falsified);
+* ``stub``           -- deterministic stub row (no model ran);
+* ``unflagged-legacy`` -- row written before these columns existed.
+
+Absent attestation is a flag, not a falsification: legacy measured rows keep
+their original labels and are counted by the attestation audit.
 """
 
 ATTEMPTS_DDL = """
@@ -51,7 +66,10 @@ CREATE TABLE IF NOT EXISTS attempts (
     generator_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
     retrieval_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
     temperature         REAL NOT NULL DEFAULT 0.0,
-    seed                INTEGER NOT NULL DEFAULT 0
+    seed                INTEGER NOT NULL DEFAULT 0,
+    model_revision      TEXT NOT NULL DEFAULT '',
+    weights_sha256      TEXT NOT NULL DEFAULT '',
+    attestation         TEXT NOT NULL DEFAULT 'unflagged-legacy'
 );
 CREATE INDEX IF NOT EXISTS idx_attempts_query ON attempts(query_id);
 CREATE INDEX IF NOT EXISTS idx_attempts_route ON attempts(route_id);
@@ -89,17 +107,30 @@ ATTEMPT_COLUMNS = (
     "retrieval_mode",
     "temperature",
     "seed",
+    "model_revision",
+    "weights_sha256",
+    "attestation",
 )
 
-#: Columns added after the pilot (costsweep-08). Legacy DBs (e.g. the frozen
-#: pilot.db) predate them; TelemetryStore migrates them via ALTER TABLE so old
-#: rows read back as 'unflagged-legacy' instead of failing inserts.
+#: Columns added after the pilot (costsweep-08 + tiersweep-16). Legacy DBs
+#: (e.g. the frozen pilot.db) predate them; TelemetryStore migrates them via
+#: ALTER TABLE so old rows read back as 'unflagged-legacy' instead of failing
+#: inserts.
 MIGRATED_COLUMNS = (
     "generator_mode",
     "retrieval_mode",
     "temperature",
     "seed",
+    "model_revision",
+    "weights_sha256",
+    "attestation",
 )
+
+#: Attestation statuses (tiersweep-16). See the module docstring.
+ATTESTATION_ATTESTED = "server-attested"
+ATTESTATION_UNATTESTED = "unattested"
+ATTESTATION_STUB = "stub"
+ATTESTATION_LEGACY = "unflagged-legacy"
 
 # ---------------------------------------------------------------------------
 # Stability repeats (costfinal-10): the sweep exposed small-model label noise
@@ -151,7 +182,10 @@ CREATE TABLE IF NOT EXISTS repeat_attempts (
     generator_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
     retrieval_mode      TEXT NOT NULL DEFAULT 'unflagged-legacy',
     temperature         REAL NOT NULL DEFAULT 0.0,
-    seed                INTEGER NOT NULL DEFAULT 0
+    seed                INTEGER NOT NULL DEFAULT 0,
+    model_revision      TEXT NOT NULL DEFAULT '',
+    weights_sha256      TEXT NOT NULL DEFAULT '',
+    attestation         TEXT NOT NULL DEFAULT 'unflagged-legacy'
 );
 CREATE INDEX IF NOT EXISTS idx_repeats_pair ON repeat_attempts(query_id, route_id);
 CREATE INDEX IF NOT EXISTS idx_repeats_cache ON repeat_attempts(cache_key);

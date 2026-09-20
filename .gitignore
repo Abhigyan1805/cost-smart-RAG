@@ -1,7 +1,9 @@
 # Local build / data artifacts (never committed)
 # (index artifacts under data/index/ are reproducible via the single index build command)
 data/
-telemetry/
+# Root-level scratch telemetry dir only; the package source lives at
+# src/costsmart/telemetry/ and must stay tracked.
+/telemetry/
 *.parquet
 __pycache__/
 *.pyc
