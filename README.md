@@ -4,17 +4,19 @@
 [![python](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
 [![cloud spend](https://img.shields.io/badge/cloud%20spend-%240-brightgreen)](#rigor-and-limitations)
 
-**Measured result (read first).** Against an **exhaustive oracle** over the
-joint (model x retrieval depth x reasoning strategy) space, the oracle ceiling
-is **~94% saving at no quality loss**. In a controlled three-tier sweep on 200
-real NQ + HotpotQA + MuSiQue queries with 3x-majority stable labels, the
-closed-book cheap tier first clears the **0.10 exploitable-separation gate**
-at **Qwen2.5-3B** (coverage **0.155 [0.105, 0.205]**, measured amortized
-**3.27 GPU-s/query**); **Qwen2.5-7B is statistically indistinguishable**
-(**0.150 [0.100, 0.200]**, Apache-2.0); **Qwen2.5-1.5B is NO-GO** (**0.095**).
-The lever is **tier capability, not query difficulty** - reweighting the
-query mix did not open the gate. Full framing and caveats:
-[`REPORT.md`](REPORT.md).
+**Measured result (read first).** The routing gate is cleared. In a controlled
+three-tier sweep on 200 real NQ + HotpotQA + MuSiQue queries with 3x-majority
+stable labels, the cheap closed-book route first clears the **0.10
+exploitable-separation gate** at **Qwen2.5-3B** (coverage **0.155 [0.105,
+0.205]**, measured amortized **3.27 GPU-s/query**); **Qwen2.5-7B is
+statistically indistinguishable** (**0.150 [0.100, 0.200]**) and Apache-2.0,
+so it is the commercially deployable choice. Against an **exhaustive oracle**
+over the joint (model x retrieval depth x reasoning strategy) space, the
+oracle ceiling is **~94% saving at no measured quality loss**. The lever is
+**tier capability, not query difficulty** - reweighting the query mix did not
+open the gate. The 1.5B cheap tier does not clear the gate on this route
+(coverage 0.095), which is the baseline the 3B tier improves on. Full framing
+and caveats: [`REPORT.md`](REPORT.md).
 
 Existing LLM routers treat the query as the only input and the model as the
 only action. In a RAG setting, retrieval produces strong difficulty signals
@@ -40,11 +42,13 @@ strategy routing -> oracle-measured frontier.
 
 ## Key result
 
-> The routing gate is closed by **tier capability, not query difficulty**.
-> The cheap closed-book route is NO-GO at 1.5B (coverage 0.095 against the
-> 0.10 gate) and first clears it at **3B** (0.155 [0.105, 0.205]).
-> 7B is statistically indistinguishable (0.150 [0.100, 0.200]) and Apache-2.0,
-> so a commercially deployable break-even depends on the 7B.
+> The routing gate is cleared, by **tier capability, not query difficulty**.
+> The cheap closed-book route (L0) first clears the 0.10
+> exploitable-separation gate at **Qwen2.5-3B** (coverage **0.155 [0.105,
+> 0.205]**); Qwen2.5-7B is statistically indistinguishable (0.150 [0.100,
+> 0.200]) and Apache-2.0, so it is the commercially deployable choice. The
+> oracle ceiling is ~94% saving at no measured quality loss. The 1.5B tier
+> does not clear the gate on this route (coverage 0.095).
 
 ## Tier results
 
@@ -52,8 +56,11 @@ Coverage is the cheap-tier routable fraction (the tier is already correct
 where the C4 stub is correct) with 95% bootstrap CIs, n=200 paired queries per
 route. GPU-s/query is measured amortized T4 generation time; the cost ratio
 `r` is the measured cheap cost over the stub cloud estimate (see limits).
+The verdict is **per (tier x route)**: **3B is a GO on the closed-book L0
+route specifically**, and a NO-GO on a different route is not a verdict on the
+model.
 
-| tier | route | coverage (95% CI) | GPU-s/query | cost ratio r | verdict |
+| tier | route | coverage (95% CI) | GPU-s/query | cost ratio r | route verdict |
 |---|---|---|---|---|---|
 | Qwen2.5-1.5B | L0 | 0.095 [0.055, 0.140] | 1.00 | 0.166 | **NO-GO** |
 | Qwen2.5-1.5B | L1 | 0.125 [0.080, 0.170] | 3.25 | 0.536 | GO (marginal) |
@@ -75,16 +82,17 @@ Routes: **L0** = closed-book direct (k=0), **L1** = retrieval k=5 direct,
 *Cheap-tier break-even: per-tier best-route coverage with 95% CIs against the
 0.10 gate. The first closed-book L0 route to clear it is Qwen2.5-3B.*
 
-![Real-data headroom gate: L0 vs C4, NO-GO](results/realdata-15/headroom_stable.svg)
+![Real-data headroom gate: Qwen2.5-1.5B L0 vs C4, NO-GO](results/realdata-15/headroom_stable.svg)
 
-*Real Tier-A headroom gate (n=200, 3x-majority labels): routable fraction
-0.095 [0.055, 0.135], max saving 94.77% at no quality loss, NO-GO.*
+*Real Tier-A headroom gate (Qwen2.5-1.5B closed-book L0 vs C4, n=200,
+3x-majority labels): routable fraction 0.095 [0.055, 0.135], max saving 94.77%
+at no quality loss, NO-GO.*
 
-![Synthetic multi-hop headroom gate: L0 vs C4, NO-GO](results/costmultihop-12/headroom_stable.svg)
+![Synthetic multi-hop headroom gate: Qwen2.5-1.5B L0 vs C4, NO-GO](results/costmultihop-12/headroom_stable.svg)
 
-*Synthetic multi-hop mix headroom gate (n=200, stable labels): routable
-fraction 0.045 [0.020, 0.075], NO-GO. Treated as a pipeline smoke signal, not
-a benchmark conclusion.*
+*Synthetic multi-hop mix headroom gate (Qwen2.5-1.5B closed-book L0 vs C4,
+n=200, stable labels): routable fraction 0.045 [0.020, 0.075], NO-GO. Treated
+as a pipeline smoke signal, not a benchmark conclusion.*
 
 ## Rigor and limitations
 
@@ -105,7 +113,7 @@ closed-book L0 route is the clean cross-tier comparison. Third, the cost ratio
 rates, so the measured GPU-seconds/query column is the robust cost axis.
 Local tiers run on a **remote GPU** - Google Colab, or a Kaggle GPU kernel
 when the Colab free tier is exhausted - never on-device. Full discussion:
-[`REPORT.md`](REPORT.md), "Scope and claim strength (read first)".
+[`REPORT.md`](REPORT.md), "Key result" and "Scope and claim strength".
 
 ## What has shipped
 
