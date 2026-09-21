@@ -98,7 +98,7 @@ closed-book L0 route.
   server), so the two tiers' cost ratios stay comparable; the 1.5B rows keep
   their original latency columns.
 
-## Real-data recount (realdata-15): gate NO-GO on real Tier-A data
+## Real-data recount (realdata-15): 1.5B L0 gate NO-GO on real Tier-A data
 
 This is the decisive re-run the audit called for. It replaces the synthetic
 corpus with **real labelled Tier-A data** and repeats the exact committed
@@ -161,17 +161,18 @@ mix: real short factual answers leave no paraphrase room, so the
 single-run/stable split is empty here (0 label changes). The real-data
 verdict therefore does not depend on the label-noise fix.
 
-### Verdict: real-data NO-GO, same direction as synthetic but marginal
+### Verdict: real-data 1.5B L0 NO-GO, same direction as synthetic but marginal
 
-The real-data verdict is **NO-GO, and it does not differ from the synthetic
-verdict** - the low routable fraction is real, not a template artifact. But
-it is **marginal**, not comfortable: the real point estimate (0.095) sits
-just below the 0.10 gate and its CI upper bound (~0.14) crosses the gate,
-whereas the synthetic stable estimate was 0.045. The honest reading is that
-the synthetic smoke corpus *understated* the cheap tier's real routable
-fraction: on real data a closed-book 1.5B model routes roughly one query in
-ten to itself (mostly HotpotQA yes/no), still short of the exploitable-
-separation gate but close enough that a GO call would not be robust.
+The real-data 1.5B L0 verdict is **NO-GO, and it does not differ from the
+synthetic verdict** - the low routable fraction is real, not a template
+artifact. But it is **marginal**, not comfortable: the real point estimate
+(0.095) sits just below the 0.10 gate and its CI upper bound (~0.14) crosses
+the gate, whereas the synthetic stable estimate was 0.045. The honest reading
+is that the synthetic smoke corpus *understated* the cheap tier's real
+routable fraction: on real data a closed-book 1.5B model routes roughly one
+query in ten to itself (mostly HotpotQA yes/no), still short of the
+exploitable-separation gate but close enough that a GO call would not be
+robust.
 Recommendation (unchanged in direction, strengthened in caveat): do not
 build a routing policy on the L0 default yet; the measured gap is real
 (McNemar p ~ 8e-41) but the cheap tier's coverage is at the decision
@@ -326,7 +327,7 @@ pilot-20 preliminary GO (0.55) - but that overturn is driven by the
 measured-vs-stub quality gap (measured L0 0.06-0.08 vs stub-modelled 0.55),
 not by label noise.
 
-## Multi-hop mix live recount (costmultihop-12 / costsweep-13): gate still NO-GO
+## Multi-hop mix live recount (costmultihop-12 / costsweep-13): 1.5B L0 gate still NO-GO
 
 This is the live recount the costmultihop-12 mix was built for. The
 multi-hop-reweighted 200-query Tier-A set (`results/costmultihop-12/`,

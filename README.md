@@ -82,16 +82,17 @@ Routes: **L0** = closed-book direct (k=0), **L1** = retrieval k=5 direct,
 *Cheap-tier break-even: per-tier best-route coverage with 95% CIs against the
 0.10 gate. The first closed-book L0 route to clear it is Qwen2.5-3B.*
 
-![Real-data headroom gate: L0 vs C4, NO-GO](results/realdata-15/headroom_stable.svg)
+![Real-data headroom gate: Qwen2.5-1.5B L0 vs C4, NO-GO](results/realdata-15/headroom_stable.svg)
 
-*Real Tier-A headroom gate (n=200, 3x-majority labels): routable fraction
-0.095 [0.055, 0.135], max saving 94.77% at no quality loss, NO-GO.*
+*Real Tier-A headroom gate (Qwen2.5-1.5B closed-book L0 vs C4, n=200,
+3x-majority labels): routable fraction 0.095 [0.055, 0.135], max saving 94.77%
+at no quality loss, NO-GO.*
 
-![Synthetic multi-hop headroom gate: L0 vs C4, NO-GO](results/costmultihop-12/headroom_stable.svg)
+![Synthetic multi-hop headroom gate: Qwen2.5-1.5B L0 vs C4, NO-GO](results/costmultihop-12/headroom_stable.svg)
 
-*Synthetic multi-hop mix headroom gate (n=200, stable labels): routable
-fraction 0.045 [0.020, 0.075], NO-GO. Treated as a pipeline smoke signal, not
-a benchmark conclusion.*
+*Synthetic multi-hop mix headroom gate (Qwen2.5-1.5B closed-book L0 vs C4,
+n=200, stable labels): routable fraction 0.045 [0.020, 0.075], NO-GO. Treated
+as a pipeline smoke signal, not a benchmark conclusion.*
 
 ## Rigor and limitations
 
