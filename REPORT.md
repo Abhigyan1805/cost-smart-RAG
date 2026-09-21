@@ -180,10 +180,10 @@ exact-correct C4 stub (real cloud accuracy untested; $0 spent).
 
 ## Scope and claim strength
 
-**The NO-GO holds on REAL labelled Tier-A data, not only on the synthetic
-smoke corpus.** The audit objection was that the synthetic templates leak
-the answer entity into the question, so the synthetic NO-GO is only a
-pipeline smoke signal. The `realdata-15` recount answers that directly:
+**The 1.5B closed-book L0 NO-GO holds on REAL labelled Tier-A data, not only
+on the synthetic smoke corpus.** The audit objection was that the synthetic
+templates leak the answer entity into the question, so the synthetic NO-GO is
+only a pipeline smoke signal. The `realdata-15` recount answers that directly:
 the same 7-route sweep and 3x-majority stable gate, run live on **real NQ
 open + HotpotQA + MuSiQue** (200 queries, 75% multi-hop, fetched through
 the HF loader path and committed at `results/realdata-15/corpus.json`),
