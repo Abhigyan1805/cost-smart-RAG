@@ -2,7 +2,7 @@
 
 [![python](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
 [![tests](https://img.shields.io/badge/tests-unittest%20%28stdlib%29-brightgreen)](#quick-start)
-[![license](https://img.shields.io/badge/license-MIT-lightgrey)](pyproject.toml)
+[![license](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![cloud spend](https://img.shields.io/badge/cloud%20spend-%240-brightgreen)](#limitations-and-honest-notes)
 ![status](https://img.shields.io/badge/status-research%20artifact-orange)
 
@@ -22,10 +22,12 @@ deployed product**.
   NQ + HotpotQA + MuSiQue queries, 3x-majority labels. Source:
   `results/tiersweep-16/TIERS.md`.
 - **Qwen2.5-7B is statistically indistinguishable** (**0.150 [0.100, 0.200]**)
-  and Apache-2.0. Source: same file.
-- **The 1.5B tier does not clear the gate** on L0 (coverage **0.095**), so the
-  lever is tier capability, not query difficulty. Source: `REPORT.md`, "Key
-  result".
+  and Apache-2.0, so it is the commercially deployable choice. Source: same
+  file.
+- **The 1.5B tier does not clear the gate** on L0 (coverage **0.095**).
+  Reweighting the (synthetic) query mix did not open the gate, but a stronger
+  tier did, so the lever is tier capability, not query difficulty. Source: `REPORT.md`,
+  "Key result".
 - **Oracle ceiling: ~94% saving at no measured quality loss** against an
   exhaustive oracle over all routes. Caveat: the cloud side is a stub, so this
   saving is a stub-priced estimate (see limitations). Source: `REPORT.md`.
@@ -83,14 +85,9 @@ scikit-learn, pandas, ...) from the network. No cloud API is ever called.
 
 ## Scope and status
 
-costsmart-rag is a **research artifact**, not a deployed product: a routed RAG
-agent whose routing decision is measured rather than asserted. Retrieval runs
-**before** routing, so post-retrieval signals (score margins, coverage,
-agreement) become free router features. The router chooses from the joint
-space of **model x retrieval depth x reasoning strategy**, and every claim is
-scored against an **exhaustive oracle** that evaluates all routes per query.
 The headline gate experiments are complete; the router-training and agent-loop
-components ship as scaffolds and are not yet benchmarked (see Status below).
+components ship as scaffolds and are not yet benchmarked (see
+[Status at a glance](#status-at-a-glance)).
 
 ## Tier results
 
@@ -178,14 +175,14 @@ The detail behind these points is in [Rigor and limitations](#rigor-and-limitati
 - **Retrieve before routing.** Doing retrieval first makes difficulty signals
   free and turns retrieval depth into a routing action (see "How it works").
 - **Measure against an exhaustive oracle** instead of asserting a router is
-  good: all routes are run for every query, so savings are measured, not
-  estimated.
+  good: all routes are run for every query, so which route is cheapest-correct
+  is measured per query (cloud cost is still a stub estimate).
 - **Small-model labels are noisy, so stabilise them.** Single draws at
   temperature 0 still flip; 3x repeats with strict majority (ties count
-  incorrect) fixed this (`src/costsmart/eval/stability.py`).
-- **Report negative results honestly.** The 1.5B tier stayed NO-GO through
-  several recounts, and the verdict is stated per (tier x route), not per
-  model. A stub cloud tier and the resulting caveats are called out up front.
+  incorrect) stabilised the labels (`src/costsmart/eval/stability.py`).
+- **Report negative results honestly.** The 1.5B closed-book (L0) route
+  stayed NO-GO through several recounts, and the verdict is stated per
+  (tier x route), not per model. A stub cloud tier and the resulting caveats are called out up front.
 - **Provenance on every row.** Rows record measured vs stub, and the 3B/7B
   rows carry server-side model attestation (revision + weight hash), which
   an audit script checks.
