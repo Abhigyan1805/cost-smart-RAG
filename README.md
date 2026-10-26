@@ -26,8 +26,8 @@ deployed product**.
   file.
 - **The 1.5B tier does not clear the gate** on L0 (coverage **0.095**).
   Reweighting the (synthetic) query mix did not open the gate, but a stronger
-  tier did, so the lever is tier capability, not query difficulty. Source: `REPORT.md`,
-  "Key result".
+  tier did, so the lever is tier capability, not query difficulty. Source:
+  `REPORT.md`, "Key result".
 - **Oracle ceiling: ~94% saving at no measured quality loss** against an
   exhaustive oracle over all routes. Caveat: the cloud side is a stub, so this
   saving is a stub-priced estimate (see limitations). Source: `REPORT.md`.
@@ -182,7 +182,8 @@ The detail behind these points is in [Rigor and limitations](#rigor-and-limitati
   incorrect) stabilised the labels (`src/costsmart/eval/stability.py`).
 - **Report negative results honestly.** The 1.5B closed-book (L0) route
   stayed NO-GO through several recounts, and the verdict is stated per
-  (tier x route), not per model. A stub cloud tier and the resulting caveats are called out up front.
+  (tier x route), not per model. A stub cloud tier and the resulting caveats
+  are called out up front.
 - **Provenance on every row.** Rows record measured vs stub, and the 3B/7B
   rows carry server-side model attestation (revision + weight hash), which
   an audit script checks.
